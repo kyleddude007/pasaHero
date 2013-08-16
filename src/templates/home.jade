@@ -1,0 +1,26 @@
+.row
+  .col-lg-4
+    .panel
+      .panel-heading
+        h1.panel-title Where do you want to go?
+      form.form-horizontal(ng-controller='FindPathCtrl', name='find-routes')
+        .form-group
+          label.control-label.col-lg-2 When:
+          .col-lg-4
+            input(type='time', value='')
+            input(type='date', value='') 
+        .form-group
+          label.control-label.col-lg-2 Travel by:
+          .col-lg-4
+            .checkbox
+              label
+                input(type='checkbox', ng-model='checkAll') 
+                | Check all
+            .checkbox(ng-repeat='(key,value) in mapSearchOptions track by $index')
+              label.capitalize
+                input(type='checkbox', ng-model='value', ng-checked='checkAll') 
+                | {{ key }}
+        button.btn.btn-primary(type='button') Find Routes      
+  .col-lg-8
+    div(ng-controller="MapCtrl")
+      leaflet(markers='markers', center='markerCenter', events='events')

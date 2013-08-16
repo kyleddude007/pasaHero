@@ -1,0 +1,9 @@
+{
+  "name": "pasaHero",
+  "version": "0.0.1",
+  "dependencies": {
+    "jade": "~0.28.2",
+    "karma": "~0.8.5",
+    "coffee-script": "~1.6.2"
+  }
+}
