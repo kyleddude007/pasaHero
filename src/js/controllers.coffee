@@ -4,7 +4,9 @@ controllers = angular.module 'Pasahero.controllers', [
   'Pasahero.resources'
 ]
 
-controllers.controller 'MapCtrl', ['$scope', '$window', ($scope, $window)->
+controllers.controller 'MapCtrl', ['$scope', '$window', 'mapSearchOptions', 'Plan', ($scope, $window, mapSearchOptions, Plan)->
+  $scope.mapSearchOptions = mapSearchOptions
+
   angular.extend $scope,
     markerCenter:
       lat: 14.599512400000000000,
@@ -30,11 +32,6 @@ controllers.controller 'MapCtrl', ['$scope', '$window', ($scope, $window)->
             focus: false
             draggable: true
       
-]
-
-controllers.controller 'FindPathCtrl', ['$scope', 'mapSearchOptions', 'Plan', ($scope, mapSearchOptions, Plan) ->
-  $scope.mapSearchOptions = mapSearchOptions
-
   $scope.plan = Plan.get
     arriveBy: false
     time: '10:25am'
@@ -46,9 +43,8 @@ controllers.controller 'FindPathCtrl', ['$scope', 'mapSearchOptions', 'Plan', ($
     toPlace: '14.587841,121.056794'
     fromPlace: '14.580972,121.053511'
     , (plan, headers)->
-
-  console.log "adfdsafdsaf"
-  console.log $scope.plan
-  console.log "adfds"
+      console.log $scope.plan
+      $scope.plan = $scope.plan 
+      console.log $scope.plan.plan.from.name      
 ]
 

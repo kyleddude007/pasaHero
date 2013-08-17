@@ -1,9 +1,9 @@
-.row
+.row(ng-controller='MapCtrl')
   .col-lg-4
     .panel
       .panel-heading
         h1.panel-title Where do you want to go?
-      form.form-horizontal(ng-controller='FindPathCtrl', name='find-routes')
+      form.form-horizontal(name='find-routes')
         .form-group
           label.control-label.col-lg-2 When:
           .col-lg-4
@@ -20,7 +20,14 @@
               label.capitalize
                 input(type='checkbox', ng-model='value', ng-checked='checkAll') 
                 | {{ key }}
-        button.btn.btn-primary(type='button') Find Routes      
+        button.btn.btn-primary(type='button') Find Routes
+    .panel
+      | Start at {{plan.plan.from.name}}      
+      div(ng-repeat='iter in plan.plan.itineraries')
+        div(ng-repeat='legs in iter track by $index')
+          div(ng-repeat='leg in legs')
+            div {{leg.mode }} to {{leg.to.name}} ({{leg.to.geometry}})
+
   .col-lg-8
     div(ng-controller="MapCtrl")
       leaflet(markers='markers', center='markerCenter', events='events')
