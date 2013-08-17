@@ -1,6 +1,7 @@
 controllers = angular.module 'Pasahero.controllers', [
   'leaflet-directive'
   'Pasahero.services'
+  'Pasahero.resources'
 ]
 
 controllers.controller 'MapCtrl', ['$scope', '$window', ($scope, $window)->
@@ -31,7 +32,23 @@ controllers.controller 'MapCtrl', ['$scope', '$window', ($scope, $window)->
       
 ]
 
-controllers.controller 'FindPathCtrl', ['$scope', 'mapSearchOptions', ($scope, mapSearchOptions) ->
+controllers.controller 'FindPathCtrl', ['$scope', 'mapSearchOptions', 'Plan', ($scope, mapSearchOptions, Plan) ->
   $scope.mapSearchOptions = mapSearchOptions
+
+  $scope.plan = Plan.get
+    arriveBy: false
+    time: '10:25am'
+    mode: 'TRANSIT,WALK'
+    optimize: 'QUICK'
+    maxWalkDistance: 840
+    walkSpeed: 1.341
+    date: '2013-08-17'
+    toPlace: '14.587841,121.056794'
+    fromPlace: '14.580972,121.053511'
+    , (plan, headers)->
+
+  console.log "adfdsafdsaf"
+  console.log $scope.plan
+  console.log "adfds"
 ]
 

@@ -1,0 +1,903 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"form",
+				"form-group"
+			],
+			[
+				"career-ka",
+				"career-kalibrr__as-seen-on__logo"
+			],
+			[
+				"text",
+				"text-shadow"
+			],
+			[
+				"Min",
+				"minAge"
+			],
+			[
+				"modal-",
+				"modal-header"
+			],
+			[
+				"editable-list",
+				"editable-list-section"
+			],
+			[
+				"profie",
+				"profileWizardFields"
+			],
+			[
+				"control",
+				"control-group"
+			],
+			[
+				"contr",
+				"control-group"
+			],
+			[
+				"transcl",
+				"transcludeFn"
+			],
+			[
+				"modal",
+				"modal-body__section"
+			],
+			[
+				"if",
+				"if	If"
+			],
+			[
+				"line",
+				"line-height"
+			],
+			[
+				"border",
+				"border-bottom"
+			],
+			[
+				"job",
+				"job_skill"
+			],
+			[
+				"correct",
+				"correctAnswer"
+			],
+			[
+				"accordion",
+				"accordion-group"
+			],
+			[
+				"navb",
+				"navbar-fixed-top"
+			],
+			[
+				"in",
+				"include"
+			],
+			[
+				"remove",
+				"removeClass"
+			],
+			[
+				"b",
+				"border-radius"
+			],
+			[
+				"radial",
+				"radial-progress-bar__circle"
+			],
+			[
+				"nav",
+				"nav-collapse"
+			],
+			[
+				"backg",
+				"backgroundColor"
+			],
+			[
+				"backgr",
+				"background-color"
+			],
+			[
+				"tex",
+				"text-top"
+			],
+			[
+				"inlin",
+				"inline-block"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"btn",
+				"btn-group"
+			],
+			[
+				"dropdown",
+				"dropdown-menu"
+			],
+			[
+				"blue",
+				"blue-light"
+			],
+			[
+				"JobBoard",
+				"JobBoardController"
+			],
+			[
+				"Job",
+				"JobBoardController"
+			],
+			[
+				"short",
+				"short"
+			],
+			[
+				"ng",
+				"ng-class	angular class"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "src/index.jade",
+			"settings":
+			{
+				"buffer_size": 1121,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/js/app.coffee",
+			"settings":
+			{
+				"buffer_size": 205,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/js/controllers.coffee",
+			"settings":
+			{
+				"buffer_size": 938,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/js/directives.coffee",
+			"settings":
+			{
+				"buffer_size": 54,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/js/resources.coffee",
+			"settings":
+			{
+				"buffer_size": 68,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/js/services.coffee",
+			"settings":
+			{
+				"buffer_size": 237,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/templates/home.jade",
+			"settings":
+			{
+				"buffer_size": 967,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 67.0,
+		"selected_items":
+		[
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"angular",
+				"AngularJS: Look Up Definition"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"Package Control: Install Package"
+			],
+			[
+				"INSTALL",
+				"Package Control: Install Package"
+			],
+			[
+				"set",
+				"Set Syntax: LESS"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 139.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/cassiewang/pasahero/.gitignore",
+		"/Users/cassiewang/pasahero/Vagrantfile",
+		"/Users/cassiewang/abelian-group/Vagrantfile",
+		"/Users/cassiewang/abelian-group/README.md",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/templates/kbMessage.jade",
+		"/Users/cassiewang/hello.go",
+		"/Users/cassiewang/abelian-group/frontend/build/assets/learner/templates/messages.html",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/learner/templates/messages.jade",
+		"/Users/cassiewang/leaflet-sample/src/lib/angular-leaflet-directive.min.js",
+		"/Users/cassiewang/pasahero/src/lib/angular-leaflet-directive/angular-leaflet-directive.min.js",
+		"/Users/cassiewang/pasahero/src/lib/angular-leaflet-directive/angular-leaflet-directive.js",
+		"/Users/cassiewang/pasahero/src/lib/forked/angular-leaflet-directive/angular-leaflet-directive.js",
+		"/Users/cassiewang/pasahero/Guardfile",
+		"/Users/cassiewang/pasahero/Gemfile",
+		"/Users/cassiewang/pasahero/src/lib/leaflet/leaflet.js",
+		"/otp/webapps/opentripplanner-webapp/index.html",
+		"/Users/cassiewang/Philippine Transit App Challenge/gtfs_882264/routes.txt",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/js/services.coffee",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/learner/templates/landing-pages/convergys.jade",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/learner/js/controllers.coffee",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/learner/templates/landing-pages/home.jade",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/learner/js/app.coffee",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/css/_mixins.scss",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/css/pages/_home.scss",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/img/adb.svg",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/learner/templates/landing-pages/kalibrr.jade",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/learner/img/default-profile-pic.svg",
+		"/Users/cassiewang/pasahero/src/index.jade",
+		"/Users/cassiewang/pasahero/src/js/controllers/controllers.coffee",
+		"/Users/cassiewang/pasahero/build/js/services/services.js",
+		"/Users/cassiewang/pasahero/src/js/services/services.coffee",
+		"/Users/cassiewang/pasahero/src/templates/home.jade",
+		"/Users/cassiewang/pasahero/src/css/_maps.scss",
+		"/Users/cassiewang/pasahero/src/css/app.scss",
+		"/Users/cassiewang/Downloads/dist 2/css/bootstrap.css",
+		"/Users/cassiewang/pasahero/src/lib/bootstrap/css/docs.css",
+		"/Users/cassiewang/pasahero/src/lib/angular/version.json",
+		"/Users/cassiewang/Downloads/df_smooth_scroll/smooth-src-comments.js",
+		"/Users/cassiewang/Downloads/df_smooth_scroll/smooth.pack.js",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/css/_utilities.scss",
+		"/Users/cassiewang/pasahero/config.rb",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/lib/flatstrap/scss/_buttons.scss",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/css/_images.scss",
+		"/Users/cassiewang/pasahero/build/css/app.css",
+		"/Users/cassiewang/pasahero/build/css/_maps.less",
+		"/Users/cassiewang/pasahero/src/css/app.less",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/learner/js/directives.coffee",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/learner/templates/job-board.jade",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/learner/templates/assessment.jade",
+		"/Users/cassiewang/abelian-group/frontend/Guardfile",
+		"/Users/cassiewang/leaflet-sample/src/index.jade",
+		"/Users/cassiewang/kalibrr-angular/Gemfile",
+		"/Users/cassiewang/pasahero/build/lib/bootstrap/less/bootstrap.css",
+		"/Users/cassiewang/leaflet-sample/src/css/app.scss",
+		"/Users/cassiewang/leaflet-sample/src/js/app.coffee",
+		"/Users/cassiewang/leaflet-sample/src/templates/map.jade",
+		"/Users/cassiewang/pasahero/src/lib/bootstrap/less/bootstrap.less",
+		"/Users/cassiewang/pasahero/src/lib/angular-leaflet-directive.js",
+		"/Users/cassiewang/kalibrr-angular/Guardfile",
+		"/Users/cassiewang/component.json",
+		"/Users/cassiewang/index.js",
+		"/Users/cassiewang/pasahero/src/templates/demo.jade",
+		"/Users/cassiewang/pasahero/src/js/demo.coffee",
+		"/Users/cassiewang/pasahero/src/lib/angular/version.txt",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/css/_animations.scss",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/css/app.scss",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/css/_variables.scss",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/css/_layout.scss",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/lib/angular/angular.js",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/js/directives.coffee",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/templates/security/login-toolbar.jade",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/css/_graphics.scss",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/css/_base.scss",
+		"/Users/cassiewang/abelian-group/frontend/src/index.jade",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/js/security/login-toolbar.coffee",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/css/_buttons.scss",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/learner/templates/home.jade",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/learner/templates/profile_wizard.jade",
+		"/Users/cassiewang/abelian-group/frontend/build/assets/shared/css/app.css",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/learner/img/kalibrr.svg",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/img/kalibrr.svg",
+		"/Users/cassiewang/pointy-flat/src/css/_widgets.scss",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/templates/types/widgets/multiple_choice.jade",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/css/_quizzes.scss",
+		"/Users/cassiewang/abelian-group/ansible/roles/frontend/tasks/main.yml",
+		"/Users/cassiewang/abelian-group/ansible/hosts",
+		"/Users/cassiewang/abelian-group/ansible/ec2_deploy.yml",
+		"/Users/cassiewang/pacifist-angular/Vagrantfile",
+		"/Users/cassiewang/abelian-group/ansible/vagrant.yml",
+		"/Users/cassiewang/cabejs/scripts/web.js",
+		"/Users/cassiewang/pasahero/README.md",
+		"/Users/cassiewang/pasahero/Procfile",
+		"/Users/cassiewang/abelian-group/frontend/build/assets/learner/css/profile-wizard.css",
+		"/Users/cassiewang/pointy-flat/src/css/_mixins.scss",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/lib/font-awesome/component.json",
+		"/Users/cassiewang/abelian-group/requirements.txt",
+		"/Users/cassiewang/abelian-group/backend/setup.py",
+		"/Users/cassiewang/abelian-group/backend/requirements.txt",
+		"/Users/cassiewang/abelian-group/backend/development.ini",
+		"/Users/cassiewang/abelian-group/backend/abelian/template.py",
+		"/Users/cassiewang/abelian-group/backend/abelian/views/session.py",
+		"/Users/cassiewang/abelian-group/backend/abelian/views/users.py",
+		"/Users/cassiewang/abelian-group/backend/abelian/__init__.py",
+		"/Users/cassiewang/pasahero/pasahero-backend/pasaherobackend/templates/mytemplate.pt",
+		"/Users/cassiewang/pasahero/pasahero-backend/pasaherobackend/__init__.py",
+		"/Users/cassiewang/pasahero/pasahero-backend/pasaherobackend/views.py",
+		"/Users/cassiewang/abelian-group/backend/setup.cfg",
+		"/Users/cassiewang/abelian-group/backend/abelian/views/__init__.py",
+		"/Users/cassiewang/abelian-group/backend/abelian/views/learner/__init__.py",
+		"/Users/cassiewang/pasahero/package.json",
+		"/Users/cassiewang/abelian-group/frontend/package.json",
+		"/Users/cassiewang/cabejs/package.json",
+		"/Users/cassiewang/cabejs/Guardfile",
+		"/Users/cassiewang/cabejs/Gemfile",
+		"/Users/cassiewang/abelian-group/frontend/Gemfile",
+		"/Users/cassiewang/helloworld.py",
+		"/Users/cassiewang/Downloads/application.wadl",
+		"/Users/cassiewang/Dropbox/otp_setup_instructions.txt",
+		"/otp/webapps/opentripplanner-webapp/js/otp/config.js",
+		"/Users/cassiewang/OpenTripPlanner/pom.xml",
+		"/Users/cassiewang/dev/eclipse/Eclipse.app/Contents/MacOS/eclipse.ini",
+		"/Users/cassiewang/OpenTripPlanner/opentripplanner-graph-builder/samples/graph-config.xml",
+		"/otp/graph-builder.xml",
+		"/Users/cassiewang/.bashrc",
+		"/Users/cassiewang/Downloads/xapi_meta (1)",
+		"/Users/cassiewang/Downloads/xapi_meta",
+		"/otp/graph-builder",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/js/resources.coffee"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"e ",
+			"e",
+			"click",
+			"setUpMarkers",
+			"events",
+			"$scope.events",
+			"map",
+			"events",
+			"evetns",
+			"setUpEvents",
+			"click",
+			"requireAuthed",
+			"requiredAu",
+			"requiredAu	",
+			"authedUser",
+			"user",
+			"data",
+			"$scope.user",
+			"data",
+			"name",
+			"messages",
+			"bott",
+			"booto",
+			"transc",
+			"trans",
+			"home",
+			"root",
+			"rootScope",
+			"marker",
+			"click",
+			"tile",
+			"default",
+			"leafletDirectiveMarkersClick",
+			"click",
+			"broadcast",
+			"message",
+			"leafletDirectiveSet",
+			"$on",
+			"\\.on",
+			".on",
+			".on(",
+			".on",
+			"MainMarker",
+			"on",
+			"$on",
+			"on",
+			"scope.marker",
+			"$scope.marker",
+			".marker",
+			"marker",
+			"$scope.marker",
+			"$scope.marekr",
+			"drag",
+			"markersClicke",
+			"lat",
+			"latlng",
+			"true ",
+			"option",
+			"Option",
+			"option",
+			"kalibrr-job",
+			"kalibrr",
+			"kalibrr.html",
+			"kalibrr",
+			"kalibrr.html",
+			"kalibrr",
+			".career-kalibrr__as-seen-on",
+			"National",
+			"NCR",
+			"ngRequired",
+			"required",
+			"profileWizard",
+			"col-",
+			"col",
+			"scrollTo",
+			"margin:	",
+			"-20",
+			"security",
+			"Sign",
+			"sign",
+			"signup",
+			"logo",
+			"text-s",
+			"nav",
+			"0.5s",
+			"5",
+			"0.2s",
+			"0.2",
+			"wipe",
+			".fade",
+			"padding",
+			"kalibrr-job",
+			"large",
+			"kalibrr-work",
+			"work-convergys",
+			"convergys__",
+			"convergys",
+			"home.html",
+			"home.",
+			"home",
+			"foundationc",
+			"/lib/",
+			"scss",
+			"..",
+			"components",
+			"foundation",
+			"job",
+			"board",
+			"jobs",
+			"less",
+			"LESS",
+			"ageFilter",
+			"birthday",
+			"viewValue",
+			"ageFilter",
+			"age",
+			"/lib",
+			"less/",
+			"..",
+			".less",
+			"../lib",
+			"boostrap",
+			"/shared",
+			"less",
+			"brand",
+			"0.5s",
+			"5",
+			"ngShow"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"','",
+			"\",\"",
+			"\",",
+			",",
+			"\",",
+			",",
+			"\", \"",
+			"\",\"",
+			"\",",
+			"\"",
+			",\"",
+			"$(window)",
+			"li 2013",
+			": 'active'",
+			"'inactive'",
+			"'TSR'",
+			"'JSCSR'",
+			"'CSR'",
+			"'HCSR'",
+			"'JSR'",
+			"'TSR'",
+			"'CSR'",
+			"position: 'Customer Service Representative' \\n",
+			"+",
+			"9+\\n",
+			"9",
+			"8",
+			"7",
+			"6",
+			"5",
+			"4",
+			"3",
+			"2",
+			"1",
+			"0",
+			",",
+			"0",
+			",",
+			"9",
+			"8",
+			"7",
+			"6",
+			"5",
+			"4",
+			"3",
+			"2",
+			"1",
+			"9",
+			"8",
+			"7",
+			"6",
+			"5",
+			"4",
+			"3",
+			"1",
+			",",
+			"Emphasii",
+			"IHT",
+			"ICT",
+			"Emphasii",
+			"png",
+			"Emphasi",
+			"ICT",
+			"Suntech",
+			"PLCO",
+			"yellow",
+			"red",
+			"violet",
+			"red",
+			"green",
+			"ad-panel-even",
+			"include",
+			"808",
+			"606",
+			"404",
+			"left: 202px",
+			"Assist",
+			"Hinduja.png",
+			"salary",
+			"step-title",
+			"li",
+			"li.span3",
+			"li",
+			"\\textit{smsd}",
+			"h2 ",
+			"h2",
+			"â€™"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 6,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "src/index.jade",
+					"settings":
+					{
+						"buffer_size": 1121,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/js/app.coffee",
+					"settings":
+					{
+						"buffer_size": 205,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/js/controllers.coffee",
+					"settings":
+					{
+						"buffer_size": 938,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/js/directives.coffee",
+					"settings":
+					{
+						"buffer_size": 54,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "src/js/resources.coffee",
+					"settings":
+					{
+						"buffer_size": 68,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "src/js/services.coffee",
+					"settings":
+					{
+						"buffer_size": 237,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "src/templates/home.jade",
+					"settings":
+					{
+						"buffer_size": 967,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 112.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"",
+				"/Users/cassiewang/kalibrr-angular copy/src/shared/css/_shame.less"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 123.0,
+	"status_bar_visible": true
+}
