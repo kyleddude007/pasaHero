@@ -6,6 +6,7 @@ controllers = angular.module 'Pasahero.controllers', [
 
 controllers.controller 'MapCtrl', ['$scope', '$window', 'mapSearchOptions', 'Plan', ($scope, $window, mapSearchOptions, Plan)->
   $scope.mapSearchOptions = mapSearchOptions
+  $scope.instructions = []
 
   angular.extend $scope,
     markerCenter:
@@ -23,17 +24,8 @@ controllers.controller 'MapCtrl', ['$scope', '$window', 'mapSearchOptions', 'Pla
       lat: 53
       lng: -3
       zoom: 6
-    paths:
-      p1:
-        color: "#008000"
-        weight: 3
-        latlngs: [
-          lat: 14.587841
-          lng: 121.056794
-        ,
-          lat: 14.580972
-          lng: 121.053511
-        ]
+    paths:{}
+
 
   $scope.events =
     'contextmenu': (event)->
@@ -46,7 +38,7 @@ controllers.controller 'MapCtrl', ['$scope', '$window', 'mapSearchOptions', 'Pla
             focus: false
             draggable: true
       
-  ###$scope.plan = Plan.get
+  $scope.plan = Plan.get
     arriveBy: false
     time: '10:25am'
     mode: 'TRANSIT,WALK'
@@ -59,19 +51,46 @@ controllers.controller 'MapCtrl', ['$scope', '$window', 'mapSearchOptions', 'Pla
     , (plan, headers)->
       console.log $scope.plan
       console.log $scope.plan.plan.from.name
-      angular.extend $scope.markers,
-        'start':
-          lat: $scope.plan.plan.from.lat      
-          lng: $scope.plan.plan.from.lon
-          draggable: true
-          message: $scope.plan.plan.from.name
-        'end':
-          lat: $scope.plan.plan.to.lat      
-          lng: $scope.plan.plan.to.lon
-          draggable: true
-          message: $scope.plan.plan.to.name
-      console.log $scope.markers
-     
-      console.log $scope.paths   ###   
+      insertMarker 'Start', $scope.plan.plan.from.lat, $scope.plan.plan.from.lon, true, $scope.plan.plan.from.name
+      insertMarker 'End', $scope.plan.plan.to.lat, $scope.plan.plan.to.lon, true, $scope.plan.plan.to.name
+      insertPath '#FF0000', 5, pathCoordinates($scope.plan.plan.itineraries) 
+      console.log $scope.plan.plan     
+      console.log "adsf"
+
+  insertMarker = (name, lat, lng, draggable, message)->
+    if !$scope.markers?
+      $scope.markers = {}
+    angular.extend $scope.markers,
+      name:
+        'lat': lat
+        'lng': lng
+        'draggable': draggable
+        'message': message
+
+  insertPath = (color, weight, latlngs)->
+    if !$scope.paths?
+      $scope.paths = {}  
+    angular.extend $scope.paths,
+      p1:
+        'color': color
+        'weight': weight
+        'latlngs': latlngs
+    console.log "inset"
+    console.log $scope
+
+  pathCoordinates =(itineraries)->
+    for i in itineraries
+      latlngs = []
+      legs = i.legs
+      for leg in legs
+        latlngs.push 
+          'lat': leg.from.lat
+          'lng': leg.from.lon
+        latlngs.push 
+          'lat': leg.to.lat
+          'lng': leg.to.lon
+    latlngs
 ]
+  
+
 

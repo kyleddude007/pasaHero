@@ -29,5 +29,5 @@
             div {{leg.mode }} to {{leg.to.name}} ({{leg.to.geometry}})
 
   .col-lg-8
-    div(ng-controller="MapCtrl")
+    div
       leaflet(markers='markers', center='markerCenter', events='events', ps-planner, paths='paths')

@@ -27,5 +27,4 @@ resources.factory 'Plan', ['$resource', '$http', ($resource, $http) ->
         params: 
           callback: 'JSON_CALLBACK'
     }
-    
 ]
