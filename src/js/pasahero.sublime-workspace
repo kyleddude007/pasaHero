@@ -187,7 +187,23 @@
 			"file": "controllers.coffee",
 			"settings":
 			{
-				"buffer_size": 2165,
+				"buffer_size": 2523,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/cassiewang/abelian-group/frontend/src/assets/shared/js/resources.coffee",
+			"settings":
+			{
+				"buffer_size": 9794,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/cassiewang/Philippine Transit App Challenge/gtfs_882264/trips.txt",
+			"settings":
+			{
+				"buffer_size": 71181,
 				"line_ending": "Unix"
 			}
 		},
@@ -203,7 +219,7 @@
 			"file": "resources.coffee",
 			"settings":
 			{
-				"buffer_size": 667,
+				"buffer_size": 662,
 				"line_ending": "Unix"
 			}
 		},
@@ -224,10 +240,28 @@
 			}
 		},
 		{
+			"contents": ".row(ng-controller='MapCtrl')\n  .col-lg-4\n    .panel\n      .panel-heading\n        h1.panel-title Where do you want to go?\n      form.form-horizontal(name='find-routes')\n        .form-group\n          label.control-label.col-lg-2 When:\n          .col-lg-4\n            input(type='time', value='')\n            input(type='date', value='') \n        .form-group\n          label.control-label.col-lg-2 Travel by:\n          .col-lg-4\n            .checkbox\n              label\n                input(type='checkbox', ng-model='checkAll') \n                | Check all\n            .checkbox(ng-repeat='(key,value) in mapSearchOptions track by $index')\n              label.capitalize\n                input(type='checkbox', ng-model='value', ng-checked='checkAll') \n                | {{ key }}\n        button.btn.btn-primary(type='button') Find Routes\n    .panel\n      div Start at {{ plan.plan.from.name }}\n      div End at {{ plan.plan.to.name }}\n      div(ng-repeat='itinerary in plan.plan.itineraries')\n        div(ng-repeat='leg in itinerary.legs')\n          div {{ leg.mode }} to {{leg.to.name }}\n            div About {{}}\n  .col-lg-8\n    div\n      leaflet(markers='markers', center='markerCenter', events='events', ps-planner, paths='paths')\n",
 			"file": "/Users/cassiewang/pasahero/src/templates/home.jade",
+			"file_size": 1210,
+			"file_write_time": 1377021983000000,
 			"settings":
 			{
-				"buffer_size": 1235,
+				"buffer_size": 1237,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/cassiewang/abelian-group/frontend/src/assets/shared/templates/profile.jade",
+			"settings":
+			{
+				"buffer_size": 30536,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"settings":
+			{
+				"buffer_size": 0,
 				"line_ending": "Unix"
 			}
 		}
@@ -288,6 +322,17 @@
 	},
 	"file_history":
 	[
+		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/js/security/security.coffee",
+		"/Users/cassiewang/OpenTripPlanner/opentripplanner-webapp/src/main/webapp/js/otp/core/Measure.js",
+		"/Users/cassiewang/OpenTripPlanner/opentripplanner-webapp/src/main/webapp/js/otp/core/Map.js",
+		"/Users/cassiewang/OpenTripPlanner/opentripplanner-webapp/src/main/webapp/js/otp/otp.js",
+		"/Users/cassiewang/Philippine Transit App Challenge/gtfs_882264/routes.txt",
+		"/Users/cassiewang/Philippine Transit App Challenge/gtfs_882264/shapes.txt",
+		"/Users/cassiewang/Philippine Transit App Challenge/gtfs_882264/frequencies.txt",
+		"/Users/cassiewang/Philippine Transit App Challenge/gtfs_882264/agency.txt",
+		"/Users/cassiewang/Philippine Transit App Challenge/gtfs_882264/stops.txt",
+		"/Users/cassiewang/Philippine Transit App Challenge/gtfs_882264/calendar.txt",
+		"/Users/cassiewang/pasahero/src/js/pasahero.sublime-workspace",
 		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/templates/profile/editable-list-section.jade",
 		"/Users/cassiewang/abelian-group/frontend/src/assets/learner/templates/profile_wizard.jade",
 		"/Users/cassiewang/abelian-group/frontend/src/assets/learner/js/profile-wizard.coffee",
@@ -330,7 +375,6 @@
 		"/Users/cassiewang/pasahero/Gemfile",
 		"/Users/cassiewang/pasahero/src/lib/leaflet/leaflet.js",
 		"/otp/webapps/opentripplanner-webapp/index.html",
-		"/Users/cassiewang/Philippine Transit App Challenge/gtfs_882264/routes.txt",
 		"/Users/cassiewang/abelian-group/frontend/src/assets/learner/templates/landing-pages/convergys.jade",
 		"/Users/cassiewang/abelian-group/frontend/src/assets/learner/js/controllers.coffee",
 		"/Users/cassiewang/abelian-group/frontend/src/assets/learner/templates/landing-pages/home.jade",
@@ -405,17 +449,7 @@
 		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/lib/font-awesome/component.json",
 		"/Users/cassiewang/abelian-group/requirements.txt",
 		"/Users/cassiewang/abelian-group/backend/setup.py",
-		"/Users/cassiewang/abelian-group/backend/requirements.txt",
-		"/Users/cassiewang/abelian-group/backend/development.ini",
-		"/Users/cassiewang/abelian-group/backend/abelian/template.py",
-		"/Users/cassiewang/abelian-group/backend/abelian/views/session.py",
-		"/Users/cassiewang/abelian-group/backend/abelian/views/users.py",
-		"/Users/cassiewang/abelian-group/backend/abelian/__init__.py",
-		"/Users/cassiewang/pasahero/pasahero-backend/pasaherobackend/templates/mytemplate.pt",
-		"/Users/cassiewang/pasahero/pasahero-backend/pasaherobackend/__init__.py",
-		"/Users/cassiewang/pasahero/pasahero-backend/pasaherobackend/views.py",
-		"/Users/cassiewang/abelian-group/backend/setup.cfg",
-		"/Users/cassiewang/abelian-group/backend/abelian/views/__init__.py"
+		"/Users/cassiewang/abelian-group/backend/requirements.txt"
 	],
 	"find":
 	{
@@ -434,6 +468,15 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"$scope.plan",
+			"set",
+			"from",
+			"mrt",
+			"train",
+			"rail",
+			"trip",
+			"train",
+			"mrt",
 			"job.data.jobType",
 			"data.work_experience",
 			"editableListSection",
@@ -552,16 +595,7 @@
 			"scrollTo",
 			"margin:	",
 			"-20",
-			"security",
-			"Sign",
-			"sign",
-			"signup",
-			"logo",
-			"text-s",
-			"nav",
-			"0.5s",
-			"5",
-			"0.2s"
+			"security"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -666,7 +700,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 9,
 			"sheets":
 			[
 				{
@@ -700,15 +734,15 @@
 					"file": "controllers.coffee",
 					"settings":
 					{
-						"buffer_size": 2165,
+						"buffer_size": 2523,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1163,
-								1163
+								2395,
+								2395
 							]
 						],
 						"settings":
@@ -718,13 +752,67 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 695.0,
+						"translation.y": 894.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
+					"file": "/Users/cassiewang/abelian-group/frontend/src/assets/shared/js/resources.coffee",
+					"settings":
+					{
+						"buffer_size": 9794,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6850,
+								6850
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3954.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/Users/cassiewang/Philippine Transit App Challenge/gtfs_882264/trips.txt",
+					"settings":
+					{
+						"buffer_size": 71181,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1007,
+								1008
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
 					"file": "directives.coffee",
 					"settings":
 					{
@@ -750,19 +838,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 5,
 					"file": "resources.coffee",
 					"settings":
 					{
-						"buffer_size": 667,
+						"buffer_size": 662,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								660,
+								660
 							]
 						],
 						"settings":
@@ -778,7 +866,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 6,
 					"file": "services.coffee",
 					"settings":
 					{
@@ -806,7 +894,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 7,
 					"file": "/Users/cassiewang/pasahero/src/index.jade",
 					"settings":
 					{
@@ -817,8 +905,8 @@
 						"selection":
 						[
 							[
-								1185,
-								1185
+								1255,
+								1255
 							]
 						],
 						"settings":
@@ -834,19 +922,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 8,
 					"file": "/Users/cassiewang/pasahero/src/templates/home.jade",
 					"settings":
 					{
-						"buffer_size": 1235,
+						"buffer_size": 1237,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1134,
-								1134
+								1114,
+								1114
 							]
 						],
 						"settings":
@@ -854,6 +942,59 @@
 							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "/Users/cassiewang/abelian-group/frontend/src/assets/shared/templates/profile.jade",
+					"settings":
+					{
+						"buffer_size": 30536,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,

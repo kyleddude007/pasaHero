@@ -22,12 +22,11 @@
                 | {{ key }}
         button.btn.btn-primary(type='button') Find Routes
     .panel
-      | Start at {{plan.plan.from.name}}      
-      div(ng-repeat='iter in plan.plan.itineraries')
-        div(ng-repeat='legs in iter track by $index')
-          div(ng-repeat='leg in legs')
-            div {{leg.mode }} to {{leg.to.name}} ({{leg.to.geometry}})
-
+      div Start at {{ plan.plan.from.name }}
+      div End at {{ plan.plan.to.name }}
+      div(ng-repeat='itinerary in plan.plan.itineraries')
+        div(ng-repeat='leg in itinerary.legs')
+          div {{ leg.mode }} to {{leg.to.name }}
   .col-lg-8
     div
       leaflet(markers='markers', center='markerCenter', events='events', ps-planner, paths='paths')
