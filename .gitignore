@@ -4,3 +4,6 @@ build
 .vagrant
 pasahero-env
 .sass-cache
+*.sublime-project
+*.sublime-workspace
+Pasahero/gen
