@@ -4,5 +4,11 @@
     <string name="app_name">Pasahero</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-
+    <string name="create_account">Sign up</string>
+    <string name="log_in">Log in</string>
+    <string name="prompt_email">Email Address</string>
+    <string name="prompt_password">Password</string>
+    <string name="okay">Okay</string>
+    <string name="icon_heart">&#xf084;</string>
+    
 </resources>

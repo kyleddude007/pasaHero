@@ -7,3 +7,10 @@ pasahero-env
 *.sublime-project
 *.sublime-workspace
 Pasahero/gen
+*.apk
+*.ap_
+*.dex
+*.class
+Pasahero/bin/
+Pasahero/gen/
+local.properties
