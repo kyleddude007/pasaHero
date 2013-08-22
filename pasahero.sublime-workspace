@@ -176,41 +176,58 @@
 	"buffers":
 	[
 		{
-			"file": "/Users/cassiewang/abelian-group/frontend/src/assets/shared/js/directives.coffee",
+			"file": "src/index.jade",
 			"settings":
 			{
-				"buffer_size": 18587,
+				"buffer_size": 1255,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/Users/cassiewang/abelian-group/frontend/src/assets/shared/templates/profile.jade",
+			"file": "src/js/app.coffee",
 			"settings":
 			{
-				"buffer_size": 30536,
+				"buffer_size": 205,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/Users/cassiewang/abelian-group/frontend/src/assets/shared/js/profile.coffee",
+			"file": "src/js/controllers.coffee",
 			"settings":
 			{
-				"buffer_size": 26299,
+				"buffer_size": 2523,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/Users/cassiewang/abelian-group/frontend/src/assets/shared/templates/security/kalibrr-details.jade",
+			"file": "src/js/directives.coffee",
 			"settings":
 			{
-				"buffer_size": 2912,
+				"buffer_size": 182,
 				"line_ending": "Unix"
 			}
 		},
 		{
+			"file": "src/js/resources.coffee",
 			"settings":
 			{
-				"buffer_size": 0,
+				"buffer_size": 662,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/js/services.coffee",
+			"settings":
+			{
+				"buffer_size": 237,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/templates/home.jade",
+			"settings":
+			{
+				"buffer_size": 1210,
 				"line_ending": "Unix"
 			}
 		}
@@ -271,7 +288,55 @@
 	},
 	"file_history":
 	[
-		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/js/geo.coffee",
+		"/Users/cassiewang/pasahero/src/js/pasahero.sublime-workspace",
+		"/Users/cassiewang/pasahero/src/js/pasahero.sublime-project",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/css/widgets/_widgets.scss",
+		"/Users/cassiewang/pasahero/src/css/app.scss",
+		"/Users/cassiewang/pasahero/src/js/controllers.coffee",
+		"/Users/cassiewang/kalibrr-angular/src/shared/js/quizzes/main.coffee",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/recruiter/css/app.scss",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/css/app.scss",
+		"/Users/cassiewang/abelian-group/backend/abelian/models/conversation.py",
+		"/Users/cassiewang/abelian-group/backend/abelian/__init__.py",
+		"/Users/cassiewang/kalibrr-angular/src/shared/templates/types/exam_hook.jade",
+		"/Users/cassiewang/kalibrr-angular/src/shared/templates/types/exam.jade",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/learner/js/controllers.coffee",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/learner/templates/assessment.jade",
+		"/Users/cassiewang/abelian-group/backend/abelian/models/company.py",
+		"/Users/cassiewang/abelian-group/backend/abelian/models/user.py",
+		"/Users/cassiewang/abelian-group/backend/abelian/tasks.py",
+		"/Users/cassiewang/abelian-group/backend/abelian/emailer.py",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/learner/js/app.coffee",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/recruiter/js/recruiter.coffee",
+		"/Users/cassiewang/abelian-group/backend/abelian/models/validation.py",
+		"/Users/cassiewang/abelian-group/backend/abelian/models/__init__.py",
+		"/Users/cassiewang/abelian-group/backend/abelian/views/candidates.py",
+		"/Users/cassiewang/abelian-group/backend/abelian/views/__init__.py",
+		"/Users/cassiewang/abelian-group/backend/abelian/db.py",
+		"/Users/cassiewang/abelian-group/backend/abelian/template.py",
+		"/Users/cassiewang/abelian-group/backend/abelian/authorization.py",
+		"/Users/cassiewang/abelian-group/backend/pavement.py",
+		"/Users/cassiewang/gocode/gowiki/wiki.go",
+		"/Users/cassiewang/abelian-group/ansible/roles/vagrant/tasks/main.yml",
+		"/Users/cassiewang/abelian-group/ansible/roles/backend/tasks/main.yml",
+		"/Users/cassiewang/abelian-group/ansible/hosts",
+		"/Users/cassiewang/abelian-group/ansible/vagrant.yml",
+		"/Users/cassiewang/abelian-group/backend/README.txt",
+		"/Users/cassiewang/abelian-group/backend/migrations/2013-07-19.14-46-30.add_index_on_facebook_id.py",
+		"/Users/cassiewang/abelian-group/backend/migrations/2013-07-21.02-13-13.make_attempts_table.py",
+		"/Users/cassiewang/abelian-group/backend/seed/companies.json",
+		"/Users/cassiewang/abelian-group/backend/development.ini",
+		"/Users/cassiewang/abelian-group/backend/abelian/authentication.py",
+		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/js/security/security.coffee",
+		"/Users/cassiewang/OpenTripPlanner/opentripplanner-webapp/src/main/webapp/js/otp/core/Measure.js",
+		"/Users/cassiewang/OpenTripPlanner/opentripplanner-webapp/src/main/webapp/js/otp/core/Map.js",
+		"/Users/cassiewang/OpenTripPlanner/opentripplanner-webapp/src/main/webapp/js/otp/otp.js",
+		"/Users/cassiewang/Philippine Transit App Challenge/gtfs_882264/routes.txt",
+		"/Users/cassiewang/Philippine Transit App Challenge/gtfs_882264/shapes.txt",
+		"/Users/cassiewang/Philippine Transit App Challenge/gtfs_882264/frequencies.txt",
+		"/Users/cassiewang/Philippine Transit App Challenge/gtfs_882264/agency.txt",
+		"/Users/cassiewang/Philippine Transit App Challenge/gtfs_882264/stops.txt",
+		"/Users/cassiewang/Philippine Transit App Challenge/gtfs_882264/calendar.txt",
 		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/templates/profile/editable-list-section.jade",
 		"/Users/cassiewang/abelian-group/frontend/src/assets/learner/templates/profile_wizard.jade",
 		"/Users/cassiewang/abelian-group/frontend/src/assets/learner/js/profile-wizard.coffee",
@@ -289,7 +354,6 @@
 		"/Users/cassiewang/pasahero/src/js/services.coffee",
 		"/Users/cassiewang/pasahero/src/js/directives.coffee",
 		"/Users/cassiewang/kalibrr-angular/src/learner/js/controllers.coffee",
-		"/Users/cassiewang/pasahero/src/js/controllers.coffee",
 		"/Users/cassiewang/pasahero/src/js/app.coffee",
 		"/Users/cassiewang/pasahero/src/index.jade",
 		"/otp/webapps/opentripplanner-webapp/js/otp/planner/Renderer.js",
@@ -314,11 +378,8 @@
 		"/Users/cassiewang/pasahero/Gemfile",
 		"/Users/cassiewang/pasahero/src/lib/leaflet/leaflet.js",
 		"/otp/webapps/opentripplanner-webapp/index.html",
-		"/Users/cassiewang/Philippine Transit App Challenge/gtfs_882264/routes.txt",
 		"/Users/cassiewang/abelian-group/frontend/src/assets/learner/templates/landing-pages/convergys.jade",
-		"/Users/cassiewang/abelian-group/frontend/src/assets/learner/js/controllers.coffee",
 		"/Users/cassiewang/abelian-group/frontend/src/assets/learner/templates/landing-pages/home.jade",
-		"/Users/cassiewang/abelian-group/frontend/src/assets/learner/js/app.coffee",
 		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/css/_mixins.scss",
 		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/css/pages/_home.scss",
 		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/img/adb.svg",
@@ -328,7 +389,6 @@
 		"/Users/cassiewang/pasahero/build/js/services/services.js",
 		"/Users/cassiewang/pasahero/src/js/services/services.coffee",
 		"/Users/cassiewang/pasahero/src/css/_maps.scss",
-		"/Users/cassiewang/pasahero/src/css/app.scss",
 		"/Users/cassiewang/Downloads/dist 2/css/bootstrap.css",
 		"/Users/cassiewang/pasahero/src/lib/bootstrap/css/docs.css",
 		"/Users/cassiewang/pasahero/src/lib/angular/version.json",
@@ -342,7 +402,6 @@
 		"/Users/cassiewang/pasahero/build/css/_maps.less",
 		"/Users/cassiewang/pasahero/src/css/app.less",
 		"/Users/cassiewang/abelian-group/frontend/src/assets/learner/templates/job-board.jade",
-		"/Users/cassiewang/abelian-group/frontend/src/assets/learner/templates/assessment.jade",
 		"/Users/cassiewang/abelian-group/frontend/Guardfile",
 		"/Users/cassiewang/leaflet-sample/src/index.jade",
 		"/Users/cassiewang/kalibrr-angular/Gemfile",
@@ -356,49 +415,7 @@
 		"/Users/cassiewang/component.json",
 		"/Users/cassiewang/index.js",
 		"/Users/cassiewang/pasahero/src/templates/demo.jade",
-		"/Users/cassiewang/pasahero/src/js/demo.coffee",
-		"/Users/cassiewang/pasahero/src/lib/angular/version.txt",
-		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/css/_animations.scss",
-		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/css/app.scss",
-		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/css/_variables.scss",
-		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/css/_layout.scss",
-		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/lib/angular/angular.js",
-		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/templates/security/login-toolbar.jade",
-		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/css/_graphics.scss",
-		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/css/_base.scss",
-		"/Users/cassiewang/abelian-group/frontend/src/index.jade",
-		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/js/security/login-toolbar.coffee",
-		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/css/_buttons.scss",
-		"/Users/cassiewang/abelian-group/frontend/src/assets/learner/templates/home.jade",
-		"/Users/cassiewang/abelian-group/frontend/build/assets/shared/css/app.css",
-		"/Users/cassiewang/abelian-group/frontend/src/assets/learner/img/kalibrr.svg",
-		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/img/kalibrr.svg",
-		"/Users/cassiewang/pointy-flat/src/css/_widgets.scss",
-		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/templates/types/widgets/multiple_choice.jade",
-		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/css/_quizzes.scss",
-		"/Users/cassiewang/abelian-group/ansible/roles/frontend/tasks/main.yml",
-		"/Users/cassiewang/abelian-group/ansible/hosts",
-		"/Users/cassiewang/abelian-group/ansible/ec2_deploy.yml",
-		"/Users/cassiewang/pacifist-angular/Vagrantfile",
-		"/Users/cassiewang/abelian-group/ansible/vagrant.yml",
-		"/Users/cassiewang/cabejs/scripts/web.js",
-		"/Users/cassiewang/pasahero/README.md",
-		"/Users/cassiewang/pasahero/Procfile",
-		"/Users/cassiewang/abelian-group/frontend/build/assets/learner/css/profile-wizard.css",
-		"/Users/cassiewang/pointy-flat/src/css/_mixins.scss",
-		"/Users/cassiewang/abelian-group/frontend/src/assets/shared/lib/font-awesome/component.json",
-		"/Users/cassiewang/abelian-group/requirements.txt",
-		"/Users/cassiewang/abelian-group/backend/setup.py",
-		"/Users/cassiewang/abelian-group/backend/requirements.txt",
-		"/Users/cassiewang/abelian-group/backend/development.ini",
-		"/Users/cassiewang/abelian-group/backend/abelian/template.py",
-		"/Users/cassiewang/abelian-group/backend/abelian/views/session.py",
-		"/Users/cassiewang/abelian-group/backend/abelian/views/users.py",
-		"/Users/cassiewang/abelian-group/backend/abelian/__init__.py",
-		"/Users/cassiewang/pasahero/pasahero-backend/pasaherobackend/templates/mytemplate.pt",
-		"/Users/cassiewang/pasahero/pasahero-backend/pasaherobackend/__init__.py",
-		"/Users/cassiewang/pasahero/pasahero-backend/pasaherobackend/views.py",
-		"/Users/cassiewang/abelian-group/backend/setup.cfg"
+		"/Users/cassiewang/pasahero/src/js/demo.coffee"
 	],
 	"find":
 	{
@@ -417,6 +434,45 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"session",
+			"conversation",
+			"messages",
+			"1",
+			"conversation",
+			"COnversation",
+			"message",
+			"###",
+			"buffer",
+			"taskCount",
+			"fraction",
+			"fractin",
+			"teslet",
+			"testlet",
+			"test",
+			"true",
+			"tasks",
+			"count",
+			"attempt.continued",
+			"attempt.continuted",
+			"fraction",
+			"config",
+			"options",
+			"'",
+			"\"pasahero\"",
+			"String",
+			"db",
+			"'",
+			"!",
+			"editable",
+			"$scope.plan",
+			"set",
+			"from",
+			"mrt",
+			"train",
+			"rail",
+			"trip",
+			"train",
+			"mrt",
 			"job.data.jobType",
 			"data.work_experience",
 			"editableListSection",
@@ -505,46 +561,7 @@
 			"$on",
 			"on",
 			"scope.marker",
-			"$scope.marker",
-			".marker",
-			"marker",
-			"$scope.marker",
-			"$scope.marekr",
-			"drag",
-			"markersClicke",
-			"lat",
-			"latlng",
-			"true ",
-			"option",
-			"Option",
-			"option",
-			"kalibrr-job",
-			"kalibrr",
-			"kalibrr.html",
-			"kalibrr",
-			"kalibrr.html",
-			"kalibrr",
-			".career-kalibrr__as-seen-on",
-			"National",
-			"NCR",
-			"ngRequired",
-			"required",
-			"profileWizard",
-			"col-",
-			"col",
-			"scrollTo",
-			"margin:	",
-			"-20",
-			"security",
-			"Sign",
-			"sign",
-			"signup",
-			"logo",
-			"text-s",
-			"nav",
-			"0.5s",
-			"5",
-			"0.2s"
+			"$scope.marker"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -649,43 +666,15 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 6,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/Users/cassiewang/abelian-group/frontend/src/assets/shared/js/directives.coffee",
+					"file": "src/index.jade",
 					"settings":
 					{
-						"buffer_size": 18587,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1098,
-								1098
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 4200.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/Users/cassiewang/abelian-group/frontend/src/assets/shared/templates/profile.jade",
-					"settings":
-					{
-						"buffer_size": 30536,
+						"buffer_size": 1255,
 						"regions":
 						{
 						},
@@ -699,29 +688,55 @@
 						"settings":
 						{
 							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage",
-							"tab_size": 2,
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 4047.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "/Users/cassiewang/abelian-group/frontend/src/assets/shared/js/profile.coffee",
+					"buffer": 1,
+					"file": "src/js/app.coffee",
 					"settings":
 					{
-						"buffer_size": 26299,
+						"buffer_size": 205,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								16138,
-								16138
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/js/controllers.coffee",
+					"settings":
+					{
+						"buffer_size": 2523,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
 							]
 						],
 						"settings":
@@ -738,37 +753,10 @@
 				},
 				{
 					"buffer": 3,
-					"file": "/Users/cassiewang/abelian-group/frontend/src/assets/shared/templates/security/kalibrr-details.jade",
+					"file": "src/js/directives.coffee",
 					"settings":
 					{
-						"buffer_size": 2912,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2629,
-								2629
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"settings":
-					{
-						"buffer_size": 0,
+						"buffer_size": 182,
 						"regions":
 						{
 						},
@@ -781,7 +769,91 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "src/js/resources.coffee",
+					"settings":
+					{
+						"buffer_size": 662,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "src/js/services.coffee",
+					"settings":
+					{
+						"buffer_size": 237,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "src/templates/home.jade",
+					"settings":
+					{
+						"buffer_size": 1210,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -839,7 +911,7 @@
 		[
 			[
 				"",
-				"/Users/cassiewang/kalibrr-angular copy/src/shared/css/_shame.less"
+				"/Users/cassiewang/angular-app/client/src/app/app.js"
 			]
 		],
 		"width": 0.0

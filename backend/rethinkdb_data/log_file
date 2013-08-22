@@ -1,0 +1,6 @@
+2013-08-21T15:42:36.108086427 0.009690s info: Creating directory /home/vagrant/pasahero/backend/rethinkdb_data
+2013-08-21T15:42:39.997792767 3.899396s info: Creating a default database for your convenience. (This is because you ran 'rethinkdb' without 'create', 'serve', or '--join', and the directory '/home/vagrant/pasahero/backend/rethinkdb_data' did not already exist.)
+2013-08-21T15:42:39.999279910 3.900883s info: Running rethinkdb 1.8.0-0ubuntu1~precise (GCC 4.6.3)...
+2013-08-21T15:42:40.001872599 3.903480s info: Running on Linux 3.2.0-23-generic-pae i686
+2013-08-21T15:42:40.003641956 3.905245s info: Loading data from directory /home/vagrant/pasahero/backend/rethinkdb_data
+2013-08-21T15:42:40.009155297 3.910759s error: Inaccessible database file: "/home/vagrant/pasahero/backend/rethinkdb_data/tmp/metadata.create": Operation not permitted\nSome possible reasons:\n- the database file couldn't be created or opened for reading and writing\n- the user which was used to start the database is not an owner of the file
