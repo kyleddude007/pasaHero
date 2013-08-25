@@ -26,7 +26,24 @@
             android:name="com.example.pasahero.AuthActivity"
             android:label="@string/app_name" >
         </activity>
-        
+
+        <service android:name="com.example.pasahero.AuthenticatationService" >
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator" >
+                </action>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/authenticator" >
+            </meta-data>
+        </service>
+
+        <activity
+            android:name="com.example.pasahero.AuthenticatorActivity"
+            android:label="@string/title_activity_login"
+            android:windowSoftInputMode="adjustResize|stateVisible" >
+        </activity>
     </application>
 
 </manifest>
