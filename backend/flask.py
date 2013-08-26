@@ -19,12 +19,7 @@ def connect_db():
 def hello_world():
     return 'Hello World!'
 
-login_serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
-
-login_manager = LoginManager()
-
-
-class User(UserMixin):
+class User():
     """
     User Class for flask-login
     """
@@ -68,7 +63,7 @@ def get_salt():
 
 def hash_password(password, salt):
     return sha256(password+salt).hexdigest()
-
+"""
 @login_manager.user_loader
 def load_user(userid):
     return User.get(userid)
@@ -81,10 +76,10 @@ def load_token(token):
     if user and data[1] == user.password:
         return user
     return None
-
+"""
 @app.route('/ps/api/logout/')
 def logout():
-    logout_user()
+    session.pop('user_id', None)
 
 @app.route('/ps/api/login/', methods = ['GET', 'POST'])
 def login():
@@ -101,7 +96,7 @@ def get_user(id):
 @app.route('/ps/api/signup', methods = ['POST'])
 def signup():
     conn = connect_db()
-    if not r.table('users').get_all(request.json['email']).is_empty().run(conn):
+    if not r.table('users').get_all(request.json['email'], index='email').is_empty().run(conn):
         return 'Email already exists.', 422
     email = request.json['email']
     salt = get_salt()
@@ -113,6 +108,7 @@ def signup():
     conn.close()
     if user is None:
         return 'There was an error creating a new user.', 422 
+    session['user_id'] = user.id
     return jsonify(user.json())
 
 @app.errorhandler(404)
