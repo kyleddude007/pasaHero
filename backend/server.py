@@ -89,8 +89,8 @@ def logout():
 @app.route('/ps/api/login/', methods = ['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        user = User.get(request.form['email'])
-        if user and hash_pass(request.form['password']) == user.password:
+        user = User.filter_by_email(request.json['email'])
+        if user and hash_password(request.json['password'], user.salt) == user.password:
                 login_user(user, remember = True)
 
 @app.route('/ps/api/users/<id>', methods = ['GET'])
