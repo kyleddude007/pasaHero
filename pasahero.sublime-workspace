@@ -184,6 +184,13 @@
 			}
 		},
 		{
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "src/js/app.coffee",
 			"settings":
 			{
@@ -192,13 +199,18 @@
 			}
 		},
 		{
-			"contents": "from flask import Flask, session, request\nimport rethinkdb as r\nimport config\n\napp = Flask(__name__)\napp.config.from_object('config')\n\ndef connect_db():\n    return r.connect(app.config['DBHOST'], app.config['DBPORT'])\n\n@app.route('/')\ndef hello_world():\n    return 'Hello World!'\n\n@app.route('/ps/api/login', methods=['GET'])\ndef login():\n  print 'a'\n\nif __name__ == '__main__':\n    app.run(host='0.0.0.0')",
 			"file": "backend/server.py",
-			"file_size": 394,
-			"file_write_time": 1377177020000000,
 			"settings":
 			{
-				"buffer_size": 406,
+				"buffer_size": 3268,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "backend/config.py",
+			"settings":
+			{
+				"buffer_size": 301,
 				"line_ending": "Unix"
 			}
 		},
@@ -206,7 +218,7 @@
 			"file": "/Users/cassiewang/abelian-group/frontend/src/assets/shared/js/kbMessage.coffee",
 			"settings":
 			{
-				"buffer_size": 5777,
+				"buffer_size": 3075,
 				"line_ending": "Unix"
 			}
 		},
@@ -708,8 +720,8 @@
 						"selection":
 						[
 							[
-								0,
-								0
+								454,
+								454
 							]
 						],
 						"settings":
@@ -726,6 +738,31 @@
 				},
 				{
 					"buffer": 1,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
 					"file": "src/js/app.coffee",
 					"settings":
 					{
@@ -751,19 +788,47 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 3,
 					"file": "backend/server.py",
 					"settings":
 					{
-						"buffer_size": 406,
+						"buffer_size": 3268,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								406,
-								406
+								2695,
+								2695
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 975.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "backend/config.py",
+					"settings":
+					{
+						"buffer_size": 301,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								30,
+								30
 							]
 						],
 						"settings":
@@ -777,19 +842,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 5,
 					"file": "/Users/cassiewang/abelian-group/frontend/src/assets/shared/js/kbMessage.coffee",
 					"settings":
 					{
-						"buffer_size": 5777,
+						"buffer_size": 3075,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2430,
-								2430
+								0,
+								0
 							]
 						],
 						"settings":
@@ -799,13 +864,13 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 697.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 6,
 					"file": "backend/pavement.py",
 					"settings":
 					{
@@ -833,7 +898,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 7,
 					"file": "src/js/controllers.coffee",
 					"settings":
 					{
@@ -861,7 +926,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 8,
 					"file": "src/js/directives.coffee",
 					"settings":
 					{
@@ -887,7 +952,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 9,
 					"file": "src/js/resources.coffee",
 					"settings":
 					{
@@ -915,7 +980,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 10,
 					"file": "src/js/services.coffee",
 					"settings":
 					{
@@ -943,7 +1008,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 9,
+					"buffer": 11,
 					"file": "src/templates/home.jade",
 					"settings":
 					{
