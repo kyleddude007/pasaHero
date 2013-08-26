@@ -75,16 +75,17 @@ def load_token(token):
         return user
     return None
 """
-@app.route('/ps/api/logout/')
-def logout():
+@app.route('/ps/api/logout/<id>')
+def logout(id):
     session.pop('user_id', None)
+    return 'Logged out'
 
-@app.route('/ps/api/login/', methods = ['GET', 'POST'])
+@app.route('/ps/api/login', methods = ['GET', 'POST'])
 def login():
     if request.method == 'POST':
         user = User.filter_by_email(request.json['email'])
         if user and hash_password(request.json['password'], user.salt) == user.password:
-            login_user(user, remember = True)
+            session['user_id'] = user.id
             return jsonify(user.json())
 
 @app.route('/ps/api/users/<id>', methods = ['GET'])
@@ -117,7 +118,7 @@ def not_found(error=None):
             'message': 'Not Found: ' + request.url,
     }
     response = jsonify(message)
-    resp.status_code = 404
+    response.status_code = 404
     return response
 
 @app.errorhandler(422)
