@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+/*
 
 public class AccountAuthenticator extends AbstractAccountAuthenticator {
 
@@ -109,5 +110,5 @@ public class AccountAuthenticator extends AbstractAccountAuthenticator {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }
+*/

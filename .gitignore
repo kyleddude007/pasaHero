@@ -14,3 +14,7 @@ Pasahero/gen
 Pasahero/bin/
 Pasahero/gen/
 local.properties
+*/bin/
+merges/
+platforms/
+plugins/
