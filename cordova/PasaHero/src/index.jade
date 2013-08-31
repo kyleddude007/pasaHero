@@ -15,24 +15,32 @@
 // KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations
 // under the License.
-html(ng-app='App')
-head
+html(ng-app='Pasahero')
+  head
   meta(charset='utf-8')
   meta(name='format-detection', content='telephone=no')
   meta(name='viewport', content='user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi')
   link(rel='stylesheet', type='text/css', href='css/index.css')
+  link(rel="stylesheet", href="lib/bootstrap/bootstrap.min.css")
+  link(rel='stylesheet', href='lib/font-awesome/css/font-awesome.css')
+  link(rel='stylesheet', href='lib/leaflet/leaflet.css')
+  link(rel='stylesheet', href='css/app.css')
   title Angular PhoneGap Seed
   body
     a(href='#/') Main View
     a(href='#/view') New View
     div(ng-view='ng-view')
-    // Libs 
+    script(type="text/javascript", src='lib/jquery-1.9.1.js')   
     script(type='text/javascript', src='lib/cordova.js')
+    script(type="text/javascript", src='lib/leaflet/leaflet.js')
     script(type='text/javascript', src='lib/angular-1.1.5.js')
-    // App 
+    script(type="text/javascript", src='lib/angular/angular-resource.js')
+    script(type="text/javascript", src='lib/angular-leaflet-directive/angular-leaflet-directive.js')
     script(type='text/javascript', src='js/index.js')
     script(type='text/javascript', src='js/app.js')
     script(type='text/javascript', src='js/services.js')
     script(type='text/javascript', src='js/controllers.js')
+    script(type='text/javascript', src='js/resources.js')
+    script(type='text/javascript', src='js/directives.js')
     script(type='text/javascript')
       app.initialize();

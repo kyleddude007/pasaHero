@@ -1,18 +1,24 @@
 (function() {
-  angular.module("App", ["App.services", "App.controllers"]).config([
-    "$compileProvider", function($compileProvider) {
+  var pasahero;
+
+  pasahero = angular.module('Pasahero', ['Pasahero.services', 'Pasahero.controllers']);
+
+  pasahero.config([
+    '$compileProvider', function($compileProvider) {
       return $compileProvider.urlSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
     }
-  ]).config([
-    "$routeProvider", function($routeProvider) {
-      return $routeProvider.when("/", {
-        controller: "MainCtrl",
-        templateUrl: "partials/main.html"
-      }).when("/view", {
-        controller: "ViewCtrl",
-        templateUrl: "partials/view.html"
+  ]);
+
+  pasahero.config([
+    '$routeProvider', function($routeProvider) {
+      return $routeProvider.when('/view', {
+        controller: 'ViewCtrl',
+        templateUrl: 'partials/view.html'
+      }).when('/', {
+        controller: 'MapCtrl',
+        templateUrl: 'partials/map.html'
       }).otherwise({
-        redirectTo: "/"
+        redirectTo: '/'
       });
     }
   ]);
