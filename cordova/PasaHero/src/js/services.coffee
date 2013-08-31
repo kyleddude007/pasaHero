@@ -27,3 +27,23 @@ services.factory 'mapSearchOptions', ->
     'walk': false
     ,
     'bycicle': false
+
+services.factory "geolocation", ['$rootScope', 'cordovaReady', ($rootScope, cordovaReady) ->
+  getCurrentPosition: cordovaReady((onSuccess, onError, options) ->
+    navigator.geolocation.getCurrentPosition (->
+      that = this
+      args = arguments_
+      if onSuccess
+        $rootScope.$apply ->
+          onSuccess.apply that, args
+
+    ), (->
+      that = this
+      args = arguments_
+      if onError
+        $rootScope.$apply ->
+          onError.apply that, args
+
+    ), options
+  )
+]

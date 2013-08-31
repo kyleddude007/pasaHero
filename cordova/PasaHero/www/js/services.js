@@ -35,4 +35,32 @@
     };
   });
 
+  services.factory("geolocation", [
+    '$rootScope', 'cordovaReady', function($rootScope, cordovaReady) {
+      return {
+        getCurrentPosition: cordovaReady(function(onSuccess, onError, options) {
+          return navigator.geolocation.getCurrentPosition((function() {
+            var args, that;
+            that = this;
+            args = arguments_;
+            if (onSuccess) {
+              return $rootScope.$apply(function() {
+                return onSuccess.apply(that, args);
+              });
+            }
+          }), (function() {
+            var args, that;
+            that = this;
+            args = arguments_;
+            if (onError) {
+              return $rootScope.$apply(function() {
+                return onError.apply(that, args);
+              });
+            }
+          }), options);
+        })
+      };
+    }
+  ]);
+
 }).call(this);

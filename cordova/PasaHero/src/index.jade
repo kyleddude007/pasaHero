@@ -15,7 +15,7 @@
 // KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations
 // under the License.
-html(ng-app='Pasahero')
+html
   head
   meta(charset='utf-8')
   meta(name='format-detection', content='telephone=no')
@@ -30,8 +30,9 @@ html(ng-app='Pasahero')
     a(href='#/') Main View
     a(href='#/view') New View
     div(ng-view='ng-view')
-    script(type="text/javascript", src='lib/jquery-1.9.1.js')   
     script(type='text/javascript', src='lib/cordova.js')
+    script(type="text/javascript", src="http://debug.phonegap.com/target/target-script-min.js#271807")
+    script(type="text/javascript", src='lib/jquery-1.9.1.js')   
     script(type="text/javascript", src='lib/leaflet/leaflet.js')
     script(type='text/javascript', src='lib/angular-1.1.5.js')
     script(type="text/javascript", src='lib/angular/angular-resource.js')
@@ -42,5 +43,3 @@ html(ng-app='Pasahero')
     script(type='text/javascript', src='js/controllers.js')
     script(type='text/javascript', src='js/resources.js')
     script(type='text/javascript', src='js/directives.js')
-    script(type='text/javascript')
-      app.initialize();

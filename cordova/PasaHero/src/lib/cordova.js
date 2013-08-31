@@ -6463,6 +6463,7 @@ require('cordova/channel').onNativeReady.fire();
     var plugins_json = path + 'cordova_plugins.json';
     var plugins_js = path + 'cordova_plugins.js';
 
+
     // One some phones (Windows) this xhr.open throws an Access Denied exception
     // So lets keep trying, but with a script tag injection technique instead of XHR
     var injectPluginScript = function injectPluginScript() {
@@ -6484,8 +6485,10 @@ require('cordova/channel').onNativeReady.fire();
             finishPluginLoading();
         }
     } 
+    
+    finishPluginLoading();
 
-
+/**
     // Try to XHR the cordova_plugins.json file asynchronously.
     var xhr = new XMLHttpRequest();
     xhr.onload = function() {
@@ -6515,6 +6518,10 @@ require('cordova/channel').onNativeReady.fire();
     } catch(err){
         injectPluginScript();
     }
+    */
+
+    finishPluginLoading();
+
 }(window));
 
 
