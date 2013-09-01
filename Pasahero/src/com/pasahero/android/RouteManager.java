@@ -1,13 +1,16 @@
 package com.pasahero.android;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Enumeration;
 import java.util.Hashtable;
+
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jackson.map.ObjectMapper;
+@JsonIgnoreProperties(ignoreUnknown = true)
 
 public class RouteManager {
 
@@ -47,8 +50,9 @@ public class RouteManager {
 		}
 	}
 	
-	public void get(){
+	public void get(String urlString){
 		try {
+			URL url = new URL(urlString);
 			getRequest(url);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -90,14 +94,20 @@ public class RouteManager {
 			throw new RuntimeException("Failed : HTTP error code : "+ responseCode);
 		}
 		
-		BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+		/*BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 		String response;
 		while((response = br.readLine())!=null){
 			System.out.println(response);
-		}
+		}*/
+		
+		ObjectMapper mapper = new ObjectMapper();
+		InputStream stream = conn.getInputStream();
+		Plan plan = mapper.readValue(stream, Plan.class);
+		System.out.println(plan);
 		conn.disconnect();
 	}
 
+	
 	public static URL contsructUrl(String urlString,
 			Hashtable<String, String> params) throws MalformedURLException {
 		Enumeration<String> keys = params.keys();
