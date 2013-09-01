@@ -37,12 +37,12 @@
 
   pasahero.config([
     '$routeProvider', function($routeProvider) {
-      return $routeProvider.when('/', {
-        controller: 'MainCtrl',
-        templateUrl: 'partials/main.html'
-      }).when('/view', {
+      return $routeProvider.when('/view', {
         controller: 'ViewCtrl',
         templateUrl: 'partials/view.html'
+      }).when('/', {
+        controller: 'MapCtrl',
+        templateUrl: 'partials/map.html'
       }).otherwise({
         redirectTo: '/'
       });

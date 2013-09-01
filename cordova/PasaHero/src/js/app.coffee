@@ -35,14 +35,14 @@ pasahero.config ['$compileProvider', ($compileProvider) ->
 
 pasahero.config ['$routeProvider', ($routeProvider) ->
   $routeProvider
-    .when '/',
-      controller: 'MainCtrl'
-      templateUrl: 'partials/main.html'
+    #.when '/',
+    #  controller: 'MainCtrl'
+    #  templateUrl: 'partials/main.html'
     .when '/view',
       controller: 'ViewCtrl'
       templateUrl: 'partials/view.html'
-    #.when '/',
-    #  controller: 'Map2Ctrl'
-    #  templateUrl: 'partials/map.html'
+    .when '/',
+      controller: 'MapCtrl'
+      templateUrl: 'partials/map.html'
     .otherwise redirectTo: '/'
 ]
