@@ -116,4 +116,9 @@ public class Terminus {
 	public void setStopId(Hashtable<String, String> stopId) {
 		this.stopId = stopId;
 	}
+	
+	@Override
+	public String toString(){
+		return name+" : [ "+lon+" , "+lat+" ]";
+	}
 }

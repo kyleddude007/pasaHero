@@ -31,15 +31,18 @@ public class PasaheroMapActivity extends MapActivity {
 		setContentView(R.layout.activity_pasahero_map);
 		setUpMapView();
 		// setUpMyLocation();
-		addPolyOverlay();
-		addLineOverlay();
-		addPoiOverlay();
-		displayRoute();
+		// addPolyOverlay();
+		// addLineOverlay();
+		// addPoiOverlay();
+		// displayRoute();
 
 	}
 
 	public void setUpMapView() {
 		this.map = (MapView) findViewById(R.id.mapView);
+		MapView map = (MapView) findViewById(R.id.mapView);
+		map.getController().setZoom(11);
+		map.getController().setCenter(new GeoPoint(Config.NCR_LAT, Config.NCR_LON));
 		map.setBuiltInZoomControls(true);
 		annotation = new AnnotationView(map);
 	}

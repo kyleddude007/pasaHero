@@ -22,18 +22,17 @@ public class RequestItineraryTask extends AsyncTask<URL, Void, Long>{
 	protected Long doInBackground(URL... urls) {
 		int len = urls.length;
 		long totalSize = 0;
-		RouteManager mgr = new RouteManager();
+		TripPlanner mgr = new TripPlanner();
 		for(int i =0; i<len; i++){
 			mgr.get(urls[i]);
 			if (isCancelled()) break;
 		}
-		
 		return totalSize;
 	}
 	
 
     protected void onPostExecute(Long result) {
-        Toast.makeText(callingContext,"Downloaded " + result + " bytes", Toast.LENGTH_SHORT).show();
+        Toast.makeText(callingContext,"Downloaded", Toast.LENGTH_SHORT).show();
     }
 
 }

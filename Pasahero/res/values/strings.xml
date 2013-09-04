@@ -8,5 +8,6 @@
     <string name="password">Password</string>
     <string name="submit">Submit</string>
     <string name="mapquest_api_key">Fmjtd%7Cluub25a2l1%2Cb5%3Do5-9uzxqz</string>
-
+	<string name="starting_point">Choose a starting point...</string>
+	<string name="destination">Choose destination...</string>
 </resources>
