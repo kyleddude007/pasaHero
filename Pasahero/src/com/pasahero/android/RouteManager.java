@@ -102,8 +102,8 @@ public class RouteManager {
 		
 		ObjectMapper mapper = new ObjectMapper();
 		InputStream stream = conn.getInputStream();
-		Plan plan = mapper.readValue(stream, Plan.class);
-		System.out.println(plan);
+		Response response = mapper.readValue(stream, Response.class);
+		System.out.println(response);
 		conn.disconnect();
 	}
 

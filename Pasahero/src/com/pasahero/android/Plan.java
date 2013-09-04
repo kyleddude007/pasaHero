@@ -3,12 +3,15 @@ package com.pasahero.android;
 import java.util.Date;
 import java.util.Vector;
 
+import org.codehaus.jackson.annotate.JsonProperty;
+
 public class Plan {
 
 	private Date date;
 	private Terminus from;
 	private Terminus to;
 	private Vector<Itinerary> itineraries;
+
 	public Date getDate() {
 		return date;
 	}

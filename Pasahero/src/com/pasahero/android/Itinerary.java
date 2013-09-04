@@ -12,9 +12,16 @@ public class Itinerary {
 	private long transitTime;
 	private long waitingTime;
 	private double walkDistance; 
-	private long elevationLost;
-	private long elevationGained;
+	private double elevationLost;
+	private double elevationGained;
 	private int transfers;
+	private double fare;
+	public double getFare() {
+		return fare;
+	}
+	public void setFare(double fare) {
+		this.fare = fare;
+	}
 	private Vector<Leg> legs;
 	private boolean tooSloped;
 	public long getDuration() {
@@ -59,13 +66,13 @@ public class Itinerary {
 	public void setWalkDistance(double walkDistance) {
 		this.walkDistance = walkDistance;
 	}
-	public long getElevationLost() {
+	public double getElevationLost() {
 		return elevationLost;
 	}
 	public void setElevationLost(long elevationLost) {
 		this.elevationLost = elevationLost;
 	}
-	public long getElevationGained() {
+	public double getElevationGained() {
 		return elevationGained;
 	}
 	public void setElevationGained(long elevationGained) {

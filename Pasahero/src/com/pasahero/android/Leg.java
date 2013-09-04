@@ -1,11 +1,28 @@
 package com.pasahero.android;
 
 import java.util.Date;
+import java.util.Vector;
 
 public class Leg {
 
 	private String mode;
 	private String route;
+	private String agencyUrl;
+	private String agencyName;
+	private String agencyId;
+	private String routeColor;
+	private String routeTextColor;
+	private String routeShortName;
+	private String routeLongName;
+	private String boardRule;
+	private String alightRule;
+	private String rentedBike;
+	private boolean bogusNonTransitLeg;
+	private String routeId;
+	private String interlineWithPreviousLeg;
+	private String tripShortName;
+	private String headsign;
+	private String tripId;
 	private String agencyTimeZoneOffset;
 	private Date startTime;
 	private Date endTime;
@@ -14,6 +31,7 @@ public class Leg {
 	private Terminus to;
 	private LegGeometry legGeometry;
 	private long duration;
+	private Vector<Step> steps;
 	public String getMode() {
 		return mode;
 	}
@@ -73,5 +91,107 @@ public class Leg {
 	}
 	public void setDuration(long duration) {
 		this.duration = duration;
+	}
+	public String getAgencyUrl() {
+		return agencyUrl;
+	}
+	public void setAgencyUrl(String agencyUrl) {
+		this.agencyUrl = agencyUrl;
+	}
+	public String getRouteColor() {
+		return routeColor;
+	}
+	public void setRouteColor(String routeColor) {
+		this.routeColor = routeColor;
+	}
+	public String getRouteTextColor() {
+		return routeTextColor;
+	}
+	public void setRouteTextColor(String routeTextColor) {
+		this.routeTextColor = routeTextColor;
+	}
+	public String getRouteId() {
+		return routeId;
+	}
+	public void setRouteId(String routeId) {
+		this.routeId = routeId;
+	}
+	public String getInterlineWithPreviousLeg() {
+		return interlineWithPreviousLeg;
+	}
+	public void setInterlineWithPreviousLeg(String interlineWithPreviousLeg) {
+		this.interlineWithPreviousLeg = interlineWithPreviousLeg;
+	}
+	public String getTripShortName() {
+		return tripShortName;
+	}
+	public void setTripShortName(String tripShortName) {
+		this.tripShortName = tripShortName;
+	}
+	public String getHeadsign() {
+		return headsign;
+	}
+	public void setHeadsign(String headsign) {
+		this.headsign = headsign;
+	}
+	public String getTripId() {
+		return tripId;
+	}
+	public void setTripId(String tripId) {
+		this.tripId = tripId;
+	}
+	public Vector<Step> getSteps() {
+		return steps;
+	}
+	public void setSteps(Vector<Step> steps) {
+		this.steps = steps;
+	}
+	public String getAgencyName() {
+		return agencyName;
+	}
+	public void setAgencyName(String agencyName) {
+		this.agencyName = agencyName;
+	}
+	public String getAgencyId() {
+		return agencyId;
+	}
+	public void setAgencyId(String agencyId) {
+		this.agencyId = agencyId;
+	}
+	public String getRouteShortName() {
+		return routeShortName;
+	}
+	public void setRouteShortName(String routeShortName) {
+		this.routeShortName = routeShortName;
+	}
+	public String getRouteLongName() {
+		return routeLongName;
+	}
+	public void setRouteLongName(String routeLongName) {
+		this.routeLongName = routeLongName;
+	}
+	public String getBoardRule() {
+		return boardRule;
+	}
+	public void setBoardRule(String boardRule) {
+		this.boardRule = boardRule;
+	}
+	public String getAlightRule() {
+		return alightRule;
+	}
+	public void setAlightRule(String alightRule) {
+		this.alightRule = alightRule;
+	}
+	public String getRentedBike() {
+		return rentedBike;
+	}
+	public void setRentedBike(String rentedBike) {
+		this.rentedBike = rentedBike;
+	}
+	public boolean isBogusNonTransitLeg() {
+		return bogusNonTransitLeg;
+	}
+	public void setBogusNonTransitLeg(boolean bogusNonTransitLeg) {
+		this.bogusNonTransitLeg = bogusNonTransitLeg;
 	}
 }
