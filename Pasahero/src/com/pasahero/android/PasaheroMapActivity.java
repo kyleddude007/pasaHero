@@ -2,12 +2,22 @@ package com.pasahero.android;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnFocusChangeListener;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
 
+import com.mapquest.android.Geocoder;
 import com.mapquest.android.maps.AnnotationView;
 import com.mapquest.android.maps.DefaultItemizedOverlay;
 import com.mapquest.android.maps.GeoPoint;
@@ -24,12 +34,16 @@ public class PasaheroMapActivity extends MapActivity {
 	private MyLocationOverlay locOverlay;
 	protected MapView map;
 	AnnotationView annotation;
+	private Geocoder geocoder;
+	private GeoArrayAdapter adapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_pasahero_map);
 		setUpMapView();
+		getGeocoder();
+		setUpViews();
 		// setUpMyLocation();
 		// addPolyOverlay();
 		// addLineOverlay();
@@ -42,9 +56,92 @@ public class PasaheroMapActivity extends MapActivity {
 		this.map = (MapView) findViewById(R.id.mapView);
 		MapView map = (MapView) findViewById(R.id.mapView);
 		map.getController().setZoom(11);
-		map.getController().setCenter(new GeoPoint(Config.NCR_LAT, Config.NCR_LON));
+		map.getController().setCenter(
+				new GeoPoint(Config.NCR_LAT, Config.NCR_LON));
 		map.setBuiltInZoomControls(true);
 		annotation = new AnnotationView(map);
+	}
+
+	public void setUpViews() {
+		ListView geoList = (ListView) findViewById(R.id.geoList);
+		adapter = new GeoArrayAdapter(this, new Vector<String>());
+		geoList.setAdapter(adapter);
+
+		final EditText fromView = (EditText) findViewById(R.id.fromView);
+		fromView.addTextChangedListener(new TextWatcher() {
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				//geocode(s.toString());
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+
+			}
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+
+			}
+		});
+		fromView.setOnFocusChangeListener(new OnFocusChangeListener(){
+
+			@Override
+			public void onFocusChange(View view, boolean hasFocus) {
+				EditText et = (EditText) view;
+				String from = et.getText().toString();
+				if(!hasFocus && !from.matches("")){
+					geocode(from);
+				}
+			}
+			
+		});
+		
+		final EditText toView = (EditText) findViewById(R.id.toView);
+		toView.addTextChangedListener(new TextWatcher() {
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				//geocode(s.toString());
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+
+			}
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+
+			}
+
+		});
+
+		Button plan = (Button) findViewById(R.id.plan);
+		plan.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View view){
+			//	geocode(fromView.getText().toString());
+				
+			}
+		});
+	}
+
+	public void geocode(String location) {
+		GeocodeTask geocodeTask = new GeocodeTask(this, map, geocoder, adapter, annotation);
+		geocodeTask.execute(location);
+	}
+
+	protected Geocoder getGeocoder() {
+		if (geocoder == null) {
+			geocoder = new Geocoder(this);
+		}
+		return geocoder;
 	}
 
 	private void setUpMyLocation() {

@@ -48,7 +48,19 @@
                     <requestFocus />
                 </EditText>
 
+                <Button
+                    android:id="@+id/plan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/done" />
+
             </LinearLayout>
+
+            <ListView
+                android:id="@+id/geoList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+            </ListView>
 
         </RelativeLayout>
 
