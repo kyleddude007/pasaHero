@@ -1,6 +1,7 @@
 package com.pasahero.android;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Vector;
 
@@ -9,11 +10,11 @@ import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -26,6 +27,7 @@ import com.mapquest.android.maps.GeoPoint;
 import com.mapquest.android.maps.ItemizedOverlay;
 import com.mapquest.android.maps.LineOverlay;
 import com.mapquest.android.maps.MapActivity;
+import com.mapquest.android.maps.MapController;
 import com.mapquest.android.maps.MapView;
 import com.mapquest.android.maps.MyLocationOverlay;
 import com.mapquest.android.maps.Overlay;
@@ -43,7 +45,10 @@ public class PasaheroMapActivity extends MapActivity implements
 	private List<Overlay> overlays;
 	private Overlay fromMarker;
 	private Overlay toMarker;
-
+	private Hashtable<Integer, Overlay> markerOverlayHolder;
+	private Address selectedAddress;
+	private MapController mapCtrl;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -52,17 +57,19 @@ public class PasaheroMapActivity extends MapActivity implements
 		getGeocoder();
 		setUpViews();
 		this.overlays = map.getOverlays();
+		this.markerOverlayHolder = new Hashtable<Integer, Overlay>();
+		this.selectedAddress = null;
 		// setUpMyLocation();
 		// addPolyOverlay();
 		// addLineOverlay();
 		// addPoiOverlay();
 		// displayRoute();
+		this.mapCtrl = map.getController();
 
 	}
 
 	public void setUpMapView() {
 		this.map = (MapView) findViewById(R.id.mapView);
-		MapView map = (MapView) findViewById(R.id.mapView);
 		map.getController().setZoom(11);
 		map.getController().setCenter(
 				new GeoPoint(Config.NCR_LAT, Config.NCR_LON));
@@ -74,6 +81,22 @@ public class PasaheroMapActivity extends MapActivity implements
 		ListView geoList = (ListView) findViewById(R.id.geoList);
 		adapter = new GeoArrayAdapter(this, new Vector<Address>());
 		geoList.setAdapter(adapter);
+		geoList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+		geoList.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				Address address = (Address) parent.getItemAtPosition(position);
+				overlays.remove(markerOverlayHolder.remove(adapter
+						.getSelected().hashCode()));
+				adapter.setSelected(address);
+				map.invalidate();
+				addMarker(address, GeoArrayAdapter.getShortName(address), "");
+				mapCtrl.setCenter(new GeoPoint(address.getLatitude(), address.getLatitude()));
+			}
+
+		});
 
 		final EditText fromView = (EditText) findViewById(R.id.fromView);
 		fromView.setOnFocusChangeListener(new OnFocusChangeListener() {
@@ -83,7 +106,7 @@ public class PasaheroMapActivity extends MapActivity implements
 				EditText et = (EditText) view;
 				String from = et.getText().toString();
 				if (!hasFocus && !from.matches("")) {
-					adapter.clear();
+					GeoArrayAdapter.reset(adapter);
 					geocode(from);
 				}
 			}
@@ -98,7 +121,7 @@ public class PasaheroMapActivity extends MapActivity implements
 				EditText et = (EditText) view;
 				String to = et.getText().toString();
 				if (!hasFocus && !to.matches("")) {
-					adapter.clear();
+					GeoArrayAdapter.reset(adapter);
 					geocode(to);
 				}
 			}
@@ -162,7 +185,7 @@ public class PasaheroMapActivity extends MapActivity implements
 		PolygonOverlay polyOverlay = new PolygonOverlay(paint);
 		polyOverlay.setData(polyData);
 		map.getOverlays().add(polyOverlay);
-		
+
 	}
 
 	// add line overlay to map
@@ -245,12 +268,13 @@ public class PasaheroMapActivity extends MapActivity implements
 		return false;
 	}
 
-	public void addMarker(double lat, double lon, String label, String blurb) {
+	public void addMarker(Address address, String label, String blurb) {
 		Drawable icon = this.getResources().getDrawable(
 				R.drawable.location_marker);
 		final DefaultItemizedOverlay overlay = new DefaultItemizedOverlay(icon);
 
-		OverlayItem item = new OverlayItem(new GeoPoint(lat, lon), label, blurb);
+		OverlayItem item = new OverlayItem(new GeoPoint(address.getLatitude(),
+				address.getLongitude()), label, blurb);
 		overlay.addItem(item);
 
 		overlay.setTapListener(new ItemizedOverlay.OverlayTapListener() {
@@ -265,38 +289,41 @@ public class PasaheroMapActivity extends MapActivity implements
 		});
 
 		overlays.add(overlay);
-		//map.getOverlays().add(overlay);
+		markerOverlayHolder.put(address.hashCode(), overlay);
+		// map.getOverlays().add(overlay);
 		map.invalidate();
 	}
 
-	public void replaceMarker( DefaultItemizedOverlay oldMarker,  DefaultItemizedOverlay newMarker){
+	public void replaceMarker(DefaultItemizedOverlay oldMarker,
+			DefaultItemizedOverlay newMarker) {
 		overlays.remove(oldMarker);
-		overlays.add(newMarker);	
+		overlays.add(newMarker);
 	}
-	
-	public void setMarker( DefaultItemizedOverlay overlay){
+
+	public void setMarker(DefaultItemizedOverlay overlay) {
 		overlays.add(overlay);
 		map.invalidate();
 	}
-	
+
 	@Override
 	public void geocodeFinish(List<Address> result) {
 		if (result == null || result.size() == 0) {
 			Toast.makeText(this, "No match found!", Toast.LENGTH_SHORT).show();
 		} else {
-			Toast.makeText(this, "Loading results..." ,Toast.LENGTH_SHORT ).show();
+			Toast.makeText(this, "Loading results...", Toast.LENGTH_SHORT)
+					.show();
 			for (Address address : result) {
 				System.out.println(address.toString());
 				adapter.add(address);
 			}
 			Address address = result.get(0);
-			addMarker(address.getLatitude(), address.getLongitude(), GeoArrayAdapter.getShortName(address), "");
-			map.getController().setCenter(new GeoPoint(address.getLatitude(), address.getLongitude()));
-			System.out.println("Action completed");
+			adapter.setSelected(address);
+			addMarker(address, GeoArrayAdapter.getShortName(address), "");
+			map.getController()
+					.setCenter(
+							new GeoPoint(address.getLatitude(), address
+									.getLongitude()));
 		}
 	}
-
-	
-	
 
 }

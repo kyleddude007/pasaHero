@@ -15,6 +15,7 @@ public class GeoArrayAdapter extends ArrayAdapter<Address> {
 
 	private Context context;
 	private Vector<Address> addresses;
+	private Address selected;
 
 	public void addResult(Address address) {
 		addresses.add(address);
@@ -30,8 +31,17 @@ public class GeoArrayAdapter extends ArrayAdapter<Address> {
 		super(context, R.layout.row_layout, addresses);
 		this.context = context;
 		this.addresses = addresses;
+		this.selected = null;
 	}
 
+	public void setSelected(Address selected){
+		this.selected = selected;
+	}
+	
+	public Address getSelected(){
+		return selected;
+	}
+	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		LayoutInflater inflater = (LayoutInflater) context
@@ -58,4 +68,8 @@ public class GeoArrayAdapter extends ArrayAdapter<Address> {
 		return appelation;
 	}
 
+	public static void reset(GeoArrayAdapter adapter){
+		adapter.setSelected(null);
+		adapter.clear();
+	}
 }
