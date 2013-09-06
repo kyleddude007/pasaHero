@@ -9,4 +9,5 @@ public class Config {
 	public static final double NCR_LAT = 14.5833; //North
 	public static final double NCR_LON = 121.0000; //East
 	public static final int MAX_GEO = 5;
+	public static final int MAX_ADDRESS_LINE_LENGTH = 4; //This is a guess from observation
 }

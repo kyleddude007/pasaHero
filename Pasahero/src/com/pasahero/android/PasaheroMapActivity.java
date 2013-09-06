@@ -7,6 +7,7 @@ import java.util.Vector;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
+import android.location.Address;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -16,6 +17,7 @@ import android.view.View.OnFocusChangeListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.mapquest.android.Geocoder;
 import com.mapquest.android.maps.AnnotationView;
@@ -26,16 +28,21 @@ import com.mapquest.android.maps.LineOverlay;
 import com.mapquest.android.maps.MapActivity;
 import com.mapquest.android.maps.MapView;
 import com.mapquest.android.maps.MyLocationOverlay;
+import com.mapquest.android.maps.Overlay;
 import com.mapquest.android.maps.OverlayItem;
 import com.mapquest.android.maps.PolygonOverlay;
 import com.mapquest.android.maps.RouteManager;
 
-public class PasaheroMapActivity extends MapActivity {
+public class PasaheroMapActivity extends MapActivity implements
+		GeocodeTaskInterface {
 	private MyLocationOverlay locOverlay;
 	protected MapView map;
 	AnnotationView annotation;
 	private Geocoder geocoder;
 	private GeoArrayAdapter adapter;
+	private List<Overlay> overlays;
+	private Overlay fromMarker;
+	private Overlay toMarker;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +51,7 @@ public class PasaheroMapActivity extends MapActivity {
 		setUpMapView();
 		getGeocoder();
 		setUpViews();
+		this.overlays = map.getOverlays();
 		// setUpMyLocation();
 		// addPolyOverlay();
 		// addLineOverlay();
@@ -64,76 +72,51 @@ public class PasaheroMapActivity extends MapActivity {
 
 	public void setUpViews() {
 		ListView geoList = (ListView) findViewById(R.id.geoList);
-		adapter = new GeoArrayAdapter(this, new Vector<String>());
+		adapter = new GeoArrayAdapter(this, new Vector<Address>());
 		geoList.setAdapter(adapter);
 
 		final EditText fromView = (EditText) findViewById(R.id.fromView);
-		fromView.addTextChangedListener(new TextWatcher() {
-
-			@Override
-			public void afterTextChanged(Editable s) {
-				//geocode(s.toString());
-			}
-
-			@Override
-			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
-
-			}
-
-			@Override
-			public void onTextChanged(CharSequence s, int start, int before,
-					int count) {
-
-			}
-		});
-		fromView.setOnFocusChangeListener(new OnFocusChangeListener(){
+		fromView.setOnFocusChangeListener(new OnFocusChangeListener() {
 
 			@Override
 			public void onFocusChange(View view, boolean hasFocus) {
 				EditText et = (EditText) view;
 				String from = et.getText().toString();
-				if(!hasFocus && !from.matches("")){
+				if (!hasFocus && !from.matches("")) {
+					adapter.clear();
 					geocode(from);
 				}
 			}
-			
+
 		});
-		
+
 		final EditText toView = (EditText) findViewById(R.id.toView);
-		toView.addTextChangedListener(new TextWatcher() {
+		toView.setOnFocusChangeListener(new OnFocusChangeListener() {
 
 			@Override
-			public void afterTextChanged(Editable s) {
-				//geocode(s.toString());
-			}
-
-			@Override
-			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
-
-			}
-
-			@Override
-			public void onTextChanged(CharSequence s, int start, int before,
-					int count) {
-
+			public void onFocusChange(View view, boolean hasFocus) {
+				EditText et = (EditText) view;
+				String to = et.getText().toString();
+				if (!hasFocus && !to.matches("")) {
+					adapter.clear();
+					geocode(to);
+				}
 			}
 
 		});
 
 		Button plan = (Button) findViewById(R.id.plan);
-		plan.setOnClickListener(new OnClickListener(){
+		plan.setOnClickListener(new OnClickListener() {
 			@Override
-			public void onClick(View view){
-			//	geocode(fromView.getText().toString());
-				
+			public void onClick(View view) {
+				// geocode(fromView.getText().toString());
+
 			}
 		});
 	}
 
 	public void geocode(String location) {
-		GeocodeTask geocodeTask = new GeocodeTask(this, map, geocoder, adapter, annotation);
+		GeocodeTask geocodeTask = new GeocodeTask(geocoder, this);
 		geocodeTask.execute(location);
 	}
 
@@ -179,6 +162,7 @@ public class PasaheroMapActivity extends MapActivity {
 		PolygonOverlay polyOverlay = new PolygonOverlay(paint);
 		polyOverlay.setData(polyData);
 		map.getOverlays().add(polyOverlay);
+		
 	}
 
 	// add line overlay to map
@@ -260,4 +244,59 @@ public class PasaheroMapActivity extends MapActivity {
 	public boolean isRouteDisplayed() {
 		return false;
 	}
+
+	public void addMarker(double lat, double lon, String label, String blurb) {
+		Drawable icon = this.getResources().getDrawable(
+				R.drawable.location_marker);
+		final DefaultItemizedOverlay overlay = new DefaultItemizedOverlay(icon);
+
+		OverlayItem item = new OverlayItem(new GeoPoint(lat, lon), label, blurb);
+		overlay.addItem(item);
+
+		overlay.setTapListener(new ItemizedOverlay.OverlayTapListener() {
+			@Override
+			public void onTap(GeoPoint pt, MapView mapView) {
+				int lastTouchedIndex = overlay.getLastFocusedIndex();
+				if (lastTouchedIndex > -1) {
+					OverlayItem tapped = overlay.getItem(lastTouchedIndex);
+					annotation.showAnnotationView(tapped);
+				}
+			}
+		});
+
+		overlays.add(overlay);
+		//map.getOverlays().add(overlay);
+		map.invalidate();
+	}
+
+	public void replaceMarker( DefaultItemizedOverlay oldMarker,  DefaultItemizedOverlay newMarker){
+		overlays.remove(oldMarker);
+		overlays.add(newMarker);	
+	}
+	
+	public void setMarker( DefaultItemizedOverlay overlay){
+		overlays.add(overlay);
+		map.invalidate();
+	}
+	
+	@Override
+	public void geocodeFinish(List<Address> result) {
+		if (result == null || result.size() == 0) {
+			Toast.makeText(this, "No match found!", Toast.LENGTH_SHORT).show();
+		} else {
+			Toast.makeText(this, "Loading results..." ,Toast.LENGTH_SHORT ).show();
+			for (Address address : result) {
+				System.out.println(address.toString());
+				adapter.add(address);
+			}
+			Address address = result.get(0);
+			addMarker(address.getLatitude(), address.getLongitude(), GeoArrayAdapter.getShortName(address), "");
+			map.getController().setCenter(new GeoPoint(address.getLatitude(), address.getLongitude()));
+			System.out.println("Action completed");
+		}
+	}
+
+	
+	
+
 }
