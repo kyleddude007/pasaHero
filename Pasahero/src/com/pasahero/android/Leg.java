@@ -3,6 +3,8 @@ package com.pasahero.android;
 import java.util.Date;
 import java.util.Vector;
 
+import org.opentripplanner.util.model.EncodedPolylineBean;
+
 public class Leg {
 
 	private String mode;
@@ -29,7 +31,7 @@ public class Leg {
 	private double distance;
 	private Terminus from;
 	private Terminus to;
-	private LegGeometry legGeometry;
+	private EncodedPolylineBean legGeometry;
 	private long duration;
 	private Vector<Step> steps;
 	private Vector<?> intermediateStops; 
@@ -81,10 +83,10 @@ public class Leg {
 	public void setTo(Terminus to) {
 		this.to = to;
 	}
-	public LegGeometry getLegGeometry() {
+	public EncodedPolylineBean getLegGeometry() {
 		return legGeometry;
 	}
-	public void setLegGeometry(LegGeometry legGeometry) {
+	public void setLegGeometry(EncodedPolylineBean legGeometry) {
 		this.legGeometry = legGeometry;
 	}
 	public long getDuration() {

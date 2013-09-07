@@ -8,6 +8,9 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Vector;
 
+import org.opentripplanner.util.PolylineEncoder;
+import org.opentripplanner.util.model.EncodedPolylineBean;
+
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -338,23 +341,33 @@ public class PasaheroMapActivity extends MapActivity implements
 		Vector<GeoPoint> lineData = new Vector<GeoPoint>();
 		for (Leg leg : legs) {
 			String mode = leg.getMode();
-			if (mode.equals(Config.MODE_WALK)) {
+			/*if (mode.equals(Config.MODE_WALK)) {
 				Vector<Step> steps = leg.getSteps();
 				for (Step step : steps) {
-					System.out.println("Walk ");
-					System.out.println(step.getAbsoluteDirection());
-					System.out.println(step.getStreetName());
-					System.out.println("-------------");
-					lineData.add(new GeoPoint(step.getLat(), step.getLon()));
+					//System.out.println("Walk ");
+					//System.out.println(step.getAbsoluteDirection());
+					//System.out.println(step.getStreetName());
+					//System.out.println("-------------");
+					List<com.vividsolutions.jts.geom.Coordinate> polyLines = PolylineEncoder.decode(leg.getLegGeometry());
+					for(com.vividsolutions.jts.geom.Coordinate line: polyLines){
+						System.out.println(line.x+" , "+line.y+" , "+line.z);
+						lineData.add(new GeoPoint(line.x, line.y));
+					}
 				}
 			}else if(mode.equals(Config.MODE_RAIL)){
 				System.out.println("Ride");
 				System.out.println(leg.getFrom().getName());
 				System.out.println(leg.getTo().getName());
-				Terminus from = leg.getFrom();
-				Terminus to = leg.getTo();
-				lineData.add(new GeoPoint(from.getLat(), from.getLon()));
-				lineData.add(new GeoPoint(to.getLat(), to.getLon()));
+				List<com.vividsolutions.jts.geom.Coordinate> polyLines = PolylineEncoder.decode(leg.getLegGeometry());
+				for(com.vividsolutions.jts.geom.Coordinate line: polyLines){
+					System.out.println(line.x+" , "+line.y+" , "+line.z);
+					lineData.add(new GeoPoint(line.x, line.y));
+				}
+			}*/
+			List<com.vividsolutions.jts.geom.Coordinate> polyLines = PolylineEncoder.decode(leg.getLegGeometry());
+			for(com.vividsolutions.jts.geom.Coordinate line: polyLines){
+				System.out.println(line.x+" , "+line.y+" , "+line.z);
+				lineData.add(new GeoPoint(line.x, line.y));
 			}
 		}
 		System.out.println("Line data: ");
