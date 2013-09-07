@@ -1,10 +1,14 @@
 package com.pasahero.android;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Vector;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
@@ -36,18 +40,19 @@ import com.mapquest.android.maps.PolygonOverlay;
 import com.mapquest.android.maps.RouteManager;
 
 public class PasaheroMapActivity extends MapActivity implements
-		GeocodeTaskInterface {
+		GeocodeTaskInterface, RequestItineraryInterface {
 	private MyLocationOverlay locOverlay;
 	protected MapView map;
 	AnnotationView annotation;
 	private Geocoder geocoder;
 	private GeoArrayAdapter adapter;
 	private List<Overlay> overlays;
-	private Overlay fromMarker;
-	private Overlay toMarker;
 	private Hashtable<Integer, Overlay> markerOverlayHolder;
-	private Address selectedAddress;
 	private MapController mapCtrl;
+	private RequestItineraryInterface requestItineraryInterface;
+	private Context context;
+	private Address from;
+	private Address to;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -58,14 +63,16 @@ public class PasaheroMapActivity extends MapActivity implements
 		setUpViews();
 		this.overlays = map.getOverlays();
 		this.markerOverlayHolder = new Hashtable<Integer, Overlay>();
-		this.selectedAddress = null;
+		this.context = context;
+		this.from = null;
+		this.to = null;
 		// setUpMyLocation();
 		// addPolyOverlay();
 		// addLineOverlay();
 		// addPoiOverlay();
 		// displayRoute();
 		this.mapCtrl = map.getController();
-
+		this.requestItineraryInterface = this;
 	}
 
 	public void setUpMapView() {
@@ -90,10 +97,10 @@ public class PasaheroMapActivity extends MapActivity implements
 				Address address = (Address) parent.getItemAtPosition(position);
 				overlays.remove(markerOverlayHolder.remove(adapter
 						.getSelected().hashCode()));
-				adapter.setSelected(address);
 				map.invalidate();
-				addMarker(address, GeoArrayAdapter.getShortName(address), "");
-				mapCtrl.setCenter(new GeoPoint(address.getLatitude(), address.getLatitude()));
+				setAddress(adapter.getProvider(), address);
+				System.out.println("from: "+from.toString());
+				System.out.println("to: "+to.toString());
 			}
 
 		});
@@ -107,7 +114,8 @@ public class PasaheroMapActivity extends MapActivity implements
 				String from = et.getText().toString();
 				if (!hasFocus && !from.matches("")) {
 					GeoArrayAdapter.reset(adapter);
-					geocode(from);
+					adapter.setProvider(Config.FROM_PLACE);
+					geocode(Config.FROM_PLACE, from);
 				}
 			}
 
@@ -122,7 +130,8 @@ public class PasaheroMapActivity extends MapActivity implements
 				String to = et.getText().toString();
 				if (!hasFocus && !to.matches("")) {
 					GeoArrayAdapter.reset(adapter);
-					geocode(to);
+					adapter.setProvider(Config.TO_PLACE);
+					geocode(Config.TO_PLACE, to);
 				}
 			}
 
@@ -132,17 +141,29 @@ public class PasaheroMapActivity extends MapActivity implements
 		plan.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				// geocode(fromView.getText().toString());
-
+				Hashtable<String, String> params = new Hashtable<String, String>();
+				params.put(Config.ARRIVE_BY, "false");
+				params.put(Config.DATE, new Date().toString());
+				params.put(Config.FROM_PLACE, from.getLatitude()+","+from.getLongitude());
+				params.put(Config.TO_PLACE, to.getLatitude()+","+to.getLongitude());
+				params.put(Config.MAX_WALK_DISTANCE, "840");
+				params.put(Config.OPTIMIZE, "QUICK");
+				params.put(Config.MODE, "TRANSIT,WALK");
+				params.put(Config.TIME, "10:25am");
+				params.put(Config.WALK_SPEED, "1.341");
+				System.out.println("From: "+from);
+				System.out.println("To: "+to);
+				RequestItineraryTask request = new RequestItineraryTask(context, requestItineraryInterface);
+				request.execute(TripPlanner.contsructUrl(Config.API_URL, params));
 			}
 		});
 	}
 
-	public void geocode(String location) {
-		GeocodeTask geocodeTask = new GeocodeTask(geocoder, this);
+	public void geocode(String provider, String location) {
+		GeocodeTask geocodeTask = new GeocodeTask(provider, geocoder, this);
 		geocodeTask.execute(location);
 	}
-
+	
 	protected Geocoder getGeocoder() {
 		if (geocoder == null) {
 			geocoder = new Geocoder(this);
@@ -306,7 +327,8 @@ public class PasaheroMapActivity extends MapActivity implements
 	}
 
 	@Override
-	public void geocodeFinish(List<Address> result) {
+	public void geocodeFinish(String provider, List<Address> result) {
+		System.out.println("Provider: "+provider);
 		if (result == null || result.size() == 0) {
 			Toast.makeText(this, "No match found!", Toast.LENGTH_SHORT).show();
 		} else {
@@ -317,13 +339,31 @@ public class PasaheroMapActivity extends MapActivity implements
 				adapter.add(address);
 			}
 			Address address = result.get(0);
-			adapter.setSelected(address);
-			addMarker(address, GeoArrayAdapter.getShortName(address), "");
-			map.getController()
-					.setCenter(
-							new GeoPoint(address.getLatitude(), address
-									.getLongitude()));
+			setAddress(provider, address);
 		}
+	}
+	
+	private void setAddress(String provider, Address address){
+		adapter.setSelected(address);
+		addMarker(address, GeoArrayAdapter.getShortName(address), "");
+		map.getController()
+				.setCenter(
+						new GeoPoint(address.getLatitude(), address
+								.getLongitude()));
+		if(provider.equals(Config.FROM_PLACE)){
+			from = address;
+		}else if(provider.equals(Config.TO_PLACE)){
+			to = address;
+		}
+	}
+
+	@Override
+	public void loadItinerary(Response response) {
+		System.out.println(response);
+	}
+
+	@Override
+	public void geocodeFinish(List<Address> result) {	
 	}
 
 }

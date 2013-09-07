@@ -4,14 +4,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.map.ObjectMapper;
-@JsonIgnoreProperties(ignoreUnknown = true)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TripPlanner {
 
 	final String API_URL = "http://192.168.0.103:8080/opentripplanner-api-webapp/ws/";
@@ -21,36 +23,41 @@ public class TripPlanner {
 
 	private URL url;
 	private String requestType;
-	
+	private RequestItineraryInterface requestItineraryInterface;
+
 	public TripPlanner() {
+
 	}
-	
-	public void setUrl(URL url){
+
+	public TripPlanner(RequestItineraryInterface requestItineraryInterface) {
+		this.requestItineraryInterface = requestItineraryInterface;
+	}
+
+	public void setUrl(URL url) {
 		this.url = url;
 	}
-	
+
 	public URL getUrl() {
 		return url;
 	}
 
-	public void setRequestType(String requestType){
+	public void setRequestType(String requestType) {
 		this.requestType = requestType;
 	}
-	
+
 	public String getRequestType() {
 		return requestType;
 	}
 
-	
-	public void setUrl(String urlString){
+	public void setUrl(String urlString) {
 		try {
 			this.url = new URL(urlString);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public void get(String urlString){
+
+	public void get(String urlString) {
 		try {
 			URL url = new URL(urlString);
 			getRequest(url);
@@ -60,17 +67,19 @@ public class TripPlanner {
 			e.printStackTrace();
 		}
 	}
-	
-	public void get(URL url){
+
+	public Response get(URL url) {
+		Response response = null;
 		try {
-			getRequest(url);
+			response = getRequest(url);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return response;
 	}
-	
+
 	public void get(Hashtable<String, String> params) {
 		try {
 			URL url = TripPlanner.contsructUrl(API_URL, params);
@@ -81,42 +90,46 @@ public class TripPlanner {
 			e.printStackTrace();
 		}
 	}
-	
-	private void getRequest(URL url) throws IOException {
+
+	private Response getRequest(URL url) throws IOException {
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setRequestMethod("GET");
 		conn.setRequestProperty("Accept", "application/json");
-		
+
 		int responseCode = conn.getResponseCode();
-		System.out.println("Responded!");
-		System.out.println(responseCode);
-		if(responseCode != HTTP_OK){
-			throw new RuntimeException("Failed : HTTP error code : "+ responseCode);
+		if (responseCode != HTTP_OK) {
+			throw new RuntimeException("Failed : HTTP error code : "
+					+ responseCode);
 		}
-		
-		/*BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-		String response;
-		while((response = br.readLine())!=null){
-			System.out.println(response);
-		}*/
-		
 		ObjectMapper mapper = new ObjectMapper();
 		InputStream stream = conn.getInputStream();
 		Response response = mapper.readValue(stream, Response.class);
-		
-		System.out.println(response);
 		conn.disconnect();
+		System.out.println(response);
+		return response;
 	}
 
-	
-	
 	public static URL contsructUrl(String urlString,
-			Hashtable<String, String> params) throws MalformedURLException {
+			Hashtable<String, String> params) {
 		Enumeration<String> keys = params.keys();
+		urlString = urlString + "?";
 		while (keys.hasMoreElements()) {
 			String key = keys.nextElement();
 			urlString = urlString + key + "=" + params.get(key) + "&";
 		}
-		return new URL(urlString);
+		System.out.println("Request url: " + urlString);
+		URL url;
+		try {
+			url = new URL(urlString);
+			URI uri = new URI(url.getProtocol(), url.getUserInfo(),
+					url.getHost(), url.getPort(), url.getPath(),
+					url.getQuery(), url.getRef());
+			return uri.toURL();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

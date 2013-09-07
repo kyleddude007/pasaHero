@@ -16,6 +16,7 @@ public class GeoArrayAdapter extends ArrayAdapter<Address> {
 	private Context context;
 	private Vector<Address> addresses;
 	private Address selected;
+	private String provider;
 
 	public void addResult(Address address) {
 		addresses.add(address);
@@ -34,6 +35,22 @@ public class GeoArrayAdapter extends ArrayAdapter<Address> {
 		this.selected = null;
 	}
 
+	public GeoArrayAdapter(Context context, Vector<Address> addresses, String provider) {
+		super(context, R.layout.row_layout, addresses);
+		this.context = context;
+		this.addresses = addresses;
+		this.selected = null;
+		this.provider = provider;
+	}
+	
+	public void setProvider(String provider){
+		this.provider = provider;
+	}
+	
+	public String getProvider(){
+		return provider;
+	}
+	
 	public void setSelected(Address selected){
 		this.selected = selected;
 	}

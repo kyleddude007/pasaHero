@@ -32,6 +32,7 @@ public class Leg {
 	private LegGeometry legGeometry;
 	private long duration;
 	private Vector<Step> steps;
+	private Vector<?> intermediateStops; 
 	public String getMode() {
 		return mode;
 	}
@@ -193,5 +194,11 @@ public class Leg {
 	}
 	public void setBogusNonTransitLeg(boolean bogusNonTransitLeg) {
 		this.bogusNonTransitLeg = bogusNonTransitLeg;
+	}
+	public Vector<?> getIntermediateStops() {
+		return intermediateStops;
+	}
+	public void setIntermediateStops(Vector<?> intermediateStops) {
+		this.intermediateStops = intermediateStops;
 	}
 }

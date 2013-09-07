@@ -4,35 +4,33 @@ import java.net.URL;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.widget.Toast;
 
-public class RequestItineraryTask extends AsyncTask<URL, Void, Long>{
-	
+public class RequestItineraryTask extends AsyncTask<URL, Void, Response> {
+
 	private Context callingContext;
-	
-	public void setCallingContext(Context callingContext){
-		this.callingContext = callingContext;
-	}
-	
-	public RequestItineraryTask(Context callingContext) {
-		this.callingContext = callingContext;
-	}
-	
-	@Override
-	protected Long doInBackground(URL... urls) {
-		int len = urls.length;
-		long totalSize = 0;
-		TripPlanner mgr = new TripPlanner();
-		for(int i =0; i<len; i++){
-			mgr.get(urls[i]);
-			if (isCancelled()) break;
-		}
-		return totalSize;
-	}
-	
+	RequestItineraryInterface requestItineraryInterface;
 
-    protected void onPostExecute(Long result) {
-        Toast.makeText(callingContext,"Downloaded", Toast.LENGTH_SHORT).show();
-    }
+	public void setCallingContext(Context callingContext) {
+		this.callingContext = callingContext;
+	}
+
+	public RequestItineraryTask(Context callingContext,
+			RequestItineraryInterface requestItineraryInterface) {
+		this.callingContext = callingContext;
+		this.requestItineraryInterface = requestItineraryInterface;
+	}
+
+	@Override
+	protected Response doInBackground(URL... urls) {
+		URL url = urls[0];
+		TripPlanner planner = new TripPlanner();
+		Response response = planner.get(url);
+		return response;
+	}
+
+	@Override
+	protected void onPostExecute(Response response) {
+		requestItineraryInterface.loadItinerary(response);
+	}
 
 }

@@ -11,13 +11,21 @@ public class GeocodeTask extends AsyncTask<String, Void, List<Address>> {
 
 	private Geocoder geocoder;
 	private GeocodeTaskInterface geocodeTaskInterface;
+	private String provider;
 
+	public GeocodeTask(String provider, Geocoder geocoder,
+			GeocodeTaskInterface geocodeTaskInterface) {
+		this.geocoder = geocoder;
+		this.geocodeTaskInterface = geocodeTaskInterface;
+		this.provider = provider;
+	}
+	
 	public GeocodeTask(Geocoder geocoder,
 			GeocodeTaskInterface geocodeTaskInterface) {
 		this.geocoder = geocoder;
 		this.geocodeTaskInterface = geocodeTaskInterface;
-
 	}
+
 
 	protected List<Address> doInBackground(String... location) {
 		try {
@@ -29,8 +37,7 @@ public class GeocodeTask extends AsyncTask<String, Void, List<Address>> {
 	}
 
 	protected void onPostExecute(List<Address> result) {
-		geocodeTaskInterface.geocodeFinish(result);
-
+		geocodeTaskInterface.geocodeFinish(provider, result);
 	}
 
 }
