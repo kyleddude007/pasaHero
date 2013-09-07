@@ -14,9 +14,7 @@ public class RequestItineraryTask extends AsyncTask<URL, Void, Response> {
 		this.callingContext = callingContext;
 	}
 
-	public RequestItineraryTask(Context callingContext,
-			RequestItineraryInterface requestItineraryInterface) {
-		this.callingContext = callingContext;
+	public RequestItineraryTask(RequestItineraryInterface requestItineraryInterface) {
 		this.requestItineraryInterface = requestItineraryInterface;
 	}
 
@@ -30,6 +28,7 @@ public class RequestItineraryTask extends AsyncTask<URL, Void, Response> {
 
 	@Override
 	protected void onPostExecute(Response response) {
+		System.out.println("Response: "+response);
 		requestItineraryInterface.loadItinerary(response);
 	}
 

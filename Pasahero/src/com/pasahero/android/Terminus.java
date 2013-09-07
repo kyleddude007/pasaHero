@@ -11,8 +11,8 @@ import java.util.Hashtable;
 public class Terminus {
 
 	private String name;
-	private String lon;
-	private String lat;
+	private double lon;
+	private double lat;
 	private String arrival;
 	private String departure;
 	private String orig;
@@ -29,19 +29,11 @@ public class Terminus {
 		this.name = name;
 	}
 
-	public String getLongitude() {
+	public double getLongitude() {
 		return lon;
 	}
 
-	public void setLongitude(String lon) {
-		this.lon = lon;
-	}
-
-	public String getLatitude() {
-		return lat;
-	}
-
-	public void setLatitude(String lat) {
+	public void setLatitude(double lat) {
 		this.lat = lat;
 	}
 
@@ -61,19 +53,19 @@ public class Terminus {
 		this.stopCode = stopCode;
 	}
 
-	public String getLon() {
+	public double getLon() {
 		return lon;
 	}
 
-	public void setLon(String lon) {
+	public void setLon(double lon) {
 		this.lon = lon;
 	}
 
-	public String getLat() {
+	public double getLat() {
 		return lat;
 	}
 
-	public void setLat(String lat) {
+	public void setLat(double lat) {
 		this.lat = lat;
 	}
 

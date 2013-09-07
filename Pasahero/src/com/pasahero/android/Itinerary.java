@@ -16,14 +16,15 @@ public class Itinerary {
 	private double elevationGained;
 	private int transfers;
 	private double fare;
+	private Vector<Leg> legs;
+	private boolean tooSloped;
+	
 	public double getFare() {
 		return fare;
 	}
 	public void setFare(double fare) {
 		this.fare = fare;
 	}
-	private Vector<Leg> legs;
-	private boolean tooSloped;
 	public long getDuration() {
 		return duration;
 	}

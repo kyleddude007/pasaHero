@@ -99,8 +99,8 @@ public class PasaheroMapActivity extends MapActivity implements
 						.getSelected().hashCode()));
 				map.invalidate();
 				setAddress(adapter.getProvider(), address);
-				System.out.println("from: "+from.toString());
-				System.out.println("to: "+to.toString());
+				System.out.println("from: " + from.toString());
+				System.out.println("to: " + to.toString());
 			}
 
 		});
@@ -144,17 +144,27 @@ public class PasaheroMapActivity extends MapActivity implements
 				Hashtable<String, String> params = new Hashtable<String, String>();
 				params.put(Config.ARRIVE_BY, "false");
 				params.put(Config.DATE, new Date().toString());
-				params.put(Config.FROM_PLACE, from.getLatitude()+","+from.getLongitude());
-				params.put(Config.TO_PLACE, to.getLatitude()+","+to.getLongitude());
+				params.put(Config.FROM_PLACE,
+						from.getLatitude() + "," + from.getLongitude());
+				params.put(Config.TO_PLACE,
+						to.getLatitude() + "," + to.getLongitude());
 				params.put(Config.MAX_WALK_DISTANCE, "840");
 				params.put(Config.OPTIMIZE, "QUICK");
 				params.put(Config.MODE, "TRANSIT,WALK");
 				params.put(Config.TIME, "10:25am");
 				params.put(Config.WALK_SPEED, "1.341");
-				System.out.println("From: "+from);
-				System.out.println("To: "+to);
-				RequestItineraryTask request = new RequestItineraryTask(context, requestItineraryInterface);
-				request.execute(TripPlanner.contsructUrl(Config.API_URL, params));
+				System.out.println("From: " + from);
+				System.out.println("To: " + to);
+				RequestItineraryTask request = new RequestItineraryTask(
+						requestItineraryInterface);
+				// request.execute(TripPlanner.contsructUrl(Config.API_URL,
+				// params));
+				try {
+					request.execute(new URL(Config.SAMPLE_URL));
+				} catch (MalformedURLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 	}
@@ -163,7 +173,7 @@ public class PasaheroMapActivity extends MapActivity implements
 		GeocodeTask geocodeTask = new GeocodeTask(provider, geocoder, this);
 		geocodeTask.execute(location);
 	}
-	
+
 	protected Geocoder getGeocoder() {
 		if (geocoder == null) {
 			geocoder = new Geocoder(this);
@@ -184,7 +194,6 @@ public class PasaheroMapActivity extends MapActivity implements
 				locOverlay.setFollowing(true);
 			}
 		});
-
 	}
 
 	// add polygon overlay to map
@@ -226,41 +235,6 @@ public class PasaheroMapActivity extends MapActivity implements
 		LineOverlay lineOverlay = new LineOverlay(paint);
 		lineOverlay.setData(lineData);
 		map.getOverlays().add(lineOverlay);
-	}
-
-	// add an itemized overlay to map
-	private void addPoiOverlay() {
-
-		// use a custom POI marker by referencing the bitmap file directly,
-		// using the filename as the resource ID
-		Drawable icon = getResources().getDrawable(R.drawable.location_marker);
-		final DefaultItemizedOverlay poiOverlay = new DefaultItemizedOverlay(
-				icon);
-
-		// set GeoPoints and title/snippet to be used in the annotation view
-		OverlayItem poi1 = new OverlayItem(
-				new GeoPoint(39.739983, -104.984727), "Denver, Colorado",
-				"MapQuest Headquarters");
-		poiOverlay.addItem(poi1);
-		OverlayItem poi2 = new OverlayItem(
-				new GeoPoint(37.441903, -122.141895), "Palo Alto, California",
-				"AOL Offices");
-		poiOverlay.addItem(poi2);
-
-		// add a tap listener for the POI overlay
-		poiOverlay.setTapListener(new ItemizedOverlay.OverlayTapListener() {
-			@Override
-			public void onTap(GeoPoint pt, MapView mapView) {
-				// when tapped, show the annotation for the overlayItem
-				int lastTouchedIndex = poiOverlay.getLastFocusedIndex();
-				if (lastTouchedIndex > -1) {
-					OverlayItem tapped = poiOverlay.getItem(lastTouchedIndex);
-					annotation.showAnnotationView(tapped);
-				}
-			}
-		});
-
-		map.getOverlays().add(poiOverlay);
 	}
 
 	private void displayRoute() {
@@ -328,7 +302,7 @@ public class PasaheroMapActivity extends MapActivity implements
 
 	@Override
 	public void geocodeFinish(String provider, List<Address> result) {
-		System.out.println("Provider: "+provider);
+		System.out.println("Provider: " + provider);
 		if (result == null || result.size() == 0) {
 			Toast.makeText(this, "No match found!", Toast.LENGTH_SHORT).show();
 		} else {
@@ -342,17 +316,15 @@ public class PasaheroMapActivity extends MapActivity implements
 			setAddress(provider, address);
 		}
 	}
-	
-	private void setAddress(String provider, Address address){
+
+	private void setAddress(String provider, Address address) {
 		adapter.setSelected(address);
 		addMarker(address, GeoArrayAdapter.getShortName(address), "");
-		map.getController()
-				.setCenter(
-						new GeoPoint(address.getLatitude(), address
-								.getLongitude()));
-		if(provider.equals(Config.FROM_PLACE)){
+		map.getController().setCenter(
+				new GeoPoint(address.getLatitude(), address.getLongitude()));
+		if (provider.equals(Config.FROM_PLACE)) {
 			from = address;
-		}else if(provider.equals(Config.TO_PLACE)){
+		} else if (provider.equals(Config.TO_PLACE)) {
 			to = address;
 		}
 	}
@@ -360,10 +332,41 @@ public class PasaheroMapActivity extends MapActivity implements
 	@Override
 	public void loadItinerary(Response response) {
 		System.out.println(response);
+		Plan plan = response.getPlan();
+		Vector<Itinerary> itineraries = plan.getItineraries();
+		Vector<Leg> legs = itineraries.get(0).getLegs();
+		Vector<GeoPoint> lineData = new Vector<GeoPoint>();
+		for (Leg leg : legs) {
+			String mode = leg.getMode();
+			if (mode.equals(Config.MODE_WALK)) {
+				Vector<Step> steps = leg.getSteps();
+				for (Step step : steps) {
+					System.out.println("Walk ");
+					System.out.println(step.getAbsoluteDirection());
+					System.out.println(step.getStreetName());
+					System.out.println("-------------");
+					lineData.add(new GeoPoint(step.getLat(), step.getLon()));
+				}
+			}else if(mode.equals(Config.MODE_RAIL)){
+				System.out.println("Ride");
+				System.out.println(leg.getFrom().getName());
+				System.out.println(leg.getTo().getName());
+				Terminus from = leg.getFrom();
+				Terminus to = leg.getTo();
+				lineData.add(new GeoPoint(from.getLat(), from.getLon()));
+				lineData.add(new GeoPoint(to.getLat(), to.getLon()));
+			}
+		}
+		System.out.println("Line data: ");
+		System.out.println(lineData);
+		Drawing draw = new Drawing(map, lineData, overlays);
+		draw.draw();
+
 	}
 
 	@Override
-	public void geocodeFinish(List<Address> result) {	
+	public void geocodeFinish(List<Address> result) {
+
 	}
 
 }

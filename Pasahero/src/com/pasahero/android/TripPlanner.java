@@ -117,13 +117,14 @@ public class TripPlanner {
 			String key = keys.nextElement();
 			urlString = urlString + key + "=" + params.get(key) + "&";
 		}
-		System.out.println("Request url: " + urlString);
 		URL url;
 		try {
 			url = new URL(urlString);
 			URI uri = new URI(url.getProtocol(), url.getUserInfo(),
 					url.getHost(), url.getPort(), url.getPath(),
 					url.getQuery(), url.getRef());
+			System.out.println("Request url: " + urlString);
+			
 			return uri.toURL();
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
