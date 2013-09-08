@@ -24,7 +24,7 @@ public class GeoArrayAdapter extends ArrayAdapter<Address> {
 	}
 
 	public void clear() {
-		addresses.clear();
+		addresses.removeAllElements();
 		this.notifyDataSetChanged();
 	}
 

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+
+    <Button
+        android:id="@+id/options_nav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/icon_home" />
+
+    <LinearLayout
+        android:id="@+id/mainOptionsPanel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/fromView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/starting_point" >
+
+            <requestFocus />
+        </EditText>
+
+        <EditText
+            android:id="@+id/toView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/destination" />
+
+        <Button
+            android:id="@+id/plan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/done" />
+
+        <TimePicker
+            android:id="@+id/arriveBy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TimePicker
+            android:id="@+id/departOn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/walkSpeed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/walkDistance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/geoHintsPanel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/geoInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/starting_point" >
+
+            <requestFocus />
+        </EditText>
+
+        <ListView
+            android:id="@+id/geoList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+        </ListView>
+    </LinearLayout>
+
+</LinearLayout>

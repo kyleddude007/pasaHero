@@ -3,94 +3,19 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
-    <RelativeLayout
-        android:id="@+id/container"
+    <com.mapquest.android.maps.MapView
+        android:id="@+id/mapView"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:orientation="vertical" >
+        android:apiKey="@string/mapquest_api_key"
+        android:clickable="true"
+        android:enabled="true" />
 
-        <com.mapquest.android.maps.MapView
-            android:id="@+id/mapView"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:apiKey="@string/mapquest_api_key"
-            android:clickable="true"
-            android:enabled="true" />
-
-        <RelativeLayout
-            android:id="@+id/optionsPanel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="98dp"
-            android:layout_marginTop="140dp" >
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" >
-
-                <Spinner
-                    android:id="@+id/spinner1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <EditText
-                    android:id="@+id/fromView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="@string/starting_point" />
-
-                <EditText
-                    android:id="@+id/toView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="@string/destination" >
-
-                    <requestFocus />
-                </EditText>
-
-                <Button
-                    android:id="@+id/plan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/done" />
-
-                <ListView
-                    android:id="@+id/geoList"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
-                </ListView>
-
-                <TimePicker
-                    android:id="@+id/arriveBy"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <TimePicker
-                    android:id="@+id/departOn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <EditText
-                    android:id="@+id/walkSpeed"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="number" />
-
-                <EditText
-                    android:id="@+id/walkDistance"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="number" />
-
-            </LinearLayout>
-        </RelativeLayout>
-    </RelativeLayout>
+    <fragment
+        android:id="@+id/options_panel_fragment"
+        android:name="com.pasahero.android.OptionsPanelFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+    </fragment>
 
 </FrameLayout>

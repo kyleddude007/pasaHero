@@ -9,14 +9,16 @@ import java.util.List;
 import java.util.Vector;
 
 import org.opentripplanner.util.PolylineEncoder;
-import org.opentripplanner.util.model.EncodedPolylineBean;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
@@ -41,9 +43,8 @@ import com.mapquest.android.maps.Overlay;
 import com.mapquest.android.maps.OverlayItem;
 import com.mapquest.android.maps.PolygonOverlay;
 import com.mapquest.android.maps.RouteManager;
-
 public class PasaheroMapActivity extends MapActivity implements
-		GeocodeTaskInterface, RequestItineraryInterface {
+		GeocodeTaskInterface, RequestItineraryInterface, OptionsPanelListenerInterface {
 	private MyLocationOverlay locOverlay;
 	protected MapView map;
 	AnnotationView annotation;
@@ -56,14 +57,14 @@ public class PasaheroMapActivity extends MapActivity implements
 	private Context context;
 	private Address from;
 	private Address to;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_pasahero_map);
 		setUpMapView();
 		getGeocoder();
-		setUpViews();
+		//setUpViews();
 		this.overlays = map.getOverlays();
 		this.markerOverlayHolder = new Hashtable<Integer, Overlay>();
 		this.context = context;
@@ -76,6 +77,8 @@ public class PasaheroMapActivity extends MapActivity implements
 		// displayRoute();
 		this.mapCtrl = map.getController();
 		this.requestItineraryInterface = this;
+		ActionBar bar = this.getActionBar();
+		bar.hide();
 	}
 
 	public void setUpMapView() {
@@ -341,32 +344,31 @@ public class PasaheroMapActivity extends MapActivity implements
 		Vector<GeoPoint> lineData = new Vector<GeoPoint>();
 		for (Leg leg : legs) {
 			String mode = leg.getMode();
-			/*if (mode.equals(Config.MODE_WALK)) {
-				Vector<Step> steps = leg.getSteps();
-				for (Step step : steps) {
-					//System.out.println("Walk ");
-					//System.out.println(step.getAbsoluteDirection());
-					//System.out.println(step.getStreetName());
-					//System.out.println("-------------");
-					List<com.vividsolutions.jts.geom.Coordinate> polyLines = PolylineEncoder.decode(leg.getLegGeometry());
-					for(com.vividsolutions.jts.geom.Coordinate line: polyLines){
-						System.out.println(line.x+" , "+line.y+" , "+line.z);
-						lineData.add(new GeoPoint(line.x, line.y));
-					}
-				}
-			}else if(mode.equals(Config.MODE_RAIL)){
-				System.out.println("Ride");
-				System.out.println(leg.getFrom().getName());
-				System.out.println(leg.getTo().getName());
-				List<com.vividsolutions.jts.geom.Coordinate> polyLines = PolylineEncoder.decode(leg.getLegGeometry());
-				for(com.vividsolutions.jts.geom.Coordinate line: polyLines){
-					System.out.println(line.x+" , "+line.y+" , "+line.z);
-					lineData.add(new GeoPoint(line.x, line.y));
-				}
-			}*/
-			List<com.vividsolutions.jts.geom.Coordinate> polyLines = PolylineEncoder.decode(leg.getLegGeometry());
-			for(com.vividsolutions.jts.geom.Coordinate line: polyLines){
-				System.out.println(line.x+" , "+line.y+" , "+line.z);
+			/*
+			 * if (mode.equals(Config.MODE_WALK)) { Vector<Step> steps =
+			 * leg.getSteps(); for (Step step : steps) {
+			 * //System.out.println("Walk ");
+			 * //System.out.println(step.getAbsoluteDirection());
+			 * //System.out.println(step.getStreetName());
+			 * //System.out.println("-------------");
+			 * List<com.vividsolutions.jts.geom.Coordinate> polyLines =
+			 * PolylineEncoder.decode(leg.getLegGeometry());
+			 * for(com.vividsolutions.jts.geom.Coordinate line: polyLines){
+			 * System.out.println(line.x+" , "+line.y+" , "+line.z);
+			 * lineData.add(new GeoPoint(line.x, line.y)); } } }else
+			 * if(mode.equals(Config.MODE_RAIL)){ System.out.println("Ride");
+			 * System.out.println(leg.getFrom().getName());
+			 * System.out.println(leg.getTo().getName());
+			 * List<com.vividsolutions.jts.geom.Coordinate> polyLines =
+			 * PolylineEncoder.decode(leg.getLegGeometry());
+			 * for(com.vividsolutions.jts.geom.Coordinate line: polyLines){
+			 * System.out.println(line.x+" , "+line.y+" , "+line.z);
+			 * lineData.add(new GeoPoint(line.x, line.y)); } }
+			 */
+			List<com.vividsolutions.jts.geom.Coordinate> polyLines = PolylineEncoder
+					.decode(leg.getLegGeometry());
+			for (com.vividsolutions.jts.geom.Coordinate line : polyLines) {
+				System.out.println(line.x + " , " + line.y + " , " + line.z);
 				lineData.add(new GeoPoint(line.x, line.y));
 			}
 		}
@@ -382,4 +384,21 @@ public class PasaheroMapActivity extends MapActivity implements
 
 	}
 
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.action_bar, menu);
+		return true;
+	}
+
+	@Override
+	public void locationEntered(String location) {
+		
+	}
+
+	@Override
+	public void planningStarted() {
+		
+	}
+	
 }

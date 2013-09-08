@@ -8,7 +8,12 @@
     <string name="password">Password</string>
     <string name="submit">Submit</string>
     <string name="mapquest_api_key">Fmjtd%7Cluub25a2l1%2Cb5%3Do5-9uzxqz</string>
-	<string name="starting_point">Choose a starting point...</string>
-	<string name="destination">Choose destination...</string>
-	<string name="done">Done</string>
+    <string name="starting_point">Choose a starting point...</string>
+    <string name="destination">Choose destination...</string>
+    <string name="done">Done</string>
+    <string name="title_activity_action_bar">ActionBarActivity</string>
+    <string name="refresh">Refresh</string>
+    <string name="settings">Settings</string>
+    <string name="icon_home">&#xf015;</string>
+
 </resources>

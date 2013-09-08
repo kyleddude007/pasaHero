@@ -6,8 +6,8 @@ public class Config {
 
 	public static final String GET = "GET";
 	public static final String POST = "POST";
-	public static final String API_URL = "http://192.168.0.104:8080/opentripplanner-api-webapp/ws/plan";
-	public static final String SAMPLE_URL = "http://192.168.0.104:8080/opentripplanner-api-webapp/ws/plan?_dc=1378557587873&arriveBy=false&time=8%3A33pm&ui_date=9%2F7%2F2013&mode=TRANSIT%2CWALK&optimize=QUICK&maxWalkDistance=840&walkSpeed=1.341&date=2013-09-07&toPlace=14.559519%2C121.081975&fromPlace=14.589756%2C120.980351";
+	public static final String API_URL = "http://192.168.0.103:8080/opentripplanner-api-webapp/ws/plan";
+	public static final String SAMPLE_URL = "http://192.168.0.103:8080/opentripplanner-api-webapp/ws/plan?_dc=1378557587873&arriveBy=false&time=8%3A33pm&ui_date=9%2F7%2F2013&mode=TRANSIT%2CWALK&optimize=QUICK&maxWalkDistance=840&walkSpeed=1.341&date=2013-09-07&toPlace=14.559519%2C121.081975&fromPlace=14.589756%2C120.980351";
 	public static final double NCR_LAT = 14.5833; // North
 	public static final double NCR_LON = 121.0000; // East
 	public static final int MAX_GEO = 5;
@@ -28,4 +28,8 @@ public class Config {
 	public static final String MODE_RAIL ="RAIL";
 	public static final String MODE_TRANSIT = "TRANSIT";
 	public static final String MODE_BUS ="BUS";
+	public static String FONTAWESOME_URL = "fonts/fontawesome-webfont.ttf";
+	public static long TEXT_CHANGED_WAIT = 1000;
+	public static int TEXT_CHANGE_COUNT  = 4;
+	
 }
