@@ -1,5 +1,9 @@
 package com.pasahero.android;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Date;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Vector;
 
@@ -25,7 +29,7 @@ import android.widget.Toast;
 import com.mapquest.android.Geocoder;
 
 public class OptionsPanelFragment extends Fragment implements
-		GeocodeTaskInterface {
+		GeocodeTaskInterface, RequestItineraryInterface {
 	private OptionsPanelListenerInterface optionsListener;
 	private GeocodeTaskInterface geoListener;
 
@@ -42,6 +46,8 @@ public class OptionsPanelFragment extends Fragment implements
 	private String geoRequestor;
 	private ListView geoList;
 	private GeocodeTask geocodeTask;
+	private Hashtable<String, Address> targets;
+	private RequestItineraryInterface itineraryListener;
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -50,6 +56,8 @@ public class OptionsPanelFragment extends Fragment implements
 		geocodeTask = null;
 		geoRequestor = "";
 		geoListener = this;
+		targets = new Hashtable<String, Address>();
+		itineraryListener = this;
 
 	}
 
@@ -88,12 +96,12 @@ public class OptionsPanelFragment extends Fragment implements
 				.findViewById(R.id.geoHintsPanel);
 		geoHintsPanel.setVisibility(LinearLayout.GONE);
 		fromView = (EditText) mainView.findViewById(R.id.fromView);
-		
+
 		fromView.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				switchToGeoHints();
-				if(!geoRequestor.equals(Config.FROM_PLACE)){
+				if (!geoRequestor.equals(Config.FROM_PLACE)) {
 					resetGeoHints();
 				}
 				geoRequestor = Config.FROM_PLACE;
@@ -106,7 +114,7 @@ public class OptionsPanelFragment extends Fragment implements
 		toView.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if(!geoRequestor.equals(Config.TO_PLACE)){
+				if (!geoRequestor.equals(Config.TO_PLACE)) {
 					resetGeoHints();
 				}
 				switchToGeoHints();
@@ -116,7 +124,7 @@ public class OptionsPanelFragment extends Fragment implements
 			}
 
 		});
-		
+
 		nav = (Button) mainView.findViewById(R.id.options_nav);
 		nav.setTypeface(font);
 		nav.setOnClickListener(new OnClickListener() {
@@ -145,8 +153,8 @@ public class OptionsPanelFragment extends Fragment implements
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
 				if (count > Config.TEXT_CHANGE_COUNT) {
-					geocodeTask = new GeocodeTask(geoRequestor,
-							geocoder, geoListener);
+					geocodeTask = new GeocodeTask(geoRequestor, geocoder,
+							geoListener);
 					geoAdapter.clear();
 				} else {
 					geocodeTask = null;
@@ -157,7 +165,7 @@ public class OptionsPanelFragment extends Fragment implements
 		geoList = (ListView) mainView.findViewById(R.id.geoList);
 		geoAdapter = new GeoArrayAdapter(activity, new Vector<Address>());
 		geoList.setAdapter(geoAdapter);
-		geoList.setOnItemClickListener(new OnItemClickListener(){
+		geoList.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
@@ -165,43 +173,63 @@ public class OptionsPanelFragment extends Fragment implements
 				Address address = (Address) parent.getItemAtPosition(position);
 				geoInput.setText(GeoArrayAdapter.getShortName(address));
 				optionsListener.locationChosen(address);
-				if(geoRequestor.equals(Config.FROM_PLACE)){
+				targets.put(geoRequestor, address);
+				if (geoRequestor.equals(Config.FROM_PLACE)) {
 					fromView.setText(GeoArrayAdapter.getShortName(address));
-				}else if(geoRequestor.equals(Config.TO_PLACE)){
+				} else if (geoRequestor.equals(Config.TO_PLACE)) {
 					toView.setText(GeoArrayAdapter.getShortName(address));
 				}
 				switchToMain();
 				optionsListener.locationSelected(geoRequestor, address);
 			}
-			
+
 		});
-		
+
 		planButton = (Button) mainView.findViewById(R.id.plan);
-		planButton.setOnClickListener(new OnClickListener(){
+		planButton.setOnClickListener(new OnClickListener() {
 
 			@Override
-			public void onClick(View v) {
-							}
-			
+			public void onClick(View view) {
+				Address from = targets.get(Config.FROM_PLACE);
+				Address to = targets.get(Config.TO_PLACE);
+				Hashtable<String, String> params = new Hashtable<String, String>();
+				params.put(Config.ARRIVE_BY, "false");
+				params.put(Config.DATE, new Date().toString());
+				params.put(Config.FROM_PLACE,
+						from.getLatitude() + "," + from.getLongitude());
+				params.put(Config.TO_PLACE,
+						to.getLatitude() + "," + to.getLongitude());
+				params.put(Config.MAX_WALK_DISTANCE, "840");
+				params.put(Config.OPTIMIZE, "QUICK");
+				params.put(Config.MODE, "TRANSIT,WALK");
+				params.put(Config.TIME, "10:25am");
+				params.put(Config.WALK_SPEED, "1.341");
+				System.out.println("From: " + from);
+				System.out.println("To: " + to);
+				RequestItineraryTask request = new RequestItineraryTask(
+						itineraryListener);
+				request.execute(TripPlanner.contsructUrl(Config.API_URL, params));
+			}
+
 		});
 	}
-	
-	public void switchToGeoHints(){
+
+	public void switchToGeoHints() {
 		optionsPanel.setVisibility(LinearLayout.GONE);
-		geoHintsPanel.setVisibility(LinearLayout.VISIBLE);	
+		geoHintsPanel.setVisibility(LinearLayout.VISIBLE);
 	}
-	
-	public void switchToMain(){
+
+	public void switchToMain() {
 		geoHintsPanel.setVisibility(LinearLayout.GONE);
 		optionsPanel.setVisibility(LinearLayout.VISIBLE);
 	}
-	
-	public void resetGeoHints(){
+
+	public void resetGeoHints() {
 		geoInput.setText("");
 		geoAdapter.clear();
 		geocodeTask = null;
 	}
-	
+
 	@Override
 	public void geocodeFinish(List<Address> result) {
 		// TODO Auto-generated method stub
@@ -220,11 +248,16 @@ public class OptionsPanelFragment extends Fragment implements
 				geoAdapter.insert(address, 0);
 			}
 			Address address = result.get(0);
-//			optionsListener.locationSelected(provider, address);
 		}
 	}
 
 	public void geocode(String provider, String location) {
 		geocodeTask.execute(location);
+	}
+
+	@Override
+	public void loadItinerary(Response response) {
+		System.out.println(response);
+		optionsListener.itineraryReceived(response.getPlan());
 	}
 }

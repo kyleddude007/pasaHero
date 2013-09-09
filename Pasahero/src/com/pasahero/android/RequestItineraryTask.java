@@ -31,5 +31,7 @@ public class RequestItineraryTask extends AsyncTask<URL, Void, Response> {
 		System.out.println("Response: "+response);
 		requestItineraryInterface.loadItinerary(response);
 	}
+	
+	
 
 }

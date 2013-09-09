@@ -411,8 +411,49 @@ public class PasaheroMapActivity extends MapActivity implements
 
 	@Override
 	public void locationChosen(Address address) {
-		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void itineraryReceived(Plan plan) {
+		Vector<Itinerary> itineraries = plan.getItineraries();
+		Vector<Leg> legs = itineraries.get(0).getLegs();
+		Vector<GeoPoint> lineData = new Vector<GeoPoint>();
+		for (Leg leg : legs) {
+			String mode = leg.getMode();
+			/*
+			 * if (mode.equals(Config.MODE_WALK)) { Vector<Step> steps =
+			 * leg.getSteps(); for (Step step : steps) {
+			 * //System.out.println("Walk ");
+			 * //System.out.println(step.getAbsoluteDirection());
+			 * //System.out.println(step.getStreetName());
+			 * //System.out.println("-------------");
+			 * List<com.vividsolutions.jts.geom.Coordinate> polyLines =
+			 * PolylineEncoder.decode(leg.getLegGeometry());
+			 * for(com.vividsolutions.jts.geom.Coordinate line: polyLines){
+			 * System.out.println(line.x+" , "+line.y+" , "+line.z);
+			 * lineData.add(new GeoPoint(line.x, line.y)); } } }else
+			 * if(mode.equals(Config.MODE_RAIL)){ System.out.println("Ride");
+			 * System.out.println(leg.getFrom().getName());
+			 * System.out.println(leg.getTo().getName());
+			 * List<com.vividsolutions.jts.geom.Coordinate> polyLines =
+			 * PolylineEncoder.decode(leg.getLegGeometry());
+			 * for(com.vividsolutions.jts.geom.Coordinate line: polyLines){
+			 * System.out.println(line.x+" , "+line.y+" , "+line.z);
+			 * lineData.add(new GeoPoint(line.x, line.y)); } }
+			 */
+			List<com.vividsolutions.jts.geom.Coordinate> polyLines = PolylineEncoder
+					.decode(leg.getLegGeometry());
+			for (com.vividsolutions.jts.geom.Coordinate line : polyLines) {
+				System.out.println(line.x + " , " + line.y + " , " + line.z);
+				lineData.add(new GeoPoint(line.x, line.y));
+			}
+		}
+		System.out.println("Line data: ");
+		System.out.println(lineData);
+		Drawing draw = new Drawing(map, lineData, overlays);
+		draw.draw();
+
 	}
 	
 }
