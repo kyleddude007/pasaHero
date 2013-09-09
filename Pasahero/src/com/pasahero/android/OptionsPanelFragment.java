@@ -14,6 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -24,7 +26,7 @@ import com.mapquest.android.Geocoder;
 
 public class OptionsPanelFragment extends Fragment implements
 		GeocodeTaskInterface {
-	private OptionsPanelListenerInterface listener;
+	private OptionsPanelListenerInterface optionsListener;
 	private GeocodeTaskInterface geoListener;
 
 	private EditText fromView;
@@ -46,6 +48,7 @@ public class OptionsPanelFragment extends Fragment implements
 		super.onActivityCreated(savedInstanceState);
 		geocoder = new Geocoder(activity);
 		geocodeTask = null;
+		geoRequestor = "";
 		geoListener = this;
 
 	}
@@ -64,7 +67,7 @@ public class OptionsPanelFragment extends Fragment implements
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
 		if (activity instanceof OptionsPanelListenerInterface) {
-			listener = (OptionsPanelListenerInterface) activity;
+			optionsListener = (OptionsPanelListenerInterface) activity;
 			this.activity = activity;
 		} else {
 			throw new ClassCastException(activity.toString()
@@ -75,7 +78,7 @@ public class OptionsPanelFragment extends Fragment implements
 	@Override
 	public void onDetach() {
 		super.onDetach();
-		listener = null;
+		optionsListener = null;
 	}
 
 	private void setUpViews(View mainView, Typeface font) {
@@ -85,23 +88,41 @@ public class OptionsPanelFragment extends Fragment implements
 				.findViewById(R.id.geoHintsPanel);
 		geoHintsPanel.setVisibility(LinearLayout.GONE);
 		fromView = (EditText) mainView.findViewById(R.id.fromView);
+		
 		fromView.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				optionsPanel.setVisibility(LinearLayout.GONE);
-				geoHintsPanel.setVisibility(LinearLayout.VISIBLE);
+				switchToGeoHints();
+				if(!geoRequestor.equals(Config.FROM_PLACE)){
+					resetGeoHints();
+				}
 				geoRequestor = Config.FROM_PLACE;
-
+				geoInput.setHint(getString(R.string.from_hint));
+				geoInput.requestFocus();
 			}
 
 		});
+		toView = (EditText) mainView.findViewById(R.id.toView);
+		toView.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if(!geoRequestor.equals(Config.TO_PLACE)){
+					resetGeoHints();
+				}
+				switchToGeoHints();
+				geoRequestor = Config.TO_PLACE;
+				geoInput.setHint(getString(R.string.to_hint));
+				geoInput.requestFocus();
+			}
+
+		});
+		
 		nav = (Button) mainView.findViewById(R.id.options_nav);
 		nav.setTypeface(font);
 		nav.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				geoHintsPanel.setVisibility(LinearLayout.GONE);
-				optionsPanel.setVisibility(LinearLayout.VISIBLE);
+				switchToMain();
 			}
 		});
 		geoInput = (EditText) mainView.findViewById(R.id.geoInput);
@@ -124,7 +145,7 @@ public class OptionsPanelFragment extends Fragment implements
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
 				if (count > Config.TEXT_CHANGE_COUNT) {
-					geocodeTask = geocodeTask = new GeocodeTask(geoRequestor,
+					geocodeTask = new GeocodeTask(geoRequestor,
 							geocoder, geoListener);
 					geoAdapter.clear();
 				} else {
@@ -136,8 +157,51 @@ public class OptionsPanelFragment extends Fragment implements
 		geoList = (ListView) mainView.findViewById(R.id.geoList);
 		geoAdapter = new GeoArrayAdapter(activity, new Vector<Address>());
 		geoList.setAdapter(geoAdapter);
-	}
+		geoList.setOnItemClickListener(new OnItemClickListener(){
 
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				Address address = (Address) parent.getItemAtPosition(position);
+				geoInput.setText(GeoArrayAdapter.getShortName(address));
+				optionsListener.locationChosen(address);
+				if(geoRequestor.equals(Config.FROM_PLACE)){
+					fromView.setText(GeoArrayAdapter.getShortName(address));
+				}else if(geoRequestor.equals(Config.TO_PLACE)){
+					toView.setText(GeoArrayAdapter.getShortName(address));
+				}
+				switchToMain();
+				optionsListener.locationSelected(geoRequestor, address);
+			}
+			
+		});
+		
+		planButton = (Button) mainView.findViewById(R.id.plan);
+		planButton.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+							}
+			
+		});
+	}
+	
+	public void switchToGeoHints(){
+		optionsPanel.setVisibility(LinearLayout.GONE);
+		geoHintsPanel.setVisibility(LinearLayout.VISIBLE);	
+	}
+	
+	public void switchToMain(){
+		geoHintsPanel.setVisibility(LinearLayout.GONE);
+		optionsPanel.setVisibility(LinearLayout.VISIBLE);
+	}
+	
+	public void resetGeoHints(){
+		geoInput.setText("");
+		geoAdapter.clear();
+		geocodeTask = null;
+	}
+	
 	@Override
 	public void geocodeFinish(List<Address> result) {
 		// TODO Auto-generated method stub
@@ -146,7 +210,6 @@ public class OptionsPanelFragment extends Fragment implements
 
 	@Override
 	public void geocodeFinish(String provider, List<Address> result) {
-		System.out.println("Provider: " + provider);
 		if (result == null || result.size() == 0) {
 			Toast.makeText(activity, "No match found!", Toast.LENGTH_SHORT)
 					.show();
@@ -154,15 +217,14 @@ public class OptionsPanelFragment extends Fragment implements
 			Toast.makeText(activity, "Loading results...", Toast.LENGTH_SHORT)
 					.show();
 			for (Address address : result) {
-				System.out.println(address.toString());
-				geoAdapter.add(address);
+				geoAdapter.insert(address, 0);
 			}
 			Address address = result.get(0);
+//			optionsListener.locationSelected(provider, address);
 		}
 	}
 
 	public void geocode(String provider, String location) {
 		geocodeTask.execute(location);
-
 	}
 }

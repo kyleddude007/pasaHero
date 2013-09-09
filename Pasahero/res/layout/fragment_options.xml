@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/starting_point" >
+            android:hint="@string/from_hint" >
 
             <requestFocus />
         </EditText>
@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/destination" />
+            android:hint="@string/to_hint" />
 
         <Button
             android:id="@+id/plan"
@@ -76,8 +76,7 @@
             android:id="@+id/geoInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/starting_point" >
+            android:ems="10" >
 
             <requestFocus />
         </EditText>

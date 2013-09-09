@@ -62,10 +62,8 @@ public class PasaheroMapActivity extends MapActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_pasahero_map);
-		setUpMapView();
-		getGeocoder();
+
 		//setUpViews();
-		this.overlays = map.getOverlays();
 		this.markerOverlayHolder = new Hashtable<Integer, Overlay>();
 		this.context = context;
 		this.from = null;
@@ -75,16 +73,21 @@ public class PasaheroMapActivity extends MapActivity implements
 		// addLineOverlay();
 		// addPoiOverlay();
 		// displayRoute();
-		this.mapCtrl = map.getController();
 		this.requestItineraryInterface = this;
 		ActionBar bar = this.getActionBar();
 		bar.hide();
+		setUpMapView();
+		
+		getGeocoder();
 	}
 
 	public void setUpMapView() {
-		this.map = (MapView) findViewById(R.id.mapView);
-		map.getController().setZoom(11);
-		map.getController().setCenter(
+		map = (MapView) findViewById(R.id.mapView);
+		mapCtrl = map.getController();
+		overlays = map.getOverlays();
+
+		mapCtrl.setZoom(Config.MAP_ZOOM);
+		mapCtrl.setCenter(
 				new GeoPoint(Config.NCR_LAT, Config.NCR_LON));
 		map.setBuiltInZoomControls(true);
 		annotation = new AnnotationView(map);
@@ -324,7 +327,7 @@ public class PasaheroMapActivity extends MapActivity implements
 	}
 
 	private void setAddress(String provider, Address address) {
-		adapter.setSelected(address);
+		//adapter.setSelected(address);
 		addMarker(address, GeoArrayAdapter.getShortName(address), "");
 		map.getController().setCenter(
 				new GeoPoint(address.getLatitude(), address.getLongitude()));
@@ -398,6 +401,17 @@ public class PasaheroMapActivity extends MapActivity implements
 
 	@Override
 	public void planningStarted() {
+		
+	}
+
+	@Override
+	public void locationSelected(String provider, Address address) {
+		setAddress(provider, address);
+	}
+
+	@Override
+	public void locationChosen(Address address) {
+		// TODO Auto-generated method stub
 		
 	}
 	
