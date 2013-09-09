@@ -29,14 +29,13 @@ import android.widget.Toast;
 import com.mapquest.android.Geocoder;
 
 public class OptionsPanelFragment extends Fragment implements
-		GeocodeTaskInterface, RequestItineraryInterface {
+		GeocodeTaskInterface, RequestItineraryInterface, PasaHeroMapInterface {
 	private OptionsPanelListenerInterface optionsListener;
 	private GeocodeTaskInterface geoListener;
 
 	private EditText fromView;
 	private EditText toView;
 	private Button planButton;
-	private Button nav;
 	private LinearLayout optionsPanel;
 	private LinearLayout geoHintsPanel;
 	private EditText geoInput;
@@ -125,14 +124,7 @@ public class OptionsPanelFragment extends Fragment implements
 
 		});
 
-		nav = (Button) mainView.findViewById(R.id.options_nav);
-		nav.setTypeface(font);
-		nav.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				switchToMain();
-			}
-		});
+		
 		geoInput = (EditText) mainView.findViewById(R.id.geoInput);
 		geoInput.addTextChangedListener(new TextWatcher() {
 
@@ -259,5 +251,10 @@ public class OptionsPanelFragment extends Fragment implements
 	public void loadItinerary(Response response) {
 		System.out.println(response);
 		optionsListener.itineraryReceived(response.getPlan());
+	}
+
+	@Override
+	public void navButtonClicked() {
+		switchToMain();
 	}
 }

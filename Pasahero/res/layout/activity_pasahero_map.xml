@@ -11,11 +11,23 @@
         android:clickable="true"
         android:enabled="true" />
 
-    <fragment
-        android:id="@+id/options_panel_fragment"
-        android:name="com.pasahero.android.OptionsPanelFragment"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
-    </fragment>
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/options_nav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/icon_home" />
+
+        <fragment
+            android:id="@+id/options_panel_fragment"
+            android:name="com.pasahero.android.OptionsPanelFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+        </fragment>
+    </LinearLayout>
 
 </FrameLayout>

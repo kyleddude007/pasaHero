@@ -14,6 +14,7 @@ import android.app.ActionBar;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.os.Bundle;
@@ -57,7 +58,11 @@ public class PasaheroMapActivity extends MapActivity implements
 	private Context context;
 	private Address from;
 	private Address to;
-
+	private Button nav;
+	private PasaHeroMapInterface mapListener;
+	private OptionsPanelFragment optionsFragment;
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -74,10 +79,11 @@ public class PasaheroMapActivity extends MapActivity implements
 		// addPoiOverlay();
 		// displayRoute();
 		this.requestItineraryInterface = this;
+		mapListener = (OptionsPanelFragment)getFragmentManager().findFragmentById(R.id.options_panel_fragment);
 		ActionBar bar = this.getActionBar();
 		bar.hide();
 		setUpMapView();
-		
+		setUpNav();
 		getGeocoder();
 	}
 
@@ -93,6 +99,20 @@ public class PasaheroMapActivity extends MapActivity implements
 		annotation = new AnnotationView(map);
 	}
 
+	
+	public void setUpNav(){
+		Typeface font = Typefaces.get(this, Config.FONTAWESOME_URL);
+		nav = (Button) findViewById(R.id.options_nav);
+		nav.setTypeface(font);
+		nav.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				mapListener.navButtonClicked();
+			}
+		});
+	}
+	
+	
 	public void setUpViews() {
 		ListView geoList = (ListView) findViewById(R.id.geoList);
 		adapter = new GeoArrayAdapter(this, new Vector<Address>());
@@ -445,15 +465,11 @@ public class PasaheroMapActivity extends MapActivity implements
 			List<com.vividsolutions.jts.geom.Coordinate> polyLines = PolylineEncoder
 					.decode(leg.getLegGeometry());
 			for (com.vividsolutions.jts.geom.Coordinate line : polyLines) {
-				System.out.println(line.x + " , " + line.y + " , " + line.z);
 				lineData.add(new GeoPoint(line.x, line.y));
 			}
 		}
-		System.out.println("Line data: ");
-		System.out.println(lineData);
 		Drawing draw = new Drawing(map, lineData, overlays);
 		draw.draw();
-
 	}
 	
 }
