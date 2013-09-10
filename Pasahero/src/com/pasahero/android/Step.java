@@ -100,7 +100,7 @@ public class Step {
 		Hashtable<String, String> patternPairs = new Hashtable<String, String>();
 		patternPairs.put(Config.DIRECTION_PATTERN, (String) Utils
 				.assignIfNotNull(relativeDirection, absoluteDirection));
-		patternPairs.put(Config.DISTANCE_PATTERN, distance + "");
+		patternPairs.put(Config.DISTANCE_PATTERN, Utils.trimDistance(distance));
 		patternPairs.put(Config.LOC_NAME_PATTERN, streetName);
 		return Utils.insertToTemplate(Config.WALK_STEP_TEXT, patternPairs);
 	}

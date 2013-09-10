@@ -26,7 +26,7 @@ public class StepsAdapter extends ArrayAdapter<Step> {
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View rowView = inflater.inflate(R.layout.step_layout, parent, false);
 		TextView textView = (TextView) rowView.findViewById(R.id.step_instruction);
-		textView.setText(steps.get(position).toString());
+		textView.setText((position+1)+". "+steps.get(position).toString());
 		return rowView;
 	}
 

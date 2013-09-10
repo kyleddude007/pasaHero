@@ -1,5 +1,6 @@
 package com.pasahero.android;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
@@ -8,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 public class Utils {
 
 	private static SimpleDateFormat shortTime;
+	private static DecimalFormat shortDistance;
 
 	public static Object ifExists(Object object) {
 		try {
@@ -52,6 +54,17 @@ public class Utils {
 	}
 
 	public static String toDurationReadable(long millis) {
-		return String.format(Config.DURATION_READABLE_FORMAT, TimeUnit.MILLISECONDS.toMinutes(millis));
+		return String.format(Config.DURATION_READABLE_FORMAT,
+				TimeUnit.MILLISECONDS.toMinutes(millis));
+	}
+
+	public static String trimDistance(double meters) {
+		try {
+			return shortDistance.format(meters);
+		} catch (NullPointerException e) {
+			shortDistance = new DecimalFormat(Config.DISTANCE_FORMAT);
+		}
+		return shortDistance.format(meters);
+
 	}
 }

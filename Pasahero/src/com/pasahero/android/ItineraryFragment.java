@@ -1,7 +1,5 @@
 package com.pasahero.android;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Hashtable;
 import java.util.Vector;
 
@@ -12,7 +10,9 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -55,7 +55,7 @@ public class ItineraryFragment extends Fragment implements PasaHeroMapInterface 
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
 		this.activity = activity;
-		
+
 	}
 
 	@Override
@@ -86,15 +86,28 @@ public class ItineraryFragment extends Fragment implements PasaHeroMapInterface 
 				TextView walkText = (TextView) walkView
 						.findViewById(R.id.walk_title);
 				walkText.setText(Utils.insertToTemplate(Config.WALK_TITLE,
-						Config.LOC_NAME_PATTERN, leg.getFrom().getName()));
+						Config.LOC_NAME_PATTERN, leg.getTo().getName()));
 				Vector<Step> steps = leg.getSteps();
-				ListView stepsView = (ListView) walkView
+				final ListView stepsView = (ListView) walkView
 						.findViewById(R.id.walk_steps);
 				stepsAdapter = new StepsAdapter(activity, steps);
 				stepsView.setAdapter(stepsAdapter);
+				stepsView.setVisibility(View.GONE);
+				Button showToggle = (Button) walkView.findViewById(R.id.show_toggle);
+				showToggle.setOnClickListener(new OnClickListener(){
+
+					@Override
+					public void onClick(View view) {
+						if(stepsView.isShown()){
+							stepsView.setVisibility(View.GONE);
+						}else{
+							stepsView.setVisibility(View.VISIBLE);
+						}
+					}
+					
+				});
 				parent.addView(walkView);
-			} else if (mode.equals(Config.MODE_BUS)
-					|| mode.equals(Config.MODE_RAIL)) {
+			} else if (mode.equals(Config.MODE_BUS)) {
 				View busView = activity.getLayoutInflater().inflate(
 						R.layout.itinerary_transit, parent, false);
 				TextView busTitle = (TextView) busView
@@ -105,7 +118,8 @@ public class ItineraryFragment extends Fragment implements PasaHeroMapInterface 
 				TextView busDepart = (TextView) busView
 						.findViewById(R.id.transit_depart);
 				Hashtable<String, String> departPairs = new Hashtable<String, String>();
-				departPairs.put(Config.TIME_PATTERN, Utils.getShortTime(leg.getStartTime()));
+				departPairs.put(Config.TIME_PATTERN,
+						Utils.getShortTime(leg.getStartTime()));
 				departPairs.put(Config.LOC_NAME_PATTERN, leg.getFrom()
 						.getName());
 				busDepart.setText(Utils.insertToTemplate(
@@ -113,15 +127,56 @@ public class ItineraryFragment extends Fragment implements PasaHeroMapInterface 
 				TextView busArrive = (TextView) busView
 						.findViewById(R.id.transit_arrive);
 				Hashtable<String, String> arrivePairs = new Hashtable<String, String>();
-				arrivePairs.put(Config.TIME_PATTERN, Utils.getShortTime(leg.getEndTime()));
+				arrivePairs.put(Config.TIME_PATTERN,
+						Utils.getShortTime(leg.getEndTime()));
 				arrivePairs.put(Config.LOC_NAME_PATTERN, leg.getTo().getName());
 				busArrive.setText(Utils.insertToTemplate(
 						Config.TEMPLATE_ARRIVE, arrivePairs));
-				TextView busDuration = (TextView) busView.findViewById(R.id.transit_duration);
-				busDuration.setText(Utils.toDurationReadable(leg.getDuration()));
-				TextView busService = (TextView) busView.findViewById(R.id.transit_service);
-				busService.setText(leg.getAgencyName());
+				TextView busDuration = (TextView) busView
+						.findViewById(R.id.transit_duration);
+				busDuration
+						.setText(Utils.toDurationReadable(leg.getDuration()));
+				TextView busService = (TextView) busView
+						.findViewById(R.id.transit_service);
+				busService.setText(Utils.insertToTemplate(
+						Config.TEMPLATE_SERVICE_RUN_BY, Config.SERVICE_PATTERN,
+						leg.getAgencyName()));
 				parent.addView(busView);
+			} else if (mode.equals(Config.MODE_RAIL)) {
+				View railView = activity.getLayoutInflater().inflate(
+						R.layout.itinerary_transit, parent, false);
+				TextView railTitle = (TextView) railView
+						.findViewById(R.id.transit_title);
+				railTitle.setText(Utils.insertToTemplate(
+						Config.TEMPLATE_RAIL_TITLE, Config.LOC_NAME_PATTERN,
+						leg.getRouteLongName()));
+				TextView railDepart = (TextView) railView
+						.findViewById(R.id.transit_depart);
+				Hashtable<String, String> departPairs = new Hashtable<String, String>();
+				departPairs.put(Config.TIME_PATTERN,
+						Utils.getShortTime(leg.getStartTime()));
+				departPairs.put(Config.LOC_NAME_PATTERN, leg.getFrom()
+						.getName());
+				railDepart.setText(Utils.insertToTemplate(
+						Config.TEMPLATE_DEPART, departPairs));
+				TextView railArrive = (TextView) railView
+						.findViewById(R.id.transit_arrive);
+				Hashtable<String, String> arrivePairs = new Hashtable<String, String>();
+				arrivePairs.put(Config.TIME_PATTERN,
+						Utils.getShortTime(leg.getEndTime()));
+				arrivePairs.put(Config.LOC_NAME_PATTERN, leg.getTo().getName());
+				railArrive.setText(Utils.insertToTemplate(
+						Config.TEMPLATE_ARRIVE, arrivePairs));
+				TextView railDuration = (TextView) railView
+						.findViewById(R.id.transit_duration);
+				railDuration
+						.setText(Utils.toDurationReadable(leg.getDuration()));
+				TextView railService = (TextView) railView
+						.findViewById(R.id.transit_service);
+				railService.setText(Utils.insertToTemplate(
+						Config.TEMPLATE_SERVICE_RUN_BY, Config.SERVICE_PATTERN,
+						leg.getAgencyName()));
+				parent.addView(railView);
 			}
 		}
 
