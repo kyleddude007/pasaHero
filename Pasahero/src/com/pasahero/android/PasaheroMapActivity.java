@@ -11,6 +11,8 @@ import java.util.Vector;
 import org.opentripplanner.util.PolylineEncoder;
 
 import android.app.ActionBar;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -60,7 +62,11 @@ public class PasaheroMapActivity extends MapActivity implements
 	private Address to;
 	private Button nav;
 	private PasaHeroMapInterface mapListener;
+	private PasaHeroMapInterface mapItineraryListener;
 	private OptionsPanelFragment optionsFragment;
+	private ItineraryFragment itineraryFragment;
+	private FragmentManager fragmentManager;
+	private FragmentTransaction fragmentTransaction;
 	
 	
 	@Override
@@ -79,12 +85,20 @@ public class PasaheroMapActivity extends MapActivity implements
 		// addPoiOverlay();
 		// displayRoute();
 		this.requestItineraryInterface = this;
-		mapListener = (OptionsPanelFragment)getFragmentManager().findFragmentById(R.id.options_panel_fragment);
+		fragmentManager = getFragmentManager();
+		
+		optionsFragment = (OptionsPanelFragment)fragmentManager.findFragmentById(R.id.options_panel_fragment);
+		mapListener = optionsFragment;
+		itineraryFragment = (ItineraryFragment) fragmentManager.findFragmentById(R.id.itinerary_fragment);
+		mapItineraryListener =itineraryFragment;
 		ActionBar bar = this.getActionBar();
 		bar.hide();
 		setUpMapView();
 		setUpNav();
 		getGeocoder();
+		fragmentTransaction = fragmentManager.beginTransaction();
+		fragmentTransaction.hide(itineraryFragment);
+		fragmentTransaction.commit();
 	}
 
 	public void setUpMapView() {
@@ -436,6 +450,11 @@ public class PasaheroMapActivity extends MapActivity implements
 
 	@Override
 	public void itineraryReceived(Plan plan) {
+		fragmentTransaction = fragmentManager.beginTransaction();
+		fragmentTransaction.hide(optionsFragment);
+		fragmentTransaction.show(itineraryFragment);
+		fragmentTransaction.commit();
+		mapItineraryListener.planReceived(plan);
 		Vector<Itinerary> itineraries = plan.getItineraries();
 		Vector<Leg> legs = itineraries.get(0).getLegs();
 		Vector<GeoPoint> lineData = new Vector<GeoPoint>();

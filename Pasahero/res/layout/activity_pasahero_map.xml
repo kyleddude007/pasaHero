@@ -28,6 +28,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
         </fragment>
+        
+         <fragment
+            android:id="@+id/itinerary_fragment"
+            android:name="com.pasahero.android.ItineraryFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+        </fragment>
     </LinearLayout>
 
 </FrameLayout>

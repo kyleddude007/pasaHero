@@ -1,7 +1,5 @@
 package com.pasahero.android;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.Date;
 import java.util.Hashtable;
 import java.util.List;
@@ -256,5 +254,11 @@ public class OptionsPanelFragment extends Fragment implements
 	@Override
 	public void navButtonClicked() {
 		switchToMain();
+	}
+
+	@Override
+	public void planReceived(Plan plan) {
+		// TODO Auto-generated method stub
+		
 	}
 }

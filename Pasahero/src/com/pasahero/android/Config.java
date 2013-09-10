@@ -32,5 +32,7 @@ public class Config {
 	public static String FONTAWESOME_URL = "fonts/fontawesome-webfont.ttf";
 	public static long TEXT_CHANGED_WAIT = 1000;
 	public static int TEXT_CHANGE_COUNT  = 4;
-	
+	public static String LOC_NAME_PATTERN = "<%location_name%>";
+	public static String TERIMINAL_TITLE_START = "Start at "+LOC_NAME_PATTERN;
+	public static String TERMINAL_TITLE_END = "End at "+LOC_NAME_PATTERN;
 }
