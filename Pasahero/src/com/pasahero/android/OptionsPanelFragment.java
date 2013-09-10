@@ -194,10 +194,9 @@ public class OptionsPanelFragment extends Fragment implements
 				params.put(Config.MODE, "TRANSIT,WALK");
 				params.put(Config.TIME, "10:25am");
 				params.put(Config.WALK_SPEED, "1.341");
-				System.out.println("From: " + from);
-				System.out.println("To: " + to);
 				RequestItineraryTask request = new RequestItineraryTask(
 						itineraryListener);
+				System.out.println(TripPlanner.contsructUrl(Config.API_URL, params));
 				request.execute(TripPlanner.contsructUrl(Config.API_URL, params));
 			}
 

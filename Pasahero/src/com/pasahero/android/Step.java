@@ -98,11 +98,10 @@ public class Step {
 	@Override
 	public String toString() {
 		Hashtable<String, String> patternPairs = new Hashtable<String, String>();
-		String value = (String) Utils
-				.assignIfNotNull(relativeDirection, absoluteDirection);
-		System.out.println("Value: "+value);
-		patternPairs.put(Config.DIRECTION_PATTERN, value);
+		patternPairs.put(Config.DIRECTION_PATTERN, (String) Utils
+				.assignIfNotNull(relativeDirection, absoluteDirection));
 		patternPairs.put(Config.DISTANCE_PATTERN, distance + "");
+		patternPairs.put(Config.LOC_NAME_PATTERN, streetName);
 		return Utils.insertToTemplate(Config.WALK_STEP_TEXT, patternPairs);
 	}
 

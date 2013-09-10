@@ -1,5 +1,7 @@
 package com.pasahero.android;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Hashtable;
 import java.util.Vector;
 
@@ -11,7 +13,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -104,8 +105,7 @@ public class ItineraryFragment extends Fragment implements PasaHeroMapInterface 
 				TextView busDepart = (TextView) busView
 						.findViewById(R.id.transit_depart);
 				Hashtable<String, String> departPairs = new Hashtable<String, String>();
-				departPairs.put(Config.TIME_PATTERN, leg.getStartTime()
-						.toString());
+				departPairs.put(Config.TIME_PATTERN, Utils.getShortTime(leg.getStartTime()));
 				departPairs.put(Config.LOC_NAME_PATTERN, leg.getFrom()
 						.getName());
 				busDepart.setText(Utils.insertToTemplate(
@@ -113,11 +113,14 @@ public class ItineraryFragment extends Fragment implements PasaHeroMapInterface 
 				TextView busArrive = (TextView) busView
 						.findViewById(R.id.transit_arrive);
 				Hashtable<String, String> arrivePairs = new Hashtable<String, String>();
-				arrivePairs.put(Config.TIME_PATTERN, leg.getEndTime()
-						.toString());
+				arrivePairs.put(Config.TIME_PATTERN, Utils.getShortTime(leg.getEndTime()));
 				arrivePairs.put(Config.LOC_NAME_PATTERN, leg.getTo().getName());
 				busArrive.setText(Utils.insertToTemplate(
 						Config.TEMPLATE_ARRIVE, arrivePairs));
+				TextView busDuration = (TextView) busView.findViewById(R.id.transit_duration);
+				busDuration.setText(Utils.toDurationReadable(leg.getDuration()));
+				TextView busService = (TextView) busView.findViewById(R.id.transit_service);
+				busService.setText(leg.getAgencyName());
 				parent.addView(busView);
 			}
 		}
