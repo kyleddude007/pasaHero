@@ -35,4 +35,14 @@ public class Config {
 	public static String LOC_NAME_PATTERN = "<%location_name%>";
 	public static String TERIMINAL_TITLE_START = "Start at "+LOC_NAME_PATTERN;
 	public static String TERMINAL_TITLE_END = "End at "+LOC_NAME_PATTERN;
+	public static String WALK_TITLE = "Start at "+LOC_NAME_PATTERN;
+	public static String DIRECTION_PATTERN = "<%direction%>";
+	public static String DISTANCE_PATTERN = "<%distance%>";
+	public static String WALK_STEP_TEXT = "Walk "+DIRECTION_PATTERN+" "+LOC_NAME_PATTERN+ " - "+DISTANCE_PATTERN;
+	public static String TEMPLATE_BUS_TITLE = "Bus "+LOC_NAME_PATTERN;
+	public static String TIME_PATTERN = "<%time%>";
+	public static String TEMPLATE_DEPART = TIME_PATTERN+" Depart "+LOC_NAME_PATTERN;
+	public static String TEMPLATE_ARRIVE = TIME_PATTERN+" Arrive "+LOC_NAME_PATTERN;
+	public static String SERVICE_PATTERN = "<%service%>";
+	public static String TEMPLATE_SERVICE_RUN_BY = "Service run by "+SERVICE_PATTERN;
 }

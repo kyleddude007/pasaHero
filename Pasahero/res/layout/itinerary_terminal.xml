@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:id="@+id/itinerary_terminal" >
+    android:id="@+id/itinerary_terminal"
+    android:background="@color/white" >
 
     <TextView
         android:id="@+id/terminal_icon"

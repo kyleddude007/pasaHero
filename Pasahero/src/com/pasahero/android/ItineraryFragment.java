@@ -1,5 +1,6 @@
 package com.pasahero.android;
 
+import java.util.Hashtable;
 import java.util.Vector;
 
 import android.app.Activity;
@@ -10,11 +11,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class ItineraryFragment extends Fragment implements PasaHeroMapInterface
-{
+public class ItineraryFragment extends Fragment implements PasaHeroMapInterface {
 	private Vector<Itinerary> itineraries;
 	private View start;
 	private View end;
@@ -27,13 +28,15 @@ public class ItineraryFragment extends Fragment implements PasaHeroMapInterface
 	private Plan plan;
 	private Typeface fontawesome;
 	private View mainView;
-	
+	private ViewGroup parent;
+	private View itineraryPane;
+	private StepsAdapter stepsAdapter;
+
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		fontawesome = Typefaces.get(activity, Config.FONTAWESOME_URL);
 		resources = activity.getResources();
-		
 	}
 
 	@Override
@@ -41,6 +44,9 @@ public class ItineraryFragment extends Fragment implements PasaHeroMapInterface
 			Bundle savedInstanceState) {
 		mainView = inflater.inflate(R.layout.fragment_itinerary, container,
 				false);
+		parent = (ViewGroup) mainView.findViewById(R.id.itinerary_pane);
+		System.out.print("THE PAREENTNTWT ");
+		System.out.println(parent);
 		return mainView;
 	}
 
@@ -48,6 +54,7 @@ public class ItineraryFragment extends Fragment implements PasaHeroMapInterface
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
 		this.activity = activity;
+		
 	}
 
 	@Override
@@ -59,7 +66,7 @@ public class ItineraryFragment extends Fragment implements PasaHeroMapInterface
 	@Override
 	public void navButtonClicked() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -67,23 +74,71 @@ public class ItineraryFragment extends Fragment implements PasaHeroMapInterface
 		this.plan = plan;
 		itineraries = this.plan.getItineraries();
 		setUpTerminals(mainView, plan);
-		
+		itineraryPane = (View) mainView.findViewById(R.id.itinerary_pane);
+		Itinerary it = itineraries.get(0);
+		Vector<Leg> legs = it.getLegs();
+		for (Leg leg : legs) {
+			String mode = leg.getMode();
+			if (mode.equals(Config.MODE_WALK)) {
+				View walkView = activity.getLayoutInflater().inflate(
+						R.layout.itinerary_walk, parent, false);
+				TextView walkText = (TextView) walkView
+						.findViewById(R.id.walk_title);
+				walkText.setText(Utils.insertToTemplate(Config.WALK_TITLE,
+						Config.LOC_NAME_PATTERN, leg.getFrom().getName()));
+				Vector<Step> steps = leg.getSteps();
+				ListView stepsView = (ListView) walkView
+						.findViewById(R.id.walk_steps);
+				stepsAdapter = new StepsAdapter(activity, steps);
+				stepsView.setAdapter(stepsAdapter);
+				parent.addView(walkView);
+			} else if (mode.equals(Config.MODE_BUS)
+					|| mode.equals(Config.MODE_RAIL)) {
+				View busView = activity.getLayoutInflater().inflate(
+						R.layout.itinerary_transit, parent, false);
+				TextView busTitle = (TextView) busView
+						.findViewById(R.id.transit_title);
+				busTitle.setText(Utils.insertToTemplate(
+						Config.TEMPLATE_BUS_TITLE, Config.LOC_NAME_PATTERN,
+						leg.getRouteLongName()));
+				TextView busDepart = (TextView) busView
+						.findViewById(R.id.transit_depart);
+				Hashtable<String, String> departPairs = new Hashtable<String, String>();
+				departPairs.put(Config.TIME_PATTERN, leg.getStartTime()
+						.toString());
+				departPairs.put(Config.LOC_NAME_PATTERN, leg.getFrom()
+						.getName());
+				busDepart.setText(Utils.insertToTemplate(
+						Config.TEMPLATE_DEPART, departPairs));
+				TextView busArrive = (TextView) busView
+						.findViewById(R.id.transit_arrive);
+				Hashtable<String, String> arrivePairs = new Hashtable<String, String>();
+				arrivePairs.put(Config.TIME_PATTERN, leg.getEndTime()
+						.toString());
+				arrivePairs.put(Config.LOC_NAME_PATTERN, leg.getTo().getName());
+				busArrive.setText(Utils.insertToTemplate(
+						Config.TEMPLATE_ARRIVE, arrivePairs));
+				parent.addView(busView);
+			}
+		}
+
 	}
-	
-	public void setUpTerminals(View view, Plan plan){
+
+	public void setUpTerminals(View view, Plan plan) {
 		start = (View) view.findViewById(R.id.terminal_start);
 		end = (View) view.findViewById(R.id.terminal_end);
-		
+
 		TextView startText = (TextView) view.findViewById(R.id.start_text);
 		TextView endText = (TextView) view.findViewById(R.id.end_text);
 
-		startText.setText(Utils.insertToTemplate(Config.TERIMINAL_TITLE_START, Config.LOC_NAME_PATTERN, plan.getFrom().getName()));
-		endText.setText(Utils.insertToTemplate(Config.TERMINAL_TITLE_END, Config.LOC_NAME_PATTERN, plan.getTo().getName()));
+		startText.setText(Utils.insertToTemplate(Config.TERIMINAL_TITLE_START,
+				Config.LOC_NAME_PATTERN, plan.getFrom().getName()));
+		endText.setText(Utils.insertToTemplate(Config.TERMINAL_TITLE_END,
+				Config.LOC_NAME_PATTERN, plan.getTo().getName()));
 	}
-	
-	public void setUpItineraryView(View view, Itinerary it){
-		
-		
+
+	public void setUpItineraryView(View view, Itinerary it) {
+
 	}
-	
+
 }
