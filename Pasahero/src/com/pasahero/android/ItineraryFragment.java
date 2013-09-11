@@ -1,7 +1,12 @@
 package com.pasahero.android;
 
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Vector;
+
+import org.opentripplanner.util.PolylineEncoder;
+
+import com.mapquest.android.maps.GeoPoint;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -32,6 +37,7 @@ public class ItineraryFragment extends Fragment implements PasaHeroMapInterface 
 	private ViewGroup parent;
 	private View itineraryPane;
 	private StepsAdapter stepsAdapter;
+	private ItineraryFragmentInterface itineraryListener;
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -54,9 +60,13 @@ public class ItineraryFragment extends Fragment implements PasaHeroMapInterface 
 	@Override
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
-		this.activity = activity;
-
-	}
+		if (activity instanceof ItineraryFragmentInterface) {
+			itineraryListener = (ItineraryFragmentInterface) activity;
+			this.activity = activity;
+		} else {
+			throw new ClassCastException(activity.toString()
+					+ " must implemenet ItineraryFragmentInterface");
+		}	}
 
 	@Override
 	public void onDetach() {
@@ -79,6 +89,7 @@ public class ItineraryFragment extends Fragment implements PasaHeroMapInterface 
 		Itinerary it = itineraries.get(0);
 		Vector<Leg> legs = it.getLegs();
 		for (Leg leg : legs) {
+			
 			String mode = leg.getMode();
 			if (mode.equals(Config.MODE_WALK)) {
 				View walkView = activity.getLayoutInflater().inflate(
@@ -178,6 +189,13 @@ public class ItineraryFragment extends Fragment implements PasaHeroMapInterface 
 						leg.getAgencyName()));
 				parent.addView(railView);
 			}
+			Vector<GeoPoint> lineData = new Vector<GeoPoint>();
+			List<com.vividsolutions.jts.geom.Coordinate> polyLines = PolylineEncoder
+					.decode(leg.getLegGeometry());
+			for (com.vividsolutions.jts.geom.Coordinate line : polyLines) {
+				lineData.add(new GeoPoint(line.x, line.y));
+			}
+			itineraryListener.lineDataReady(lineData);
 		}
 
 	}

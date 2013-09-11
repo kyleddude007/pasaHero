@@ -8,8 +8,6 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Vector;
 
-import org.opentripplanner.util.PolylineEncoder;
-
 import android.app.ActionBar;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -46,8 +44,10 @@ import com.mapquest.android.maps.Overlay;
 import com.mapquest.android.maps.OverlayItem;
 import com.mapquest.android.maps.PolygonOverlay;
 import com.mapquest.android.maps.RouteManager;
+
 public class PasaheroMapActivity extends MapActivity implements
-		GeocodeTaskInterface, RequestItineraryInterface, OptionsPanelListenerInterface {
+		GeocodeTaskInterface, RequestItineraryInterface,
+		OptionsPanelListenerInterface, ItineraryFragmentInterface {
 	private MyLocationOverlay locOverlay;
 	protected MapView map;
 	AnnotationView annotation;
@@ -67,14 +67,13 @@ public class PasaheroMapActivity extends MapActivity implements
 	private ItineraryFragment itineraryFragment;
 	private FragmentManager fragmentManager;
 	private FragmentTransaction fragmentTransaction;
-	
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_pasahero_map);
 
-		//setUpViews();
+		// setUpViews();
 		this.markerOverlayHolder = new Hashtable<Integer, Overlay>();
 		this.context = context;
 		this.from = null;
@@ -86,11 +85,13 @@ public class PasaheroMapActivity extends MapActivity implements
 		// displayRoute();
 		this.requestItineraryInterface = this;
 		fragmentManager = getFragmentManager();
-		
-		optionsFragment = (OptionsPanelFragment)fragmentManager.findFragmentById(R.id.options_panel_fragment);
+
+		optionsFragment = (OptionsPanelFragment) fragmentManager
+				.findFragmentById(R.id.options_panel_fragment);
 		mapListener = optionsFragment;
-		itineraryFragment = (ItineraryFragment) fragmentManager.findFragmentById(R.id.itinerary_fragment);
-		mapItineraryListener =itineraryFragment;
+		itineraryFragment = (ItineraryFragment) fragmentManager
+				.findFragmentById(R.id.itinerary_fragment);
+		mapItineraryListener = itineraryFragment;
 		ActionBar bar = this.getActionBar();
 		bar.hide();
 		setUpMapView();
@@ -107,14 +108,12 @@ public class PasaheroMapActivity extends MapActivity implements
 		overlays = map.getOverlays();
 
 		mapCtrl.setZoom(Config.MAP_ZOOM);
-		mapCtrl.setCenter(
-				new GeoPoint(Config.NCR_LAT, Config.NCR_LON));
+		mapCtrl.setCenter(new GeoPoint(Config.NCR_LAT, Config.NCR_LON));
 		map.setBuiltInZoomControls(true);
 		annotation = new AnnotationView(map);
 	}
 
-	
-	public void setUpNav(){
+	public void setUpNav() {
 		Typeface font = Typefaces.get(this, Config.FONTAWESOME_URL);
 		nav = (Button) findViewById(R.id.options_nav);
 		nav.setTypeface(font);
@@ -125,8 +124,7 @@ public class PasaheroMapActivity extends MapActivity implements
 			}
 		});
 	}
-	
-	
+
 	public void setUpViews() {
 		ListView geoList = (ListView) findViewById(R.id.geoList);
 		adapter = new GeoArrayAdapter(this, new Vector<Address>());
@@ -361,7 +359,7 @@ public class PasaheroMapActivity extends MapActivity implements
 	}
 
 	private void setAddress(String provider, Address address) {
-		//adapter.setSelected(address);
+		// adapter.setSelected(address);
 		addMarker(address, GeoArrayAdapter.getShortName(address), "");
 		map.getController().setCenter(
 				new GeoPoint(address.getLatitude(), address.getLongitude()));
@@ -372,49 +370,6 @@ public class PasaheroMapActivity extends MapActivity implements
 		}
 	}
 
-	@Override
-	public void loadItinerary(Response response) {
-		System.out.println(response);
-		Plan plan = response.getPlan();
-		Vector<Itinerary> itineraries = plan.getItineraries();
-		Vector<Leg> legs = itineraries.get(0).getLegs();
-		Vector<GeoPoint> lineData = new Vector<GeoPoint>();
-		for (Leg leg : legs) {
-			String mode = leg.getMode();
-			/*
-			 * if (mode.equals(Config.MODE_WALK)) { Vector<Step> steps =
-			 * leg.getSteps(); for (Step step : steps) {
-			 * //System.out.println("Walk ");
-			 * //System.out.println(step.getAbsoluteDirection());
-			 * //System.out.println(step.getStreetName());
-			 * //System.out.println("-------------");
-			 * List<com.vividsolutions.jts.geom.Coordinate> polyLines =
-			 * PolylineEncoder.decode(leg.getLegGeometry());
-			 * for(com.vividsolutions.jts.geom.Coordinate line: polyLines){
-			 * System.out.println(line.x+" , "+line.y+" , "+line.z);
-			 * lineData.add(new GeoPoint(line.x, line.y)); } } }else
-			 * if(mode.equals(Config.MODE_RAIL)){ System.out.println("Ride");
-			 * System.out.println(leg.getFrom().getName());
-			 * System.out.println(leg.getTo().getName());
-			 * List<com.vividsolutions.jts.geom.Coordinate> polyLines =
-			 * PolylineEncoder.decode(leg.getLegGeometry());
-			 * for(com.vividsolutions.jts.geom.Coordinate line: polyLines){
-			 * System.out.println(line.x+" , "+line.y+" , "+line.z);
-			 * lineData.add(new GeoPoint(line.x, line.y)); } }
-			 */
-			List<com.vividsolutions.jts.geom.Coordinate> polyLines = PolylineEncoder
-					.decode(leg.getLegGeometry());
-			for (com.vividsolutions.jts.geom.Coordinate line : polyLines) {
-				System.out.println(line.x + " , " + line.y + " , " + line.z);
-				lineData.add(new GeoPoint(line.x, line.y));
-			}
-		}
-		System.out.println("Line data: ");
-		System.out.println(lineData);
-		Drawing draw = new Drawing(map, lineData, overlays);
-		draw.draw();
-
-	}
 
 	@Override
 	public void geocodeFinish(List<Address> result) {
@@ -430,12 +385,12 @@ public class PasaheroMapActivity extends MapActivity implements
 
 	@Override
 	public void locationEntered(String location) {
-		
+
 	}
 
 	@Override
 	public void planningStarted() {
-		
+
 	}
 
 	@Override
@@ -445,7 +400,7 @@ public class PasaheroMapActivity extends MapActivity implements
 
 	@Override
 	public void locationChosen(Address address) {
-		
+
 	}
 
 	@Override
@@ -455,40 +410,19 @@ public class PasaheroMapActivity extends MapActivity implements
 		fragmentTransaction.show(itineraryFragment);
 		fragmentTransaction.commit();
 		mapItineraryListener.planReceived(plan);
-		Vector<Itinerary> itineraries = plan.getItineraries();
-		Vector<Leg> legs = itineraries.get(0).getLegs();
-		Vector<GeoPoint> lineData = new Vector<GeoPoint>();
-		for (Leg leg : legs) {
-			String mode = leg.getMode();
-			/*
-			 * if (mode.equals(Config.MODE_WALK)) { Vector<Step> steps =
-			 * leg.getSteps(); for (Step step : steps) {
-			 * //System.out.println("Walk ");
-			 * //System.out.println(step.getAbsoluteDirection());
-			 * //System.out.println(step.getStreetName());
-			 * //System.out.println("-------------");
-			 * List<com.vividsolutions.jts.geom.Coordinate> polyLines =
-			 * PolylineEncoder.decode(leg.getLegGeometry());
-			 * for(com.vividsolutions.jts.geom.Coordinate line: polyLines){
-			 * System.out.println(line.x+" , "+line.y+" , "+line.z);
-			 * lineData.add(new GeoPoint(line.x, line.y)); } } }else
-			 * if(mode.equals(Config.MODE_RAIL)){ System.out.println("Ride");
-			 * System.out.println(leg.getFrom().getName());
-			 * System.out.println(leg.getTo().getName());
-			 * List<com.vividsolutions.jts.geom.Coordinate> polyLines =
-			 * PolylineEncoder.decode(leg.getLegGeometry());
-			 * for(com.vividsolutions.jts.geom.Coordinate line: polyLines){
-			 * System.out.println(line.x+" , "+line.y+" , "+line.z);
-			 * lineData.add(new GeoPoint(line.x, line.y)); } }
-			 */
-			List<com.vividsolutions.jts.geom.Coordinate> polyLines = PolylineEncoder
-					.decode(leg.getLegGeometry());
-			for (com.vividsolutions.jts.geom.Coordinate line : polyLines) {
-				lineData.add(new GeoPoint(line.x, line.y));
-			}
-		}
-		Drawing draw = new Drawing(map, lineData, overlays);
+
+	}
+
+	@Override
+	public void lineDataReady(List<GeoPoint> data) {
+		Drawing draw = new Drawing(map, data, overlays);
 		draw.draw();
 	}
-	
+
+	@Override
+	public void loadItinerary(Response response) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
