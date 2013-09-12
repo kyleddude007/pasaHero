@@ -4,3 +4,7 @@
 2013-08-21T15:42:40.001872599 3.903480s info: Running on Linux 3.2.0-23-generic-pae i686
 2013-08-21T15:42:40.003641956 3.905245s info: Loading data from directory /home/vagrant/pasahero/backend/rethinkdb_data
 2013-08-21T15:42:40.009155297 3.910759s error: Inaccessible database file: "/home/vagrant/pasahero/backend/rethinkdb_data/tmp/metadata.create": Operation not permitted\nSome possible reasons:\n- the database file couldn't be created or opened for reading and writing\n- the user which was used to start the database is not an owner of the file
+2013-09-12T14:31:32.735278635 0.012167s info: Running rethinkdb 1.8.0-0ubuntu1~precise (GCC 4.6.3)...
+2013-09-12T14:31:32.791533414 0.068422s info: Running on Linux 3.2.0-23-generic-pae i686
+2013-09-12T14:31:32.793072929 0.069961s info: Loading data from directory /home/vagrant/pasahero/backend/rethinkdb_data
+2013-09-12T14:31:32.800396861 0.077285s error: Inaccessible database file: "/home/vagrant/pasahero/backend/rethinkdb_data/metadata": No such file or directory\nSome possible reasons:\n- the database file couldn't be created or opened for reading and writing\n- the user which was used to start the database is not an owner of the file

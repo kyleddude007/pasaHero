@@ -6,7 +6,8 @@ public class Config {
 
 	public static final String GET = "GET";
 	public static final String POST = "POST";
-	public static final String API_URL = "http://12.10.0.114:8080/opentripplanner-api-webapp/ws/plan";
+	public static final String PH_API_URL = "http://12.10.0.114:15000/ps/api";
+	public static final String OTP_API_URL = "http://12.10.0.114:8080/opentripplanner-api-webapp/ws/plan";
 	public static final String SAMPLE_URL = "http://12.10.0.114:8080/opentripplanner-api-webapp/ws/plan?_dc=1378557587873&arriveBy=false&time=8%3A33pm&ui_date=9%2F7%2F2013&mode=TRANSIT%2CWALK&optimize=QUICK&maxWalkDistance=840&walkSpeed=1.341&date=2013-09-07&toPlace=14.559519%2C121.081975&fromPlace=14.589756%2C120.980351";
 	public static final double NCR_LAT = 14.5833; // North
 	public static final double NCR_LON = 121.0000; // East
@@ -50,5 +51,20 @@ public class Config {
 	public static String DISTANCE_FORMAT = "#";
 	public static String DISTANCE_UNIT = "meters";
 	public static String WALK_STEP_TEXT = "Walk "+DIRECTION_PATTERN+" on "+LOC_NAME_PATTERN+ " - "+DISTANCE_PATTERN+" "+DISTANCE_UNIT;
+	public static String LRT1 = "LRT1";
+	public static String LRT1_BR = "LRT1-BR";
+	public static String MRT3 = "MRT3";
+	public static String LRT2 = "LRT2";
+	public static String PUJ = "Jeep";
+	public static String BUS_AIRCON = "Aircon";
+	public static String BUS_ORDINARY = "Ordinary";
+	public static String FARE_PATTERN = "<%fare%>";
+	public static String FARE_DISCOUNT_PATTERN = "<%discount%>";
+	public static String TEMPLATE_DISCOUNT = "Student/Elderly/Disabled: "+FARE_DISCOUNT_PATTERN;
+	public static String TEMPLATE_REGULAR = "Fare: "+FARE_PATTERN;
+	public static String TEMPLATE_BUS_ORDINARY_FARE = "ORDINARY: \n"+TEMPLATE_REGULAR+"\n"+TEMPLATE_DISCOUNT;
+	public static String TEMPLATE_BUS_AIRCON_FARE = "AIR-CONDITIONED: \n"+TEMPLATE_REGULAR+"\n"+TEMPLATE_DISCOUNT;
+	public static String TEMPLATE_LRT = "LRT: "+FARE_PATTERN;
+	public static String TEMPLATE_MRT = "MRT: "+FARE_PATTERN;
 
 }

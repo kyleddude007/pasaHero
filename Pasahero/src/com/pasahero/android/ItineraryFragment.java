@@ -1,5 +1,6 @@
 package com.pasahero.android;
 
+import java.net.URL;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Vector;
@@ -10,7 +11,6 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -25,7 +25,7 @@ import android.widget.TextView;
 
 import com.mapquest.android.maps.GeoPoint;
 
-public class ItineraryFragment extends Fragment implements PasaHeroMapInterface {
+public class ItineraryFragment extends Fragment implements PasaHeroMapInterface, TripPlannerInterface {
 	private Vector<Itinerary> itineraries;
 	private View start;
 	private View end;
@@ -227,6 +227,11 @@ public class ItineraryFragment extends Fragment implements PasaHeroMapInterface 
 		itineraryListener.lineDataReady(lineData, getRouteColor());
 
 	}
+	
+	public void getFare(URL url, String legMode, View fareView){
+		RequestFareTask fareTask = new RequestFareTask(this,legMode, fareView);
+		fareTask.execute(url);
+	}
 
 	public void setUpItineraryListView() {
 		itineraryList = (ListView) mainView.findViewById(R.id.itinerary_list);
@@ -278,6 +283,25 @@ public class ItineraryFragment extends Fragment implements PasaHeroMapInterface 
 			return color;
 		}
 
+	}
+
+	@Override
+	public void fareReady(Fare fare, String legMode, View fareView) {
+		if(legMode.equals(Config.MODE_BUS)){
+			Hashtable<String, String> patterns = new Hashtable<String, String>();
+			patterns.put(Config.FARE_PATTERN, fare.getRegular()+"");
+			patterns.put(Config.FARE_DISCOUNT_PATTERN, fare.getDiscounted()+"");
+			String fareText = Utils.insertToTemplate(Config.TEMPLATE_BUS_AIRCON_FARE, patterns)+"\n"+Utils.insertToTemplate(Config.TEMPLATE_BUS_ORDINARY_FARE, patterns);
+			((TextView)fareView).setText(fareText);
+		}else if(legMode.equals(Config.MODE_RAIL)){
+			((TextView)fareView).setText(fare.getSingleJourney()+"\n"+fare.getStoredValue());
+		}
+	}
+
+	@Override
+	public void loadItinerary(Response response) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

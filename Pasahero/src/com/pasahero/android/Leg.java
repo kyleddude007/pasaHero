@@ -35,6 +35,8 @@ public class Leg {
 	private long duration;
 	private Vector<Step> steps;
 	private Vector<?> intermediateStops; 
+	private Fare fare;
+	
 	public String getMode() {
 		return mode;
 	}
@@ -202,5 +204,11 @@ public class Leg {
 	}
 	public void setIntermediateStops(Vector<?> intermediateStops) {
 		this.intermediateStops = intermediateStops;
+	}
+	public Fare getFare() {
+		return fare;
+	}
+	public void setFare(Fare fare) {
+		this.fare = fare;
 	}
 }

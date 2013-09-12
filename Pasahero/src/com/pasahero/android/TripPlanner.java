@@ -23,13 +23,13 @@ public class TripPlanner {
 
 	private URL url;
 	private String requestType;
-	private RequestItineraryInterface requestItineraryInterface;
+	private TripPlannerInterface requestItineraryInterface;
 
 	public TripPlanner() {
 
 	}
 
-	public TripPlanner(RequestItineraryInterface requestItineraryInterface) {
+	public TripPlanner(TripPlannerInterface requestItineraryInterface) {
 		this.requestItineraryInterface = requestItineraryInterface;
 	}
 
@@ -91,6 +91,23 @@ public class TripPlanner {
 		}
 	}
 
+	public Fare getFare(URL url) throws IOException{
+		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		conn.setRequestMethod("GET");
+		conn.setRequestProperty("Accept", "application/json");
+
+		int responseCode = conn.getResponseCode();
+		if (responseCode != HTTP_OK) {
+			throw new RuntimeException("Failed : HTTP error code : "
+					+ responseCode);
+		}
+		ObjectMapper mapper = new ObjectMapper();
+		InputStream stream = conn.getInputStream();
+		Fare fare = mapper.readValue(stream, Fare.class);
+		conn.disconnect();
+		return fare;
+	}
+	
 	private Response getRequest(URL url) throws IOException {
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setRequestMethod("GET");

@@ -27,7 +27,7 @@ import android.widget.Toast;
 import com.mapquest.android.Geocoder;
 
 public class OptionsPanelFragment extends Fragment implements
-		GeocodeTaskInterface, RequestItineraryInterface, PasaHeroMapInterface {
+		GeocodeTaskInterface, TripPlannerInterface, PasaHeroMapInterface {
 	private OptionsPanelListenerInterface optionsListener;
 	private GeocodeTaskInterface geoListener;
 
@@ -44,7 +44,7 @@ public class OptionsPanelFragment extends Fragment implements
 	private ListView geoList;
 	private GeocodeTask geocodeTask;
 	private Hashtable<String, Address> targets;
-	private RequestItineraryInterface itineraryListener;
+	private TripPlannerInterface itineraryListener;
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -196,8 +196,8 @@ public class OptionsPanelFragment extends Fragment implements
 				params.put(Config.WALK_SPEED, "1.341");
 				RequestItineraryTask request = new RequestItineraryTask(
 						itineraryListener);
-				System.out.println(TripPlanner.contsructUrl(Config.API_URL, params));
-				request.execute(TripPlanner.contsructUrl(Config.API_URL, params));
+				System.out.println(TripPlanner.contsructUrl(Config.OTP_API_URL, params));
+				request.execute(TripPlanner.contsructUrl(Config.OTP_API_URL, params));
 			}
 
 		});
@@ -252,7 +252,8 @@ public class OptionsPanelFragment extends Fragment implements
 
 	@Override
 	public void navButtonClicked() {
-		switchToMain();
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
@@ -260,4 +261,12 @@ public class OptionsPanelFragment extends Fragment implements
 		// TODO Auto-generated method stub
 		
 	}
+
+
+	@Override
+	public void fareReady(Fare fare, String legMode, View itineraryView) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

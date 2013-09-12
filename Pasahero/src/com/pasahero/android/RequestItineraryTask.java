@@ -8,13 +8,13 @@ import android.os.AsyncTask;
 public class RequestItineraryTask extends AsyncTask<URL, Void, Response> {
 
 	private Context callingContext;
-	RequestItineraryInterface requestItineraryInterface;
+	TripPlannerInterface requestItineraryInterface;
 
 	public void setCallingContext(Context callingContext) {
 		this.callingContext = callingContext;
 	}
 
-	public RequestItineraryTask(RequestItineraryInterface requestItineraryInterface) {
+	public RequestItineraryTask(TripPlannerInterface requestItineraryInterface) {
 		this.requestItineraryInterface = requestItineraryInterface;
 	}
 

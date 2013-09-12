@@ -46,7 +46,7 @@ import com.mapquest.android.maps.PolygonOverlay;
 import com.mapquest.android.maps.RouteManager;
 
 public class PasaheroMapActivity extends MapActivity implements
-		GeocodeTaskInterface, RequestItineraryInterface,
+		GeocodeTaskInterface, TripPlannerInterface,
 		OptionsPanelListenerInterface, ItineraryFragmentInterface {
 	private MyLocationOverlay locOverlay;
 	protected MapView map;
@@ -56,7 +56,7 @@ public class PasaheroMapActivity extends MapActivity implements
 	private List<Overlay> overlays;
 	private Hashtable<Integer, Overlay> markerOverlayHolder;
 	private MapController mapCtrl;
-	private RequestItineraryInterface requestItineraryInterface;
+	private TripPlannerInterface requestItineraryInterface;
 	private Context context;
 	private Address from;
 	private Address to;
@@ -421,6 +421,12 @@ public class PasaheroMapActivity extends MapActivity implements
 
 	@Override
 	public void loadItinerary(Response response) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void fareReady(Fare fare, String legMode, View itineraryView) {
 		// TODO Auto-generated method stub
 		
 	}

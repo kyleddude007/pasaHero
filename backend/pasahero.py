@@ -7,6 +7,7 @@ from itsdangerous import URLSafeTimedSerializer
 import rethinkdb as r
 import config
 from pytz import timezone
+import json
 
 
 app = Flask(__name__)
@@ -55,6 +56,23 @@ class User():
         user = r.table('users').get(id).run(conn)
         conn.close()
         return User(user)
+
+class Fare():
+    """
+    Fare class for retreving fares
+    """
+    def __init__(self, data):
+        self.discounted = data['discounted']
+        self.distance = data['distance']
+        self.distanceUnit = data['distanceUnit']
+        self.id = data['id']
+        self.regular = data['regular']
+        self.singleJourney = data['singleJourney']
+        self.storedValue = data['storedValue']
+        self.type = data['type']
+
+    def json(self):
+        return dict(discounted=self.discounted, distance=self.distance, id=self.id, distanceUnit=self.distanceUnit, regular = self.regular, singleJourney=self.singleJourney, storedValue=self.storedValue, type=self.type)
     
 def get_salt():
     return uuid.uuid4().hex
@@ -130,6 +148,13 @@ def not_found(error=None):
     response = jsonify(message)
     resp.status_code = 404
     return response
+
+@app.route('/ps/api/fares/<transit_type>/<distance>', methods=['GET'])
+def get_fare(transit_type, distance):
+    conn = connect_db()
+    data = r.table('fares').filter({'distance': distance, 'type':transit_type}).run(conn)
+    conn.close()
+    return json.dumps(list(data))
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
