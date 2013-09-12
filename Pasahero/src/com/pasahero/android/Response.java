@@ -1,9 +1,18 @@
 package com.pasahero.android;
 
+import java.util.List;
+
 public class Response {
 
 	private Plan plan;
 	private RequestParameters requestParameters;
+	private List<Fare> fares;
+	public List<Fare> getFares() {
+		return fares;
+	}
+	public void setFares(List<Fare> fares) {
+		this.fares = fares;
+	}
 	public Plan getPlan() {
 		return plan;
 	}

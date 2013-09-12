@@ -66,5 +66,6 @@ public class Config {
 	public static String TEMPLATE_BUS_AIRCON_FARE = "AIR-CONDITIONED: \n"+TEMPLATE_REGULAR+"\n"+TEMPLATE_DISCOUNT;
 	public static String TEMPLATE_LRT = "LRT: "+FARE_PATTERN;
 	public static String TEMPLATE_MRT = "MRT: "+FARE_PATTERN;
+	public static String PH_API_FARE = "fares";
 
 }

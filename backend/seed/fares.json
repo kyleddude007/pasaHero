@@ -4,8 +4,6 @@
         "regular": "12",
         "discounted": "9.5",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -13,8 +11,6 @@
         "regular": "12",
         "discounted": "9.5",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -22,8 +18,6 @@
         "regular": "12",
         "discounted": "9.5",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -31,8 +25,6 @@
         "regular": "12",
         "discounted": "9.5",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -40,8 +32,6 @@
         "regular": "12",
         "discounted": "9.5",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -49,8 +39,6 @@
         "regular": "15",
         "discounted": "11.25",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -58,8 +46,6 @@
         "regular": "16.5",
         "discounted": "13",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -67,8 +53,6 @@
         "regular": "18.5",
         "discounted": "15",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -76,8 +60,6 @@
         "regular": "20.75",
         "discounted": "16.75",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -85,8 +67,6 @@
         "regular": "23",
         "discounted": "18.5",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -94,8 +74,6 @@
         "regular": "25.25",
         "discounted": "20.25",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -103,8 +81,6 @@
         "regular": "27.5",
         "discounted": "22",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -112,8 +88,6 @@
         "regular": "29.5",
         "discounted": "23.75",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -121,8 +95,6 @@
         "regular": "31.75",
         "discounted": "25.5",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -130,8 +102,6 @@
         "regular": "34",
         "discounted": "27.25",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -139,8 +109,6 @@
         "regular": "36.25",
         "discounted": "29",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -148,8 +116,6 @@
         "regular": "38.5",
         "discounted": "30.75",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -157,8 +123,6 @@
         "regular": "40.5",
         "discounted": "32.5",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -166,8 +130,6 @@
         "regular": "42.75",
         "discounted": "34.25",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -175,8 +137,6 @@
         "regular": "45",
         "discounted": "36",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -184,8 +144,6 @@
         "regular": "47.25",
         "discounted": "37.75",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -193,8 +151,6 @@
         "regular": "47.25",
         "discounted": "39.5",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -202,8 +158,6 @@
         "regular": "49.5",
         "discounted": "41.25",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -211,8 +165,6 @@
         "regular": "51.5",
         "discounted": "43",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -220,8 +172,6 @@
         "regular": "53.75",
         "discounted": "44.75",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -229,8 +179,6 @@
         "regular": "56",
         "discounted": "46.5",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -238,8 +186,6 @@
         "regular": "58.25",
         "discounted": "48.25",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -247,8 +193,6 @@
         "regular": "60.5",
         "discounted": "50",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -256,8 +200,6 @@
         "regular": "62.5",
         "discounted": "51.75",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -265,8 +207,6 @@
         "regular": "64.75",
         "discounted": "53.5",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -274,8 +214,6 @@
         "regular": "67",
         "discounted": "55.25",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -283,8 +221,6 @@
         "regular": "69.75",
         "discounted": "57",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -292,8 +228,6 @@
         "regular": "71.5",
         "discounted": "59",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -301,8 +235,6 @@
         "regular": "73.5",
         "discounted": "60.75",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -310,8 +242,6 @@
         "regular": "75.75",
         "discounted": "62.5",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -319,8 +249,6 @@
         "regular": "78",
         "discounted": "64.25",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -328,8 +256,6 @@
         "regular": "80.25",
         "discounted": "66",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -337,8 +263,6 @@
         "regular": "82.5",
         "discounted": "67.75",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -346,8 +270,6 @@
         "regular": "84.5",
         "discounted": "69.5",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -355,8 +277,6 @@
         "regular": "86.75",
         "discounted": "71.25",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -364,8 +284,6 @@
         "regular": "89",
         "discounted": "73",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -373,8 +291,6 @@
         "regular": "91.25",
         "discounted": "74.75",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -382,8 +298,6 @@
         "regular": "93.5",
         "discounted": "76.5",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -391,8 +305,6 @@
         "regular": "95.5",
         "discounted": "78.25",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -400,8 +312,6 @@
         "regular": "97.75",
         "discounted": "80",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -409,8 +319,6 @@
         "regular": "100",
         "discounted": "81.75",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -418,8 +326,6 @@
         "regular": "102.25",
         "discounted": "83.5",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -427,8 +333,6 @@
         "regular": "104.5",
         "discounted": "85.25",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -436,8 +340,6 @@
         "regular": "106.5",
         "discounted": "87",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -445,8 +347,6 @@
         "regular": "108.75",
         "discounted": "88.75",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -454,8 +354,6 @@
         "regular": "111",
         "discounted": "90.5",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -463,8 +361,6 @@
         "regular": "113.25",
         "discounted": "92.25",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -472,8 +368,6 @@
         "regular": "115.5",
         "discounted": "94",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -481,8 +375,6 @@
         "regular": "117.5",
         "discounted": "95.75",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -490,8 +382,6 @@
         "regular": "119.75",
         "discounted": "97.5",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -499,8 +389,6 @@
         "regular": "122",
         "discounted": "99.25",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -508,8 +396,6 @@
         "regular": "124.25",
         "discounted": "101",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -517,8 +403,6 @@
         "regular": "126.5",
         "discounted": "103",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -526,8 +410,6 @@
         "regular": "128.5",
         "discounted": "104.75",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -535,8 +417,6 @@
         "regular": "133",
         "discounted": "106.5",
         "type": "Aircon",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -544,8 +424,6 @@
         "regular": "10",
         "discounted": "8",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -553,8 +431,6 @@
         "regular": "10",
         "discounted": "8",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -562,8 +438,6 @@
         "regular": "10",
         "discounted": "8",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -571,8 +445,6 @@
         "regular": "10",
         "discounted": "8",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -580,8 +452,6 @@
         "regular": "10",
         "discounted": "8",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -589,8 +459,6 @@
         "regular": "11.75",
         "discounted": "9.5",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -598,8 +466,6 @@
         "regular": "13.75",
         "discounted": "11",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -607,8 +473,6 @@
         "regular": "15.5",
         "discounted": "12.5",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -616,8 +480,6 @@
         "regular": "17.5",
         "discounted": "14",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -625,8 +487,6 @@
         "regular": "19.25",
         "discounted": "15.5",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -634,8 +494,6 @@
         "regular": "21",
         "discounted": "17",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -643,8 +501,6 @@
         "regular": "23",
         "discounted": "18.25",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -652,8 +508,6 @@
         "regular": "24.75",
         "discounted": "19.75",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -661,8 +515,6 @@
         "regular": "26.75",
         "discounted": "21.25",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -670,8 +522,6 @@
         "regular": "28.5",
         "discounted": "22.75",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -679,8 +529,6 @@
         "regular": "30.25",
         "discounted": "24.25",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -688,8 +536,6 @@
         "regular": "32.25",
         "discounted": "25.75",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -697,8 +543,6 @@
         "regular": "34",
         "discounted": "27.25",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -706,8 +550,6 @@
         "regular": "36",
         "discounted": "28.75",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -715,8 +557,6 @@
         "regular": "37.75",
         "discounted": "30.25",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -724,8 +564,6 @@
         "regular": "39.5",
         "discounted": "31.75",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -733,8 +571,6 @@
         "regular": "41.5",
         "discounted": "33.25",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -742,8 +578,6 @@
         "regular": "43.25",
         "discounted": "34.75",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -751,8 +585,6 @@
         "regular": "45.25",
         "discounted": "36",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -760,8 +592,6 @@
         "regular": "47",
         "discounted": "37.5",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -769,8 +599,6 @@
         "regular": "48.75",
         "discounted": "39",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -778,8 +606,6 @@
         "regular": "50.75",
         "discounted": "40.5",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -787,8 +613,6 @@
         "regular": "52.5",
         "discounted": "42",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -796,8 +620,6 @@
         "regular": "54.5",
         "discounted": "43.5",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -805,8 +627,6 @@
         "regular": "56.25",
         "discounted": "45",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -814,8 +634,6 @@
         "regular": "58",
         "discounted": "46.5",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -823,8 +641,6 @@
         "regular": "60",
         "discounted": "48",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -832,8 +648,6 @@
         "regular": "61.75",
         "discounted": "49.5",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -841,8 +655,6 @@
         "regular": "63.75",
         "discounted": "51",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -850,8 +662,6 @@
         "regular": "65.5",
         "discounted": "52.5",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -859,8 +669,6 @@
         "regular": "67.25",
         "discounted": "54",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -868,8 +676,6 @@
         "regular": "69.25",
         "discounted": "55.25",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -877,8 +683,6 @@
         "regular": "71",
         "discounted": "56.75",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -886,8 +690,6 @@
         "regular": "73",
         "discounted": "58.25",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -895,8 +697,6 @@
         "regular": "74",
         "discounted": "61.25",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -904,8 +704,6 @@
         "regular": "76.5",
         "discounted": "62.75",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -913,8 +711,6 @@
         "regular": "78.5",
         "discounted": "64.25",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -922,8 +718,6 @@
         "regular": "80.25",
         "discounted": "65.75",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -931,8 +725,6 @@
         "regular": "82.25",
         "discounted": "67.25",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -940,8 +732,6 @@
         "regular": "84",
         "discounted": "67.25",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -949,8 +739,6 @@
         "regular": "85.75",
         "discounted": "68.75",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -958,8 +746,6 @@
         "regular": "87.75",
         "discounted": "70.25",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -967,8 +753,6 @@
         "regular": "89.5",
         "discounted": "71.75",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -976,8 +760,6 @@
         "regular": "91.5",
         "discounted": "73",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -985,8 +767,6 @@
         "regular": "93.35",
         "discounted": "74.5",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -994,8 +774,6 @@
         "regular": "95",
         "discounted": "76",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1003,8 +781,6 @@
         "regular": "97",
         "discounted": "77.5",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1012,8 +788,6 @@
         "regular": "98.75",
         "discounted": "79",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1021,8 +795,6 @@
         "regular": "100.75",
         "discounted": "80.5",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1030,8 +802,6 @@
         "regular": "102.5",
         "discounted": "82",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1039,8 +809,6 @@
         "regular": "104.25",
         "discounted": "83.5",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1048,8 +816,6 @@
         "regular": "106.25",
         "discounted": "85",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1057,8 +823,6 @@
         "regular": "108",
         "discounted": "86.5",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1066,8 +830,6 @@
         "regular": "110",
         "discounted": "88",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1075,8 +837,6 @@
         "regular": "111.75",
         "discounted": "89.5",
         "type": "Ordinary",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1084,8 +844,6 @@
         "regular": "8",
         "discounted": "6.5",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1093,8 +851,6 @@
         "regular": "8",
         "discounted": "6.5",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1102,8 +858,6 @@
         "regular": "8",
         "discounted": "6.5",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1111,8 +865,6 @@
         "regular": "8",
         "discounted": "6.5",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1120,8 +872,6 @@
         "regular": "9.5",
         "discounted": "7.5",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1129,8 +879,6 @@
         "regular": "10.75",
         "discounted": "8.75",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1138,8 +886,6 @@
         "regular": "12.25",
         "discounted": "9.75",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1147,8 +893,6 @@
         "regular": "13.5",
         "discounted": "11",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1156,8 +900,6 @@
         "regular": "15",
         "discounted": "12",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1165,8 +907,6 @@
         "regular": "16.5",
         "discounted": "13.25",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1174,8 +914,6 @@
         "regular": "17.75",
         "discounted": "14.25",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1183,8 +921,6 @@
         "regular": "19.25",
         "discounted": "15.5",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1192,8 +928,6 @@
         "regular": "20.5",
         "discounted": "16.5",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1201,8 +935,6 @@
         "regular": "22",
         "discounted": "17.75",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1210,8 +942,6 @@
         "regular": "23.5",
         "discounted": "18.75",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1219,8 +949,6 @@
         "regular": "24.75",
         "discounted": "19.75",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1228,8 +956,6 @@
         "regular": "26.25",
         "discounted": "21",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1237,8 +963,6 @@
         "regular": "27.5",
         "discounted": "22.25",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1246,8 +970,6 @@
         "regular": "29",
         "discounted": "23.25",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1255,8 +977,6 @@
         "regular": "30.5",
         "discounted": "24.5",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1264,8 +984,6 @@
         "regular": "31.75",
         "discounted": "25.5",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1273,8 +991,6 @@
         "regular": "33.25",
         "discounted": "26.75",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1282,8 +998,6 @@
         "regular": "34.5",
         "discounted": "27.75",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1291,8 +1005,6 @@
         "regular": "36",
         "discounted": "28.75",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1300,8 +1012,6 @@
         "regular": "37.5",
         "discounted": "30",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1309,8 +1019,6 @@
         "regular": "38.75",
         "discounted": "31",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1318,8 +1026,6 @@
         "regular": "40.25",
         "discounted": "32.25",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1327,8 +1033,6 @@
         "regular": "41.5",
         "discounted": "33.25",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1336,8 +1040,6 @@
         "regular": "43",
         "discounted": "34.5",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1345,8 +1047,6 @@
         "regular": "44.5",
         "discounted": "35.5",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1354,8 +1054,6 @@
         "regular": "45.75",
         "discounted": "36.75",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1363,8 +1061,6 @@
         "regular": "47.25",
         "discounted": "37.75",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1372,8 +1068,6 @@
         "regular": "48.5",
         "discounted": "38.75",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1381,8 +1075,6 @@
         "regular": "50",
         "discounted": "40",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1390,8 +1082,6 @@
         "regular": "51.5",
         "discounted": "41.25",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1399,8 +1089,6 @@
         "regular": "52.75",
         "discounted": "42.25",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1408,8 +1096,6 @@
         "regular": "54.25",
         "discounted": "43.5",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1417,8 +1103,6 @@
         "regular": "55.5",
         "discounted": "44.5",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1426,8 +1110,6 @@
         "regular": "57",
         "discounted": "45.75",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1435,8 +1117,6 @@
         "regular": "58.5",
         "discounted": "46.75",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1444,8 +1124,6 @@
         "regular": "59.75",
         "discounted": "47.75",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1453,8 +1131,6 @@
         "regular": "61.25",
         "discounted": "49",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1462,8 +1138,6 @@
         "regular": "62.5",
         "discounted": "50",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1471,8 +1145,6 @@
         "regular": "64",
         "discounted": "51.25",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1480,8 +1152,6 @@
         "regular": "65.5",
         "discounted": "52.5",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1489,8 +1159,6 @@
         "regular": "66.75",
         "discounted": "53.5",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1498,8 +1166,6 @@
         "regular": "68.25",
         "discounted": "54.75",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1507,8 +1173,6 @@
         "regular": "69.5",
         "discounted": "55.75",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1516,8 +1180,6 @@
         "regular": "71",
         "discounted": "56.75",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
@@ -1525,14 +1187,10 @@
         "regular": "72.5",
         "discounted": "58",
         "type": "Jeep",
-        "singleJourney": "",
-        "storedValue": "",
         "distanceUnit": "km"
     },
     {
         "distance": "1",
-        "regular": "",
-        "discounted": "",
         "type": "LRT1",
         "singleJourney": "12",
         "storedValue": "12",
@@ -1540,8 +1198,6 @@
     },
     {
         "distance": "2",
-        "regular": "",
-        "discounted": "",
         "type": "LRT1",
         "singleJourney": "12",
         "storedValue": "12",
@@ -1549,8 +1205,6 @@
     },
     {
         "distance": "3",
-        "regular": "",
-        "discounted": "",
         "type": "LRT1",
         "singleJourney": "12",
         "storedValue": "12",
@@ -1558,8 +1212,6 @@
     },
     {
         "distance": "4",
-        "regular": "",
-        "discounted": "",
         "type": "LRT1",
         "singleJourney": "12",
         "storedValue": "12",
@@ -1567,8 +1219,6 @@
     },
     {
         "distance": "5",
-        "regular": "",
-        "discounted": "",
         "type": "LRT1",
         "singleJourney": "15",
         "storedValue": "13",
@@ -1576,8 +1226,6 @@
     },
     {
         "distance": "6",
-        "regular": "",
-        "discounted": "",
         "type": "LRT1",
         "singleJourney": "15",
         "storedValue": "13",
@@ -1585,8 +1233,6 @@
     },
     {
         "distance": "7",
-        "regular": "",
-        "discounted": "",
         "type": "LRT1",
         "singleJourney": "15",
         "storedValue": "13",
@@ -1594,8 +1240,6 @@
     },
     {
         "distance": "8",
-        "regular": "",
-        "discounted": "",
         "type": "LRT1",
         "singleJourney": "15",
         "storedValue": "13",
@@ -1603,8 +1247,6 @@
     },
     {
         "distance": "9",
-        "regular": "",
-        "discounted": "",
         "type": "LRT1",
         "singleJourney": "15",
         "storedValue": "14",
@@ -1612,8 +1254,6 @@
     },
     {
         "distance": "10",
-        "regular": "",
-        "discounted": "",
         "type": "LRT1",
         "singleJourney": "15",
         "storedValue": "14",
@@ -1621,8 +1261,6 @@
     },
     {
         "distance": "11",
-        "regular": "",
-        "discounted": "",
         "type": "LRT1",
         "singleJourney": "15",
         "storedValue": "14",
@@ -1630,8 +1268,6 @@
     },
     {
         "distance": "12",
-        "regular": "",
-        "discounted": "",
         "type": "LRT1",
         "singleJourney": "15",
         "storedValue": "14",
@@ -1639,8 +1275,6 @@
     },
     {
         "distance": "13",
-        "regular": "",
-        "discounted": "",
         "type": "LRT1",
         "singleJourney": "15",
         "storedValue": "15",
@@ -1648,8 +1282,6 @@
     },
     {
         "distance": "14",
-        "regular": "",
-        "discounted": "",
         "type": "LRT1",
         "singleJourney": "15",
         "storedValue": "15",
@@ -1657,8 +1289,6 @@
     },
     {
         "distance": "15",
-        "regular": "",
-        "discounted": "",
         "type": "LRT1",
         "singleJourney": "15",
         "storedValue": "15",
@@ -1666,8 +1296,6 @@
     },
     {
         "distance": "16",
-        "regular": "",
-        "discounted": "",
         "type": "LRT1",
         "singleJourney": "15",
         "storedValue": "15",
@@ -1675,8 +1303,6 @@
     },
     {
         "distance": "17",
-        "regular": "",
-        "discounted": "",
         "type": "LRT1",
         "singleJourney": "15",
         "storedValue": "15",
@@ -1684,8 +1310,6 @@
     },
     {
         "distance": "1",
-        "regular": "",
-        "discounted": "",
         "type": "LRT1-BR",
         "singleJourney": "15",
         "storedValue": "13",
@@ -1693,8 +1317,6 @@
     },
     {
         "distance": "2",
-        "regular": "",
-        "discounted": "",
         "type": "LRT1-BR",
         "singleJourney": "15",
         "storedValue": "13",
@@ -1702,8 +1324,6 @@
     },
     {
         "distance": "3",
-        "regular": "",
-        "discounted": "",
         "type": "LRT1-BR",
         "singleJourney": "15",
         "storedValue": "14",
@@ -1711,8 +1331,6 @@
     },
     {
         "distance": "4",
-        "regular": "",
-        "discounted": "",
         "type": "LRT1-BR",
         "singleJourney": "15",
         "storedValue": "14",
@@ -1720,8 +1338,6 @@
     },
     {
         "distance": "5",
-        "regular": "",
-        "discounted": "",
         "type": "LRT1-BR",
         "singleJourney": "15",
         "storedValue": "15",
@@ -1729,8 +1345,6 @@
     },
     {
         "distance": "6",
-        "regular": "",
-        "discounted": "",
         "type": "LRT1-BR",
         "singleJourney": "15",
         "storedValue": "15",
@@ -1738,8 +1352,6 @@
     },
     {
         "distance": "7",
-        "regular": "",
-        "discounted": "",
         "type": "LRT1-BR",
         "singleJourney": "15",
         "storedValue": "15",
@@ -1747,8 +1359,6 @@
     },
     {
         "distance": "8",
-        "regular": "",
-        "discounted": "",
         "type": "LRT1-BR",
         "singleJourney": "20",
         "storedValue": "16",
@@ -1756,8 +1366,6 @@
     },
     {
         "distance": "9",
-        "regular": "",
-        "discounted": "",
         "type": "LRT1-BR",
         "singleJourney": "20",
         "storedValue": "16",
@@ -1765,8 +1373,6 @@
     },
     {
         "distance": "10",
-        "regular": "",
-        "discounted": "",
         "type": "LRT1-BR",
         "singleJourney": "20",
         "storedValue": "16",
@@ -1774,8 +1380,6 @@
     },
     {
         "distance": "11",
-        "regular": "",
-        "discounted": "",
         "type": "LRT1-BR",
         "singleJourney": "20",
         "storedValue": "17",
@@ -1783,8 +1387,6 @@
     },
     {
         "distance": "12",
-        "regular": "",
-        "discounted": "",
         "type": "LRT1-BR",
         "singleJourney": "20",
         "storedValue": "17",
@@ -1792,8 +1394,6 @@
     },
     {
         "distance": "13",
-        "regular": "",
-        "discounted": "",
         "type": "LRT1-BR",
         "singleJourney": "20",
         "storedValue": "17",
@@ -1801,8 +1401,6 @@
     },
     {
         "distance": "14",
-        "regular": "",
-        "discounted": "",
         "type": "LRT1-BR",
         "singleJourney": "20",
         "storedValue": "18",
@@ -1810,8 +1408,6 @@
     },
     {
         "distance": "15",
-        "regular": "",
-        "discounted": "",
         "type": "LRT1-BR",
         "singleJourney": "20",
         "storedValue": "18",
@@ -1819,8 +1415,6 @@
     },
     {
         "distance": "16",
-        "regular": "",
-        "discounted": "",
         "type": "LRT1-BR",
         "singleJourney": "20",
         "storedValue": "18",
@@ -1828,8 +1422,6 @@
     },
     {
         "distance": "17",
-        "regular": "",
-        "discounted": "",
         "type": "LRT1-BR",
         "singleJourney": "20",
         "storedValue": "19",
@@ -1837,8 +1429,6 @@
     },
     {
         "distance": "18",
-        "regular": "",
-        "discounted": "",
         "type": "LRT1-BR",
         "singleJourney": "20",
         "storedValue": "19",
@@ -1846,8 +1436,6 @@
     },
     {
         "distance": "19",
-        "regular": "",
-        "discounted": "",
         "type": "LRT1-BR",
         "singleJourney": "20",
         "storedValue": "20",
@@ -1855,8 +1443,6 @@
     },
     {
         "distance": "1",
-        "regular": "",
-        "discounted": "",
         "type": "LRT2",
         "singleJourney": "12",
         "storedValue": "12",
@@ -1864,8 +1450,6 @@
     },
     {
         "distance": "2",
-        "regular": "",
-        "discounted": "",
         "type": "LRT2",
         "singleJourney": "12",
         "storedValue": "12",
@@ -1873,8 +1457,6 @@
     },
     {
         "distance": "3",
-        "regular": "",
-        "discounted": "",
         "type": "LRT2",
         "singleJourney": "12",
         "storedValue": "12",
@@ -1882,8 +1464,6 @@
     },
     {
         "distance": "4",
-        "regular": "",
-        "discounted": "",
         "type": "LRT2",
         "singleJourney": "13",
         "storedValue": "13",
@@ -1891,8 +1471,6 @@
     },
     {
         "distance": "5",
-        "regular": "",
-        "discounted": "",
         "type": "LRT2",
         "singleJourney": "13",
         "storedValue": "13",
@@ -1900,8 +1478,6 @@
     },
     {
         "distance": "6",
-        "regular": "",
-        "discounted": "",
         "type": "LRT2",
         "singleJourney": "13",
         "storedValue": "13",
@@ -1909,8 +1485,6 @@
     },
     {
         "distance": "7",
-        "regular": "",
-        "discounted": "",
         "type": "LRT2",
         "singleJourney": "14",
         "storedValue": "14",
@@ -1918,8 +1492,6 @@
     },
     {
         "distance": "8",
-        "regular": "",
-        "discounted": "",
         "type": "LRT2",
         "singleJourney": "14",
         "storedValue": "14",
@@ -1927,8 +1499,6 @@
     },
     {
         "distance": "9",
-        "regular": "",
-        "discounted": "",
         "type": "LRT2",
         "singleJourney": "14",
         "storedValue": "14",
@@ -1936,8 +1506,6 @@
     },
     {
         "distance": "10",
-        "regular": "",
-        "discounted": "",
         "type": "LRT2",
         "singleJourney": "15",
         "storedValue": "15",
@@ -1945,110 +1513,86 @@
     },
     {
         "distance": "1",
-        "regular": "",
-        "discounted": "",
         "type": "MRT3",
         "singleJourney": "10",
-        "storedValue": "",
+        "storedValue": "10",
         "distanceUnit": "interstation_count"
     },
     {
         "distance": "2",
-        "regular": "",
-        "discounted": "",
         "type": "MRT3",
         "singleJourney": "10",
-        "storedValue": "",
+        "storedValue": "10",
         "distanceUnit": "interstation_count"
     },
     {
         "distance": "3",
-        "regular": "",
-        "discounted": "",
         "type": "MRT3",
         "singleJourney": "11",
-        "storedValue": "",
+        "storedValue": "11",
         "distanceUnit": "interstation_count"
     },
     {
         "distance": "4",
-        "regular": "",
-        "discounted": "",
         "type": "MRT3",
         "singleJourney": "11",
-        "storedValue": "",
+        "storedValue": "11",
         "distanceUnit": "interstation_count"
     },
     {
         "distance": "5",
-        "regular": "",
-        "discounted": "",
         "type": "MRT3",
         "singleJourney": "12",
-        "storedValue": "",
+        "storedValue": "12",
         "distanceUnit": "interstation_count"
     },
     {
         "distance": "6",
-        "regular": "",
-        "discounted": "",
         "type": "MRT3",
         "singleJourney": "12",
-        "storedValue": "",
+        "storedValue": "12",
         "distanceUnit": "interstation_count"
     },
     {
         "distance": "7",
-        "regular": "",
-        "discounted": "",
         "type": "MRT3",
         "singleJourney": "12",
-        "storedValue": "",
+        "storedValue": "12",
         "distanceUnit": "interstation_count"
     },
     {
         "distance": "8",
-        "regular": "",
-        "discounted": "",
         "type": "MRT3",
         "singleJourney": "14",
-        "storedValue": "",
+        "storedValue": "14",
         "distanceUnit": "interstation_count"
     },
     {
         "distance": "9",
-        "regular": "",
-        "discounted": "",
         "type": "MRT3",
         "singleJourney": "14",
-        "storedValue": "",
+        "storedValue": "14",
         "distanceUnit": "interstation_count"
     },
     {
         "distance": "10",
-        "regular": "",
-        "discounted": "",
         "type": "MRT3",
         "singleJourney": "14",
-        "storedValue": "",
+        "storedValue": "14",
         "distanceUnit": "interstation_count"
     },
     {
         "distance": "11",
-        "regular": "",
-        "discounted": "",
         "type": "MRT3",
         "singleJourney": "15",
-        "storedValue": "",
+        "storedValue": "15",
         "distanceUnit": "interstation_count"
     },
     {
         "distance": "12",
-        "regular": "",
-        "discounted": "",
         "type": "MRT3",
         "singleJourney": "15",
-        "storedValue": "",
+        "storedValue": "15",
         "distanceUnit": "interstation_count"
     }
 ]

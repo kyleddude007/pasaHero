@@ -154,7 +154,7 @@ def get_fare(transit_type, distance):
     conn = connect_db()
     data = r.table('fares').filter({'distance': distance, 'type':transit_type}).run(conn)
     conn.close()
-    return json.dumps(list(data))
+    return jsonify({'response':list(data)})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')

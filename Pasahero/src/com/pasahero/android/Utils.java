@@ -66,4 +66,13 @@ public class Utils {
 		}
 		return shortDistance.format(meters);
 	}
+	
+	public static String toKm(double meters) {
+		try {
+			return shortDistance.format(meters/1000);
+		} catch (NullPointerException e) {
+			shortDistance = new DecimalFormat(Config.DISTANCE_FORMAT);
+		}
+		return shortDistance.format(meters/1000);
+	}
 }

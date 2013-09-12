@@ -1,5 +1,6 @@
 package com.pasahero.android;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Hashtable;
 import java.util.List;
@@ -181,6 +182,12 @@ public class ItineraryFragment extends Fragment implements PasaHeroMapInterface,
 				busService.setText(Utils.insertToTemplate(
 						Config.TEMPLATE_SERVICE_RUN_BY, Config.SERVICE_PATTERN,
 						leg.getAgencyName()));
+				TextView busFare = (TextView) busView.findViewById(R.id.transit_fare);
+				try {
+					getFare(new URL(Config.PH_API_URL+"/"+Config.PH_API_FARE+"/"+Config.BUS_AIRCON+"/"+Utils.toKm(leg.getDistance())), mode, busFare);
+				} catch (MalformedURLException e) {
+					e.printStackTrace();
+				}
 				parent.addView(busView);
 			} else if (mode.equals(Config.MODE_RAIL)) {
 				View railView = activity.getLayoutInflater().inflate(
@@ -217,6 +224,12 @@ public class ItineraryFragment extends Fragment implements PasaHeroMapInterface,
 						Config.TEMPLATE_SERVICE_RUN_BY, Config.SERVICE_PATTERN,
 						leg.getAgencyName()));
 				parent.addView(railView);
+				TextView railFare = (TextView) railView.findViewById(R.id.transit_fare);
+				try {
+					getFare(new URL(Config.PH_API_URL+"/"+Config.PH_API_FARE+"/"+Config.BUS_AIRCON+"/"+Utils.toKm(leg.getDistance())), mode, railFare);
+				} catch (MalformedURLException e) {
+					e.printStackTrace();
+				}
 			}
 			List<com.vividsolutions.jts.geom.Coordinate> polyLines = PolylineEncoder
 					.decode(leg.getLegGeometry());
@@ -229,6 +242,7 @@ public class ItineraryFragment extends Fragment implements PasaHeroMapInterface,
 	}
 	
 	public void getFare(URL url, String legMode, View fareView){
+		System.out.println("url: "+url.toString());
 		RequestFareTask fareTask = new RequestFareTask(this,legMode, fareView);
 		fareTask.execute(url);
 	}
@@ -288,10 +302,11 @@ public class ItineraryFragment extends Fragment implements PasaHeroMapInterface,
 	@Override
 	public void fareReady(Fare fare, String legMode, View fareView) {
 		if(legMode.equals(Config.MODE_BUS)){
-			Hashtable<String, String> patterns = new Hashtable<String, String>();
-			patterns.put(Config.FARE_PATTERN, fare.getRegular()+"");
-			patterns.put(Config.FARE_DISCOUNT_PATTERN, fare.getDiscounted()+"");
-			String fareText = Utils.insertToTemplate(Config.TEMPLATE_BUS_AIRCON_FARE, patterns)+"\n"+Utils.insertToTemplate(Config.TEMPLATE_BUS_ORDINARY_FARE, patterns);
+			//Hashtable<String, String> patterns = new Hashtable<String, String>();
+			//patterns.put(Config.FARE_PATTERN, fare.getRegular()+"");
+			//patterns.put(Config.FARE_DISCOUNT_PATTERN, fare.getDiscounted()+"");
+			//String fareText = Utils.insertToTemplate(Config.TEMPLATE_BUS_AIRCON_FARE, patterns)+"\n"+Utils.insertToTemplate(Config.TEMPLATE_BUS_ORDINARY_FARE, patterns);
+			String fareText = fare.getRegular()+"\n"+fare.getDiscounted();
 			((TextView)fareView).setText(fareText);
 		}else if(legMode.equals(Config.MODE_RAIL)){
 			((TextView)fareView).setText(fare.getSingleJourney()+"\n"+fare.getStoredValue());

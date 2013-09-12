@@ -1,7 +1,9 @@
 package com.pasahero.android;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -103,9 +105,10 @@ public class TripPlanner {
 		}
 		ObjectMapper mapper = new ObjectMapper();
 		InputStream stream = conn.getInputStream();
-		Fare fare = mapper.readValue(stream, Fare.class);
+		FareDummy dummy = mapper.readValue(stream, FareDummy.class);
 		conn.disconnect();
-		return fare;
+		System.out.println("fare resp: "+dummy.getResponse().get(0).getType());
+		return dummy.getResponse().get(0);
 	}
 	
 	private Response getRequest(URL url) throws IOException {
