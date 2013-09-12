@@ -3,6 +3,8 @@ package com.pasahero.android;
 import java.util.Date;
 import java.util.Vector;
 
+import android.graphics.Color;
+
 public class Itinerary {
 
 	private long duration;
@@ -18,6 +20,7 @@ public class Itinerary {
 	private double fare;
 	private Vector<Leg> legs;
 	private boolean tooSloped;
+	private int routeColor;
 	
 	public double getFare() {
 		return fare;
@@ -97,6 +100,6 @@ public class Itinerary {
 	public void setTooSloped(boolean tooSloped) {
 		this.tooSloped = tooSloped;
 	}
-	
+
 
 }

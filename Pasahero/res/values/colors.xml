@@ -158,4 +158,13 @@
     <color name="Navy">#000080</color>
     <color name="Black">#000000</color>
 
+    <array name="route_colors">
+        <item>@color/red</item>
+        <item>@color/yellow</item>
+        <item>@color/blue</item>
+        <item>@color/green</item>
+        <item>@color/Plum</item>
+        <item>@color/Orchid</item>
+    </array>
+
 </resources>

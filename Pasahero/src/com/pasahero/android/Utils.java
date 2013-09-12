@@ -65,6 +65,5 @@ public class Utils {
 			shortDistance = new DecimalFormat(Config.DISTANCE_FORMAT);
 		}
 		return shortDistance.format(meters);
-
 	}
 }

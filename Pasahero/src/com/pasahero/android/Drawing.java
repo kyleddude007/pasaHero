@@ -2,6 +2,7 @@ package com.pasahero.android;
 
 import java.util.List;
 
+import android.graphics.Color;
 import android.graphics.Paint;
 
 import com.mapquest.android.maps.GeoPoint;
@@ -16,6 +17,20 @@ public class Drawing {
 	private LineOverlay lineOverlay;
 	private MapView map;
 	private List<Overlay> overlays;
+	private int color;
+	
+
+	public Drawing(MapView map, List<GeoPoint> lineData, List<Overlay> overlays, int color){
+		this.paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+		this.lineData = lineData;
+		this.lineOverlay = new LineOverlay(paint);
+		this.map = map;
+		this.overlays = overlays;
+		this.color = color;
+		setStyle();
+		
+	}
+
 	
 	public Drawing(MapView map, List<GeoPoint> lineData, List<Overlay> overlays){
 		this.paint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -26,6 +41,7 @@ public class Drawing {
 		this.overlays = overlays;
 	}
 
+	
 	
 	public Drawing(MapView map, List<GeoPoint> lineData, LineOverlay lineOverlay){
 		this.paint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -42,9 +58,8 @@ public class Drawing {
 		setStyle();
 	}
 	
-	
 	private void setStyle(){
-		paint.setColor(Config.ROUTE_DEFAULT_COLOR);
+		paint.setColor(color);
 		paint.setStyle(Paint.Style.STROKE);
 		paint.setStrokeWidth(Config.ROUTE_STROKE_WIDTH);
 	}

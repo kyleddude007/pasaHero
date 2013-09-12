@@ -414,8 +414,8 @@ public class PasaheroMapActivity extends MapActivity implements
 	}
 
 	@Override
-	public void lineDataReady(List<GeoPoint> data) {
-		Drawing draw = new Drawing(map, data, overlays);
+	public void lineDataReady(List<GeoPoint> data, int color) {
+		Drawing draw = new Drawing(map, data, overlays, color);
 		draw.draw();
 	}
 

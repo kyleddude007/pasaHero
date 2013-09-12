@@ -9,8 +9,9 @@ import org.opentripplanner.util.PolylineEncoder;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.res.Resources;
+import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.Typeface;
-import android.location.Address;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,12 +44,17 @@ public class ItineraryFragment extends Fragment implements PasaHeroMapInterface 
 	private ItineraryFragmentInterface itineraryListener;
 	private ListView itineraryList;
 	private ItineraryAdapter itineraryAdapter;
-	
+	private Button moreItinerariesToggle;
+	private TypedArray routeColors;
+	private int routeColorIndex;
+
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		fontawesome = Typefaces.get(activity, Config.FONTAWESOME_URL);
 		resources = activity.getResources();
+		initRouteColors();
+		setUpIteneraryToggle();
 	}
 
 	@Override
@@ -69,7 +75,8 @@ public class ItineraryFragment extends Fragment implements PasaHeroMapInterface 
 		} else {
 			throw new ClassCastException(activity.toString()
 					+ " must implemenet ItineraryFragmentInterface");
-		}	}
+		}
+	}
 
 	@Override
 	public void onDetach() {
@@ -90,6 +97,7 @@ public class ItineraryFragment extends Fragment implements PasaHeroMapInterface 
 		setUpTerminals(mainView, plan);
 		itineraryPane = (View) mainView.findViewById(R.id.itinerary_pane);
 		setItineraryView(itineraries.get(0));
+		setUpItineraryListView();
 	}
 
 	public void setUpTerminals(View view, Plan plan) {
@@ -105,10 +113,11 @@ public class ItineraryFragment extends Fragment implements PasaHeroMapInterface 
 				Config.LOC_NAME_PATTERN, plan.getTo().getName()));
 	}
 
-	public void setItineraryView(Itinerary itinerary){
+	public void setItineraryView(Itinerary itinerary) {
 		parent.removeAllViews();
 		Vector<Leg> legs = itinerary.getLegs();
-		for (Leg leg : legs) {	
+		Vector<GeoPoint> lineData = new Vector<GeoPoint>();
+		for (Leg leg : legs) {
 			String mode = leg.getMode();
 			if (mode.equals(Config.MODE_WALK)) {
 				View walkView = activity.getLayoutInflater().inflate(
@@ -123,18 +132,19 @@ public class ItineraryFragment extends Fragment implements PasaHeroMapInterface 
 				stepsAdapter = new StepsAdapter(activity, steps);
 				stepsView.setAdapter(stepsAdapter);
 				stepsView.setVisibility(View.GONE);
-				Button showToggle = (Button) walkView.findViewById(R.id.show_toggle);
-				showToggle.setOnClickListener(new OnClickListener(){
+				Button showToggle = (Button) walkView
+						.findViewById(R.id.show_toggle);
+				showToggle.setOnClickListener(new OnClickListener() {
 
 					@Override
 					public void onClick(View view) {
-						if(stepsView.isShown()){
+						if (stepsView.isShown()) {
 							stepsView.setVisibility(View.GONE);
-						}else{
+						} else {
 							stepsView.setVisibility(View.VISIBLE);
 						}
 					}
-					
+
 				});
 				parent.addView(walkView);
 			} else if (mode.equals(Config.MODE_BUS)) {
@@ -208,29 +218,66 @@ public class ItineraryFragment extends Fragment implements PasaHeroMapInterface 
 						leg.getAgencyName()));
 				parent.addView(railView);
 			}
-			Vector<GeoPoint> lineData = new Vector<GeoPoint>();
 			List<com.vividsolutions.jts.geom.Coordinate> polyLines = PolylineEncoder
 					.decode(leg.getLegGeometry());
 			for (com.vividsolutions.jts.geom.Coordinate line : polyLines) {
 				lineData.add(new GeoPoint(line.x, line.y));
 			}
-			itineraryListener.lineDataReady(lineData);
 		}
+		itineraryListener.lineDataReady(lineData, getRouteColor());
 
 	}
-	
-	public void setUpItineraryListView(View view, Itinerary it) {
-		itineraryList = (ListView) view.findViewById(R.id.itinerary_list);
+
+	public void setUpItineraryListView() {
+		itineraryList = (ListView) mainView.findViewById(R.id.itinerary_list);
 		itineraryAdapter = new ItineraryAdapter(activity, itineraries);
 		itineraryList.setAdapter(itineraryAdapter);
-		itineraryList.setOnItemClickListener(new OnItemClickListener(){
+		itineraryList.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				
+				setItineraryView(itineraries.get(position));
 			}
 		});
+		itineraryList.setVisibility(View.GONE);
+	}
+
+	public void setUpIteneraryToggle() {
+		moreItinerariesToggle = (Button) mainView
+				.findViewById(R.id.more_itineraries_toggle);
+		moreItinerariesToggle.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if (itineraryList.isShown()) {
+					itineraryList.setVisibility(View.GONE);
+				} else {
+					itineraryList.setVisibility(View.VISIBLE);
+				}
+			}
+		});
+	}
+
+	public void initRouteColors() {
+		routeColors = resources.obtainTypedArray(R.array.route_colors);
+		routeColorIndex = 0;
+	}
+
+	public int getRouteColor() {
+		try {
+			int color = routeColors.getColor(routeColorIndex,
+					Config.ROUTE_DEFAULT_COLOR);
+			routeColorIndex++;
+			return color;
+		} catch (ArrayIndexOutOfBoundsException e) {
+			routeColorIndex = 0;
+			int color = routeColors.getColor(routeColorIndex,
+					Config.ROUTE_DEFAULT_COLOR);
+			routeColorIndex++;
+			return color;
+		}
+
 	}
 
 }
