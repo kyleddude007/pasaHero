@@ -3,6 +3,7 @@ from optparse import make_option
 from paver.easy import *
 from datetime import datetime
 import os
+import json
 
 options (
     dbhost = 'localhost',
@@ -25,11 +26,21 @@ def dbcreate(options):
     r.table_create('migrations', primary_key='name').run(conn)
 
 
+def seed_table(conn, table, dirname, relname='seed'):
+    data =  json.load(open(os.path.join(dirname, relname, table + '.json')))
+    result = r.table(table).insert(data, upsert=True).run(conn)
+
 @task
 def dbseed(options):
     """Populate pasahero database with seed data"""
     conn = r.connect(options.dbhost, options.dbport)
     conn.use(options.dbname)
+    dirname = os.path.dirname(os.path.abspath(__file__))
+    table_dumps = sorted(os.listdir(os.path.join(dirname, 'seed')))
+    for dump in table_dumps:
+        if dump.endswith('.json'):
+            table = dump[:-5]
+            seed_table(conn, table, dirname)
 
 @task
 def dbdrop(options):
