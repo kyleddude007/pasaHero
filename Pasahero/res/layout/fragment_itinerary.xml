@@ -8,6 +8,19 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
+        <Button
+            android:id="@+id/more_itineraries_toggle"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/view_more_itineraries" />
+
+        <ListView
+            android:id="@+id/itinerary_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+        </ListView>
+
         <LinearLayout
             android:id="@+id/terminal_start"
             android:layout_width="match_parent"

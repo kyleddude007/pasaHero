@@ -6,20 +6,23 @@ import java.util.Vector;
 
 import org.opentripplanner.util.PolylineEncoder;
 
-import com.mapquest.android.maps.GeoPoint;
-
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.res.Resources;
 import android.graphics.Typeface;
+import android.location.Address;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.mapquest.android.maps.GeoPoint;
 
 public class ItineraryFragment extends Fragment implements PasaHeroMapInterface {
 	private Vector<Itinerary> itineraries;
@@ -38,7 +41,9 @@ public class ItineraryFragment extends Fragment implements PasaHeroMapInterface 
 	private View itineraryPane;
 	private StepsAdapter stepsAdapter;
 	private ItineraryFragmentInterface itineraryListener;
-
+	private ListView itineraryList;
+	private ItineraryAdapter itineraryAdapter;
+	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
@@ -52,8 +57,6 @@ public class ItineraryFragment extends Fragment implements PasaHeroMapInterface 
 		mainView = inflater.inflate(R.layout.fragment_itinerary, container,
 				false);
 		parent = (ViewGroup) mainView.findViewById(R.id.itinerary_pane);
-		System.out.print("THE PAREENTNTWT ");
-		System.out.println(parent);
 		return mainView;
 	}
 
@@ -86,10 +89,26 @@ public class ItineraryFragment extends Fragment implements PasaHeroMapInterface 
 		itineraries = this.plan.getItineraries();
 		setUpTerminals(mainView, plan);
 		itineraryPane = (View) mainView.findViewById(R.id.itinerary_pane);
-		Itinerary it = itineraries.get(0);
-		Vector<Leg> legs = it.getLegs();
-		for (Leg leg : legs) {
-			
+		setItineraryView(itineraries.get(0));
+	}
+
+	public void setUpTerminals(View view, Plan plan) {
+		start = (View) view.findViewById(R.id.terminal_start);
+		end = (View) view.findViewById(R.id.terminal_end);
+
+		TextView startText = (TextView) view.findViewById(R.id.start_text);
+		TextView endText = (TextView) view.findViewById(R.id.end_text);
+
+		startText.setText(Utils.insertToTemplate(Config.TERIMINAL_TITLE_START,
+				Config.LOC_NAME_PATTERN, plan.getFrom().getName()));
+		endText.setText(Utils.insertToTemplate(Config.TERMINAL_TITLE_END,
+				Config.LOC_NAME_PATTERN, plan.getTo().getName()));
+	}
+
+	public void setItineraryView(Itinerary itinerary){
+		parent.removeAllViews();
+		Vector<Leg> legs = itinerary.getLegs();
+		for (Leg leg : legs) {	
 			String mode = leg.getMode();
 			if (mode.equals(Config.MODE_WALK)) {
 				View walkView = activity.getLayoutInflater().inflate(
@@ -199,22 +218,19 @@ public class ItineraryFragment extends Fragment implements PasaHeroMapInterface 
 		}
 
 	}
+	
+	public void setUpItineraryListView(View view, Itinerary it) {
+		itineraryList = (ListView) view.findViewById(R.id.itinerary_list);
+		itineraryAdapter = new ItineraryAdapter(activity, itineraries);
+		itineraryList.setAdapter(itineraryAdapter);
+		itineraryList.setOnItemClickListener(new OnItemClickListener(){
 
-	public void setUpTerminals(View view, Plan plan) {
-		start = (View) view.findViewById(R.id.terminal_start);
-		end = (View) view.findViewById(R.id.terminal_end);
-
-		TextView startText = (TextView) view.findViewById(R.id.start_text);
-		TextView endText = (TextView) view.findViewById(R.id.end_text);
-
-		startText.setText(Utils.insertToTemplate(Config.TERIMINAL_TITLE_START,
-				Config.LOC_NAME_PATTERN, plan.getFrom().getName()));
-		endText.setText(Utils.insertToTemplate(Config.TERMINAL_TITLE_END,
-				Config.LOC_NAME_PATTERN, plan.getTo().getName()));
-	}
-
-	public void setUpItineraryView(View view, Itinerary it) {
-
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				
+			}
+		});
 	}
 
 }

@@ -27,5 +27,6 @@
     <string name="icon_arrow_left">&#xf060;</string>
     <string name="icon_arrow_right">&#xf061;</string>
     <string name="trip_details_title">Trip Details</string>
+    <string name="view_more_itineraries">View more routes</string>
 
 </resources>
