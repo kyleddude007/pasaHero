@@ -188,6 +188,11 @@ public class ItineraryFragment extends Fragment implements PasaHeroMapInterface,
 				} catch (MalformedURLException e) {
 					e.printStackTrace();
 				}
+				try {
+					getFare(new URL(Config.PH_API_URL+"/"+Config.PH_API_FARE+"/"+Config.BUS_ORDINARY+"/"+Utils.toKm(leg.getDistance())), mode, busFare);
+				} catch (MalformedURLException e) {
+					e.printStackTrace();
+				}
 				parent.addView(busView);
 			} else if (mode.equals(Config.MODE_RAIL)) {
 				View railView = activity.getLayoutInflater().inflate(
@@ -306,7 +311,8 @@ public class ItineraryFragment extends Fragment implements PasaHeroMapInterface,
 			//patterns.put(Config.FARE_PATTERN, fare.getRegular()+"");
 			//patterns.put(Config.FARE_DISCOUNT_PATTERN, fare.getDiscounted()+"");
 			//String fareText = Utils.insertToTemplate(Config.TEMPLATE_BUS_AIRCON_FARE, patterns)+"\n"+Utils.insertToTemplate(Config.TEMPLATE_BUS_ORDINARY_FARE, patterns);
-			String fareText = fare.getRegular()+"\n"+fare.getDiscounted();
+			String fareText = ((TextView) fareView).getText().toString();
+			fareText = fareText +"\n"+ fare.getRegular()+"\n"+fare.getDiscounted();
 			((TextView)fareView).setText(fareText);
 		}else if(legMode.equals(Config.MODE_RAIL)){
 			((TextView)fareView).setText(fare.getSingleJourney()+"\n"+fare.getStoredValue());
