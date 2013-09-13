@@ -84,7 +84,7 @@ public class TripPlanner {
 
 	public void get(Hashtable<String, String> params) {
 		try {
-			URL url = TripPlanner.contsructUrl(API_URL, params);
+			URL url = Utils.contsructUrl(API_URL, params);
 			getRequest(url);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -127,30 +127,5 @@ public class TripPlanner {
 		conn.disconnect();
 		System.out.println(response);
 		return response;
-	}
-
-	public static URL contsructUrl(String urlString,
-			Hashtable<String, String> params) {
-		Enumeration<String> keys = params.keys();
-		urlString = urlString + "?";
-		while (keys.hasMoreElements()) {
-			String key = keys.nextElement();
-			urlString = urlString + key + "=" + params.get(key) + "&";
-		}
-		URL url;
-		try {
-			url = new URL(urlString);
-			URI uri = new URI(url.getProtocol(), url.getUserInfo(),
-					url.getHost(), url.getPort(), url.getPath(),
-					url.getQuery(), url.getRef());
-			System.out.println("Request url: " + urlString);
-			
-			return uri.toURL();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-		}
-		return null;
 	}
 }

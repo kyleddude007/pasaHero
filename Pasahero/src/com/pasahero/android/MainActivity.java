@@ -12,8 +12,9 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		startActivity(new Intent(getApplicationContext(),
-				PasaheroMapActivity.class));
+		//startActivity(new Intent(getApplicationContext(),PasaheroMapActivity.class));
+		startActivity(new Intent(getApplicationContext(),AuthActivity.class));
+
 		/*try {
 			URL[] urls = { new URL(Config.SAMPLE_URL) };
 			new RequestItineraryTask(this).execute(urls);

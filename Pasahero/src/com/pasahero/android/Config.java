@@ -27,30 +27,34 @@ public class Config {
 	public static final float ROUTE_STROKE_WIDTH = 3;
 	public static final int ROUTE_DEFAULT_COLOR = Color.BLUE;
 	public static final String MODE_WALK = "WALK";
-	public static final String MODE_RAIL ="RAIL";
+	public static final String MODE_RAIL = "RAIL";
 	public static final String MODE_TRANSIT = "TRANSIT";
-	public static final String MODE_BUS ="BUS";
+	public static final String MODE_BUS = "BUS";
 	public static String FONTAWESOME_URL = "fonts/fontawesome-webfont.ttf";
 	public static long TEXT_CHANGED_WAIT = 1000;
-	public static int TEXT_CHANGE_COUNT  = 4;
+	public static int TEXT_CHANGE_COUNT = 4;
 	public static String LOC_NAME_PATTERN = "<%location_name%>";
-	public static String TERIMINAL_TITLE_START = "Start at "+LOC_NAME_PATTERN;
-	public static String TERMINAL_TITLE_END = "End at "+LOC_NAME_PATTERN;
-	public static String WALK_TITLE = "Walk to "+LOC_NAME_PATTERN;
+	public static String TERIMINAL_TITLE_START = "Start at " + LOC_NAME_PATTERN;
+	public static String TERMINAL_TITLE_END = "End at " + LOC_NAME_PATTERN;
+	public static String WALK_TITLE = "Walk to " + LOC_NAME_PATTERN;
 	public static String DIRECTION_PATTERN = "<%direction%>";
 	public static String DISTANCE_PATTERN = "<%distance%>";
-	public static String TEMPLATE_BUS_TITLE = "Bus "+LOC_NAME_PATTERN;
+	public static String TEMPLATE_BUS_TITLE = "Bus " + LOC_NAME_PATTERN;
 	public static String TIME_PATTERN = "<%time%>";
-	public static String TEMPLATE_DEPART = TIME_PATTERN+" Depart "+LOC_NAME_PATTERN;
-	public static String TEMPLATE_ARRIVE = TIME_PATTERN+" Arrive "+LOC_NAME_PATTERN;
+	public static String TEMPLATE_DEPART = TIME_PATTERN + " Depart "
+			+ LOC_NAME_PATTERN;
+	public static String TEMPLATE_ARRIVE = TIME_PATTERN + " Arrive "
+			+ LOC_NAME_PATTERN;
 	public static String SERVICE_PATTERN = "<%service%>";
-	public static String TEMPLATE_SERVICE_RUN_BY = "Service run by "+SERVICE_PATTERN;
+	public static String TEMPLATE_SERVICE_RUN_BY = "Service run by "
+			+ SERVICE_PATTERN;
 	public static String SHORT_DATE_FORMAT = "H:mm a";
-	public static String DURATION_READABLE_FORMAT ="%d minutes";
-	public static String TEMPLATE_RAIL_TITLE = "Rail "+LOC_NAME_PATTERN;
+	public static String DURATION_READABLE_FORMAT = "%d minutes";
+	public static String TEMPLATE_RAIL_TITLE = "Rail " + LOC_NAME_PATTERN;
 	public static String DISTANCE_FORMAT = "#";
 	public static String DISTANCE_UNIT = "meters";
-	public static String WALK_STEP_TEXT = "Walk "+DIRECTION_PATTERN+" on "+LOC_NAME_PATTERN+ " - "+DISTANCE_PATTERN+" "+DISTANCE_UNIT;
+	public static String WALK_STEP_TEXT = "Walk " + DIRECTION_PATTERN + " on "
+			+ LOC_NAME_PATTERN + " - " + DISTANCE_PATTERN + " " + DISTANCE_UNIT;
 	public static String LRT1 = "LRT1";
 	public static String LRT1_BR = "LRT1-BR";
 	public static String MRT3 = "MRT3";
@@ -60,14 +64,20 @@ public class Config {
 	public static String BUS_ORDINARY = "Ordinary";
 	public static String FARE_PATTERN = "<%fare%>";
 	public static String FARE_DISCOUNT_PATTERN = "<%discount%>";
-	public static String TEMPLATE_DISCOUNT = "Student/Elderly/Disabled: "+FARE_DISCOUNT_PATTERN;
-	public static String TEMPLATE_REGULAR = "Fare: "+FARE_PATTERN;
-	public static String TEMPLATE_BUS_ORDINARY_FARE = "ORDINARY: \n"+TEMPLATE_REGULAR+"\n"+TEMPLATE_DISCOUNT;
-	public static String TEMPLATE_BUS_AIRCON_FARE = "AIR-CONDITIONED: \n"+TEMPLATE_REGULAR+"\n"+TEMPLATE_DISCOUNT;
-	public static String TEMPLATE_LRT = "LRT: "+FARE_PATTERN;
-	public static String TEMPLATE_MRT = "MRT: "+FARE_PATTERN;
+	public static String TEMPLATE_DISCOUNT = "Student/Elderly/Disabled: "
+			+ FARE_DISCOUNT_PATTERN;
+	public static String TEMPLATE_REGULAR = "Fare: " + FARE_PATTERN;
+	public static String TEMPLATE_BUS_ORDINARY_FARE = "ORDINARY: \n"
+			+ TEMPLATE_REGULAR + "\n" + TEMPLATE_DISCOUNT;
+	public static String TEMPLATE_BUS_AIRCON_FARE = "AIR-CONDITIONED: \n"
+			+ TEMPLATE_REGULAR + "\n" + TEMPLATE_DISCOUNT;
+	public static String TEMPLATE_LRT = "LRT: " + FARE_PATTERN;
+	public static String TEMPLATE_MRT = "MRT: " + FARE_PATTERN;
 	public static String PH_API_FARE = "fares";
 	public static String PUJ_IDENTIFIER = "PUJ";
 	public static String PUB_IDENTIFIER = "PUB";
-	public static String TEMPLATE_JEEP_TITLE = "Jeep "+LOC_NAME_PATTERN;
+	public static String TEMPLATE_JEEP_TITLE = "Jeep " + LOC_NAME_PATTERN;
+	public static int HTTP_OK = 200;
+	public static String EMAIL = "email";
+	public static String PASSWORD = "password";
 }

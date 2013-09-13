@@ -50,6 +50,10 @@
             android:name="com.pasahero.android.PHActionBarActivity"
             android:label="@string/title_activity_action_bar" >
         </activity>
+        <activity
+            android:name="com.pasahero.android.AuthActivity"
+            android:label="@string/title_activity_auth" >
+        </activity>
     </application>
 
 </manifest>

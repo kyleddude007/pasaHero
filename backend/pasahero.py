@@ -30,8 +30,8 @@ class User():
         self.id = data['id']
         self.password = data['password']
         self.salt = data['salt']
-        self.created_on = data['created_on']
-        self.updated_on = data['updated_on']
+        self.created_on = data['createdOn']
+        self.updated_on = data['updatedOn']
 
     def get_auth_token(self):
         data=[str(self.email), self.password]
@@ -98,7 +98,7 @@ def logout(id):
     session.pop('user_id', None)
     return 'Logged out'
 
-@app.route('/ps/api/login', methods = ['GET', 'POST'])
+@app.route('/ps/api/login', methods = ['POST'])
 def login():
     if request.method == 'POST':
         user = User.filter_by_email(request.json['email'])
@@ -121,7 +121,7 @@ def signup():
     password = hash_password(request.json['password'], salt)
     created_on = str(datetime.now(timezone(app.config['TIMEZONE'])))
     updated_on = created_on
-    insert = r.table('users').insert({'email':email, 'password': password, 'salt':salt, 'created_on':created_on, 'updated_on':updated_on}, return_vals=True).run(conn)
+    insert = r.table('users').insert({'email':email, 'password': password, 'salt':salt, 'createdOn':created_on, 'updatedOn':updated_on}, return_vals=True).run(conn)
     user = User(insert['new_val'])
     conn.close()
     if user is None:

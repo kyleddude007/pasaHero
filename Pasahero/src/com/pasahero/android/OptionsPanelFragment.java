@@ -196,8 +196,8 @@ public class OptionsPanelFragment extends Fragment implements
 				params.put(Config.WALK_SPEED, "1.341");
 				RequestItineraryTask request = new RequestItineraryTask(
 						itineraryListener);
-				System.out.println(TripPlanner.contsructUrl(Config.OTP_API_URL, params));
-				request.execute(TripPlanner.contsructUrl(Config.OTP_API_URL, params));
+				System.out.println(Utils.contsructUrl(Config.OTP_API_URL, params));
+				request.execute(Utils.contsructUrl(Config.OTP_API_URL, params));
 			}
 
 		});

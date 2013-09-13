@@ -1,8 +1,14 @@
 package com.pasahero.android;
 
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Enumeration;
+import java.util.Hashtable;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -74,5 +80,30 @@ public class Utils {
 			shortDistance = new DecimalFormat(Config.DISTANCE_FORMAT);
 		}
 		return shortDistance.format(meters/1000);
+	}
+	
+	public static URL contsructUrl(String urlString,
+			Hashtable<String, String> params) {
+		Enumeration<String> keys = params.keys();
+		urlString = urlString + "?";
+		while (keys.hasMoreElements()) {
+			String key = keys.nextElement();
+			urlString = urlString + key + "=" + params.get(key) + "&";
+		}
+		URL url;
+		try {
+			url = new URL(urlString);
+			URI uri = new URI(url.getProtocol(), url.getUserInfo(),
+					url.getHost(), url.getPort(), url.getPath(),
+					url.getQuery(), url.getRef());
+			System.out.println("Request url: " + urlString);
+			
+			return uri.toURL();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

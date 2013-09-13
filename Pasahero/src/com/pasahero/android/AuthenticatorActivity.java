@@ -5,11 +5,11 @@ import roboguice.inject.InjectView;
 import android.widget.EditText;
 
 public class AuthenticatorActivity extends RoboAccountAuthenticatorActivity{
-
+/*
 	@InjectView(R.id.email) EditText emailView;
 	@InjectView(R.id.password) EditText passwordView;
 	@InjectView(R.id.submit) EditText submit;
-	/*
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
