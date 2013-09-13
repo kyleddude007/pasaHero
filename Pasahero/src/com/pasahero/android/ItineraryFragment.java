@@ -119,8 +119,8 @@ public class ItineraryFragment extends Fragment implements PasaHeroMapInterface,
 		Vector<Leg> legs = itinerary.getLegs();
 		Vector<GeoPoint> lineData = new Vector<GeoPoint>();
 		for (Leg leg : legs) {
-			String mode = leg.getMode();
-			if (mode.equals(Config.MODE_WALK)) {
+			String transitType = leg.getTransitType();
+			if (transitType.equals(Config.MODE_WALK)) {
 				View walkView = activity.getLayoutInflater().inflate(
 						R.layout.itinerary_walk, parent, false);
 				TextView walkText = (TextView) walkView
@@ -148,7 +148,7 @@ public class ItineraryFragment extends Fragment implements PasaHeroMapInterface,
 
 				});
 				parent.addView(walkView);
-			} else if (mode.equals(Config.MODE_BUS)) {
+			} else if (transitType.equals(Config.PUB_IDENTIFIER)) {
 				View busView = activity.getLayoutInflater().inflate(
 						R.layout.itinerary_transit, parent, false);
 				TextView busTitle = (TextView) busView
@@ -184,17 +184,17 @@ public class ItineraryFragment extends Fragment implements PasaHeroMapInterface,
 						leg.getAgencyName()));
 				TextView busFare = (TextView) busView.findViewById(R.id.transit_fare);
 				try {
-					getFare(new URL(Config.PH_API_URL+"/"+Config.PH_API_FARE+"/"+Config.BUS_AIRCON+"/"+Utils.toKm(leg.getDistance())), mode, busFare);
+					getFare(new URL(Config.PH_API_URL+"/"+Config.PH_API_FARE+"/"+Config.BUS_AIRCON+"/"+Utils.toKm(leg.getDistance())), transitType, busFare);
 				} catch (MalformedURLException e) {
 					e.printStackTrace();
 				}
 				try {
-					getFare(new URL(Config.PH_API_URL+"/"+Config.PH_API_FARE+"/"+Config.BUS_ORDINARY+"/"+Utils.toKm(leg.getDistance())), mode, busFare);
+					getFare(new URL(Config.PH_API_URL+"/"+Config.PH_API_FARE+"/"+Config.BUS_ORDINARY+"/"+Utils.toKm(leg.getDistance())), transitType, busFare);
 				} catch (MalformedURLException e) {
 					e.printStackTrace();
 				}
 				parent.addView(busView);
-			} else if (mode.equals(Config.MODE_RAIL)) {
+			} else if (transitType.equals(Config.MODE_RAIL)) {
 				View railView = activity.getLayoutInflater().inflate(
 						R.layout.itinerary_transit, parent, false);
 				TextView railTitle = (TextView) railView
@@ -231,7 +231,48 @@ public class ItineraryFragment extends Fragment implements PasaHeroMapInterface,
 				parent.addView(railView);
 				TextView railFare = (TextView) railView.findViewById(R.id.transit_fare);
 				try {
-					getFare(new URL(Config.PH_API_URL+"/"+Config.PH_API_FARE+"/"+Config.BUS_AIRCON+"/"+Utils.toKm(leg.getDistance())), mode, railFare);
+					getFare(new URL(Config.PH_API_URL+"/"+Config.PH_API_FARE+"/"+Config.BUS_AIRCON+"/"+Utils.toKm(leg.getDistance())), transitType, railFare);
+				} catch (MalformedURLException e) {
+					e.printStackTrace();
+				}
+			}else if(transitType.equals(Config.PUJ_IDENTIFIER)){
+				View jeepView = activity.getLayoutInflater().inflate(
+			            R.layout.itinerary_transit, parent, false);
+			        TextView railTitle = (TextView) jeepView
+			            .findViewById(R.id.transit_title);
+			        railTitle.setText(Utils.insertToTemplate(
+			            Config.TEMPLATE_JEEP_TITLE, Config.LOC_NAME_PATTERN,
+			            leg.getRouteLongName()));
+			        TextView railDepart = (TextView) jeepView
+			            .findViewById(R.id.transit_depart);
+			        Hashtable<String, String> departPairs = new Hashtable<String, String>();
+			        departPairs.put(Config.TIME_PATTERN,
+			            Utils.getShortTime(leg.getStartTime()));
+			        departPairs.put(Config.LOC_NAME_PATTERN, leg.getFrom()
+			            .getName());
+			        railDepart.setText(Utils.insertToTemplate(
+			            Config.TEMPLATE_DEPART, departPairs));
+			        TextView railArrive = (TextView) jeepView
+			            .findViewById(R.id.transit_arrive);
+			        Hashtable<String, String> arrivePairs = new Hashtable<String, String>();
+			        arrivePairs.put(Config.TIME_PATTERN,
+			            Utils.getShortTime(leg.getEndTime()));
+			        arrivePairs.put(Config.LOC_NAME_PATTERN, leg.getTo().getName());
+			        railArrive.setText(Utils.insertToTemplate(
+			            Config.TEMPLATE_ARRIVE, arrivePairs));
+			        TextView railDuration = (TextView) jeepView
+			            .findViewById(R.id.transit_duration);
+			        railDuration
+			            .setText(Utils.toDurationReadable(leg.getDuration()));
+			        TextView railService = (TextView) jeepView
+			            .findViewById(R.id.transit_service);
+			        railService.setText(Utils.insertToTemplate(
+			            Config.TEMPLATE_SERVICE_RUN_BY, Config.SERVICE_PATTERN,
+			            leg.getAgencyName()));
+			        parent.addView(jeepView);
+				TextView railFare = (TextView) jeepView.findViewById(R.id.transit_fare);
+				try {
+					getFare(new URL(Config.PH_API_URL+"/"+Config.PH_API_FARE+"/"+Config.PUJ+"/"+Utils.toKm(leg.getDistance())), transitType, railFare);
 				} catch (MalformedURLException e) {
 					e.printStackTrace();
 				}
@@ -305,8 +346,8 @@ public class ItineraryFragment extends Fragment implements PasaHeroMapInterface,
 	}
 
 	@Override
-	public void fareReady(Fare fare, String legMode, View fareView) {
-		if(legMode.equals(Config.MODE_BUS)){
+	public void fareReady(Fare fare, String transitType, View fareView) {
+		if(transitType.equals(Config.PUB_IDENTIFIER) || transitType.equals(Config.PUJ_IDENTIFIER)){
 			//Hashtable<String, String> patterns = new Hashtable<String, String>();
 			//patterns.put(Config.FARE_PATTERN, fare.getRegular()+"");
 			//patterns.put(Config.FARE_DISCOUNT_PATTERN, fare.getDiscounted()+"");
@@ -314,7 +355,7 @@ public class ItineraryFragment extends Fragment implements PasaHeroMapInterface,
 			String fareText = ((TextView) fareView).getText().toString();
 			fareText = fareText +"\n"+ fare.getRegular()+"\n"+fare.getDiscounted();
 			((TextView)fareView).setText(fareText);
-		}else if(legMode.equals(Config.MODE_RAIL)){
+		}else if(transitType.equals(Config.MODE_RAIL)){
 			((TextView)fareView).setText(fare.getSingleJourney()+"\n"+fare.getStoredValue());
 		}
 	}
