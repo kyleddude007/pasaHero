@@ -11,30 +11,40 @@
         android:clickable="true"
         android:enabled="true" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
 
         <Button
             android:id="@+id/options_nav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/icon_home" />
+            android:text="@string/icon_home"
+             android:layout_alignParentLeft="true" />
 
         <fragment
             android:id="@+id/options_panel_fragment"
             android:name="com.pasahero.android.OptionsPanelFragment"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/options_nav" >
         </fragment>
-        
-         <fragment
+
+        <fragment
             android:id="@+id/itinerary_fragment"
             android:name="com.pasahero.android.ItineraryFragment"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:layout_below="@id/options_panel_fragment" >
         </fragment>
-    </LinearLayout>
+
+        <Button
+            android:id="@+id/my_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/icon_location_arrow"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
 
 </FrameLayout>

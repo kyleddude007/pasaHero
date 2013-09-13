@@ -7,9 +7,9 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="submit">Submit</string>
-    <string name="mapquest_api_key">Fmjtd%7Cluub25a2l1%2Cb5%3Do5-9uzxqz</string>
-    <string name="from_hint">Choose a starting point...</string>
-    <string name="to_hint">Choose destination...</string>
+    <string name="mapquest_api_key">Fmjtd%7Cluub25a2l1%2Cb5%3Do5&#8211;9uzxqz</string>
+    <string name="from_hint">Choose a starting point&#8230;</string>
+    <string name="to_hint">Choose destination&#8230;</string>
     <string name="done">Done</string>
     <string name="title_activity_action_bar">ActionBarActivity</string>
     <string name="refresh">Refresh</string>
@@ -28,5 +28,6 @@
     <string name="icon_arrow_right">&#xf061;</string>
     <string name="trip_details_title">Trip Details</string>
     <string name="view_more_itineraries">View more routes</string>
-
+	<string name="icon_location_arrow">&#xf124;</string>
+    
 </resources>
