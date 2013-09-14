@@ -74,7 +74,7 @@ public class OptionsPanelFragment extends Fragment implements
 		itineraryListener = this;
 		arriveBy = false;
 		timePickerListener = this;
-
+		loadDefaultOptions();
 	}
 
 	@Override
@@ -215,11 +215,11 @@ public class OptionsPanelFragment extends Fragment implements
 						from.getLatitude() + "," + from.getLongitude());
 				params.put(Config.TO_PLACE,
 						to.getLatitude() + "," + to.getLongitude());
-				params.put(Config.MAX_WALK_DISTANCE, "840");
-				params.put(Config.OPTIMIZE, "QUICK");
-				params.put(Config.MODE, "TRANSIT,WALK");
-				params.put(Config.TIME, "10:25am");
-				params.put(Config.WALK_SPEED, "1.341");
+				params.put(Config.MAX_WALK_DISTANCE, walkDistanceView.getText().toString());
+				params.put(Config.OPTIMIZE, Config.DEFAULT_OPTIMIZE);
+				params.put(Config.MODE, Config.DEFAULT_MODE);
+				params.put(Config.TIME, timeDisplay.getText().toString());
+				params.put(Config.WALK_SPEED, walkSpeedView.getText().toString());
 				RequestItineraryTask request = new RequestItineraryTask(
 						itineraryListener);
 				System.out.println(Utils.contsructUrl(Config.OTP_API_URL,
@@ -244,6 +244,7 @@ public class OptionsPanelFragment extends Fragment implements
 				} else {
 					moreOptionsPanel.setVisibility(View.VISIBLE);
 					moreOptionsToggle.setText(activity.getString(R.string.hide_options));
+					loadDefaultOptions();
 				}
 			}
 		});
@@ -280,6 +281,9 @@ public class OptionsPanelFragment extends Fragment implements
 				showTimePickerDialog(view);
 			}
 		});
+		
+		walkSpeedView = (EditText) mainView.findViewById(R.id.walkSpeed);
+		walkDistanceView = (EditText) mainView.findViewById(R.id.walkDistance);
 
 	}
 
@@ -375,6 +379,13 @@ public class OptionsPanelFragment extends Fragment implements
 	@Override
 	public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 		timeDisplay.setText(Utils.getShortTime(hourOfDay, minute));
+	}
+	
+	public void loadDefaultOptions(){
+		arriveBy = false;
+		timeDisplay.setText(Utils.getShortTime(new Date()));
+		walkSpeedView.setText(Config.DEFAULT_WALK_SPEED+"");
+		walkDistanceView.setText(Config.DEFAULT_MAX_WALK_DISTANCE+"");
 	}
 
 }

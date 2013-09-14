@@ -22,6 +22,8 @@ public class Config {
 	public static final String OPTIMIZE = "optimize";
 	public static final String MAX_WALK_DISTANCE = "maxWalkDistance";
 	public static final String WALK_SPEED = "walkSpeed";
+	public static final int DEFAULT_MAX_WALK_DISTANCE =840;
+	public static final double DEFAULT_WALK_SPEED = 1.341;
 	public static final String TO_PLACE = "toPlace";
 	public static final String FROM_PLACE = "fromPlace";
 	public static final float ROUTE_STROKE_WIDTH = 3;
@@ -102,5 +104,7 @@ public class Config {
     public static final String PH_API_PNR_FARE = "pnr";
     public static final String PNR_TABLE_START_KEY = "start";
     public static final String MY_LOCATION_STRING = "My Location";
+    public static final String DEFAULT_MODE = "TRANSIT,WALK";
+    public static final String DEFAULT_OPTIMIZE = "QUICK";
     
 }
