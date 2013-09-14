@@ -156,6 +156,14 @@ def get_fare(transit_type, distance):
     conn.close()
     return jsonify({'response':list(data)})
 
+@app.route('/ps/api/pnr/<start>', methods=['GET'])
+def get_pnr_fare(start):
+    conn = connect_db()
+    data = r.table('pnr_fares').filter({'start': start}).run(conn)
+    conn.close()
+    return jsonify({'response':list(data)})
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
 

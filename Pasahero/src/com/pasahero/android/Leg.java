@@ -36,8 +36,7 @@ public class Leg {
 	private Vector<Step> steps;
 	private Vector<?> intermediateStops;
 	private Fare fare;
-	
-	
+
 	/**
 	 * Need this to distinguish between bus and jeep
 	 */
@@ -48,10 +47,26 @@ public class Leg {
 			} else if (routeId.contains(Config.PUB_IDENTIFIER)) {
 				return Config.PUB_IDENTIFIER;
 			}
+		} else if (mode.equals(Config.MODE_RAIL)) {
+			if (routeShortName.equals(Config.LRT1_IDENTIFIER)) {
+				if (from.getName().equals(Config.BALINTAWAK_IDENT)
+						|| from.getName().equals(Config.ROOSEVELT_IDENT)
+						|| to.getName().equals(Config.BALINTAWAK_IDENT)
+						|| to.getName().equals(Config.ROOSEVELT_IDENT)) {
+					return Config.LRT1_BR;
+				} else {
+					return Config.LRT1;
+				}
+			} else if (routeShortName.equals(Config.LRT2_IDENTIFER)) {
+				return Config.LRT2;
+			} else if (routeShortName.equals(Config.MRT3_IDENTIFER)) {
+				return Config.MRT3;
+			} else if (routeShortName.equals(Config.PNR_IDENTIFIER)){
+				return Config.PNR_IDENTIFIER;
+			}
 		}
 		return mode;
 	}
-
 
 	public String getMode() {
 		return mode;
@@ -283,5 +298,24 @@ public class Leg {
 
 	public void setFare(Fare fare) {
 		this.fare = fare;
+	}
+
+	public int getInterstationDistance() {
+		if (mode.equals(Config.MODE_RAIL)) {
+			int f =0;
+			int t = 0;
+			if(from.getName().equals(Config.NORTH_AVE_MRT)){
+				f =64;
+			}else{
+				f = Integer.parseInt(from.getStopId().get("id").substring(8)); // LTRFB_XXYY
+			}
+			if(to.getName().equals(Config.NORTH_AVE_MRT)){
+				t = 64;
+			}else{
+				t = Integer.parseInt(to.getStopId().get("id").substring(8));	
+			}
+			return Math.abs(f - t);
+		}
+		return -1000;
 	}
 }

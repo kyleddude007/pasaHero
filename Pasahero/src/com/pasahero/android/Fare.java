@@ -82,5 +82,7 @@ public class Fare {
 	public void setType(String type) {
 		this.type = type;
 	}
+	
+	
 
 }

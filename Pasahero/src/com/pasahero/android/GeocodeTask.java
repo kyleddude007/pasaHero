@@ -31,7 +31,9 @@ public class GeocodeTask extends AsyncTask<String, Void, List<Address>> {
 			return null;
 		}
 		try {
-			return geocoder.getFromLocationName(location[0], Config.MAX_GEO);
+			return geocoder.getFromLocationName(location[0], Config.MAX_GEO,
+					Config.NCR_LOWER_LEFT_LAT, Config.NCR_LOWER_LEFT_LON,
+					Config.NCR_UPPER_RIGHT_LAT, Config.NCR_UPPER_RIGHT_LON);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

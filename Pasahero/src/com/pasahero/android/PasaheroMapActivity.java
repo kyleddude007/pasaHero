@@ -431,4 +431,10 @@ public class PasaheroMapActivity extends MapActivity implements
 		
 	}
 
+	@Override
+	public void pnrTableRead(Hashtable<String, String> pnrTable, String end,View fareView) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

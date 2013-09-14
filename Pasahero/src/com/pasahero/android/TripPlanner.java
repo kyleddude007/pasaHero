@@ -105,10 +105,13 @@ public class TripPlanner {
 		}
 		ObjectMapper mapper = new ObjectMapper();
 		InputStream stream = conn.getInputStream();
-		FareDummy dummy = mapper.readValue(stream, FareDummy.class);
+		GenericResponse dummy = mapper.readValue(stream, GenericResponse.class);
 		conn.disconnect();
-		System.out.println("fare resp: "+dummy.getResponse().get(0).getType());
-		return dummy.getResponse().get(0);
+		if(dummy.getResponse().size()>0){
+			System.out.println("fare resp: "+dummy.getResponse().get(0).getType());
+			return dummy.getResponse().get(0);
+		}
+		return null;
 	}
 	
 	private Response getRequest(URL url) throws IOException {
@@ -127,5 +130,22 @@ public class TripPlanner {
 		conn.disconnect();
 		System.out.println(response);
 		return response;
+	}
+	
+	public Hashtable<String, String> getPNRTable(URL url) throws IOException{
+		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		conn.setRequestMethod("GET");
+		conn.setRequestProperty("Accept", "application/json");
+
+		int responseCode = conn.getResponseCode();
+		if (responseCode != HTTP_OK) {
+			throw new RuntimeException("Failed : HTTP error code : "
+					+ responseCode);
+		}
+		ObjectMapper mapper = new ObjectMapper();
+		InputStream stream = conn.getInputStream();
+		Hashtable<String, String> pnrTable = mapper.readValue(stream, Hashtable.class);
+		conn.disconnect();
+		return pnrTable;
 	}
 }

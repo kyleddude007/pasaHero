@@ -36,8 +36,6 @@ public class Utils {
 			String key = pair.getKey();
 			String value = pair.getValue();
 			template = template.replace(key, value);
-			System.out.println("pattern: " + key + "\n" + "data: " + value);
-			System.out.println("inserted: " + template);
 		}
 		return template;
 	}
@@ -95,9 +93,7 @@ public class Utils {
 			url = new URL(urlString);
 			URI uri = new URI(url.getProtocol(), url.getUserInfo(),
 					url.getHost(), url.getPort(), url.getPath(),
-					url.getQuery(), url.getRef());
-			System.out.println("Request url: " + urlString);
-			
+					url.getQuery(), url.getRef());	
 			return uri.toURL();
 		} catch (MalformedURLException e) {
 			e.printStackTrace();

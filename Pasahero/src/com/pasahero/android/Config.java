@@ -84,4 +84,22 @@ public class Config {
 	public static final String PREF_NAME = "PasaHeroPref";
     public static final String IS_LOGGED_IN = "IsLoggedIn";
     public static final String NAME = "name";
+    public static final String LRT1_IDENTIFIER = "LRT 1";
+    public static final String LRT2_IDENTIFER = "LRT 2";
+    public static final String MRT3_IDENTIFER = "MRT-3";
+    public static final String BALINTAWAK_IDENT = "LRT Balintawak";
+    public static final String ROOSEVELT_IDENT = "Roosevelt LRT";
+    public static final String NORTH_AVE_MRT = "North Avenue MRT";
+    public static final double NCR_UPPER_LEFT_LAT = 14.742897;
+    public static final double NCR_UPPER_LEFT_LON = 120.886345;
+    public static final double NCR_UPPER_RIGHT_LAT = 14.782621;
+    public static final double NCR_UPPER_RIGHT_LON = 121.193619;
+    public static final double NCR_LOWER_LEFT_LAT = 14.344112;
+    public static final double NCR_LOWER_LEFT_LON = 120.882225;
+    public static final double NCR_LOWER_RIGHT_LAT =14.355971;
+    public static final double NCR_LOWER_RIGHT_LON = 121.160660;
+    public static final String PNR_IDENTIFIER = "PNR";
+    public static final String PH_API_PNR_FARE = "pnr";
+    public static final String PNR_TABLE_START_KEY = "start";
+    
 }

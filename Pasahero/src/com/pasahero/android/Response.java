@@ -1,10 +1,12 @@
 package com.pasahero.android;
 
+import java.util.Hashtable;
 import java.util.List;
 
 public class Response {
 
 	private Plan plan;
+	private Hashtable<String, String> error;
 	private RequestParameters requestParameters;
 	private List<Fare> fares;
 	public List<Fare> getFares() {
@@ -29,6 +31,12 @@ public class Response {
 	@Override
 	public String toString(){
 		return plan.toString();
+	}
+	public Hashtable<String, String> getError() {
+		return error;
+	}
+	public void setError(Hashtable<String, String> error) {
+		this.error = error;
 	}
 }
 

@@ -269,4 +269,10 @@ public class OptionsPanelFragment extends Fragment implements
 		
 	}
 
+	@Override
+	public void pnrTableRead(Hashtable<String, String> pnrTable,String end, View fareView) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
