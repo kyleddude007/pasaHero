@@ -101,5 +101,6 @@ public class Config {
     public static final String PNR_IDENTIFIER = "PNR";
     public static final String PH_API_PNR_FARE = "pnr";
     public static final String PNR_TABLE_START_KEY = "start";
+    public static final String MY_LOCATION_STRING = "My Location";
     
 }

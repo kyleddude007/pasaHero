@@ -467,4 +467,9 @@ public class ItineraryFragment extends Fragment implements
 		System.out.println("pnr end val: " + pnrTable.get(end));
 	}
 
+	@Override
+	public void myLocationReady(GeoPoint myLocationPoint) {
+		
+	}
+
 }

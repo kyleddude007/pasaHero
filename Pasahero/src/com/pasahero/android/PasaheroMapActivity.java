@@ -1,12 +1,8 @@
 package com.pasahero.android;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Hashtable;
 import java.util.List;
-import java.util.Vector;
 
 import android.app.ActionBar;
 import android.app.FragmentManager;
@@ -22,12 +18,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnFocusChangeListener;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.mapquest.android.Geocoder;
@@ -61,17 +52,21 @@ public class PasaheroMapActivity extends MapActivity implements
 	private Address from;
 	private Address to;
 	private Button nav;
-	private PasaHeroMapInterface mapListener;
-	private PasaHeroMapInterface mapItineraryListener;
+	private PasaHeroMapInterface optionsListening;
+	private PasaHeroMapInterface itineraryListening;
 	private OptionsPanelFragment optionsFragment;
 	private ItineraryFragment itineraryFragment;
 	private FragmentManager fragmentManager;
 	private FragmentTransaction fragmentTransaction;
+	private Typeface fontawesome;
+	private Button myLocation;
+	private GeoPoint currentLocation;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_pasahero_map);
+		fontawesome = Typefaces.get(this, Config.FONTAWESOME_URL);
 
 		// setUpViews();
 		this.markerOverlayHolder = new Hashtable<Integer, Overlay>();
@@ -88,15 +83,21 @@ public class PasaheroMapActivity extends MapActivity implements
 
 		optionsFragment = (OptionsPanelFragment) fragmentManager
 				.findFragmentById(R.id.options_panel_fragment);
-		mapListener = optionsFragment;
+		optionsListening = optionsFragment;
 		itineraryFragment = (ItineraryFragment) fragmentManager
 				.findFragmentById(R.id.itinerary_fragment);
-		mapItineraryListener = itineraryFragment;
+		itineraryListening = itineraryFragment;
+
 		ActionBar bar = this.getActionBar();
 		bar.hide();
 		setUpMapView();
+		locOverlay = new MyLocationOverlay(this, map);
+
 		setUpNav();
+		setupMyLocation();
+		setUpMyLocationButton();
 		getGeocoder();
+
 		fragmentTransaction = fragmentManager.beginTransaction();
 		fragmentTransaction.hide(itineraryFragment);
 		fragmentTransaction.commit();
@@ -114,99 +115,27 @@ public class PasaheroMapActivity extends MapActivity implements
 	}
 
 	public void setUpNav() {
-		Typeface font = Typefaces.get(this, Config.FONTAWESOME_URL);
 		nav = (Button) findViewById(R.id.options_nav);
-		nav.setTypeface(font);
+		nav.setTypeface(fontawesome);
 		nav.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				mapListener.navButtonClicked();
+				optionsListening.navButtonClicked();
 			}
 		});
 	}
 
-	public void setUpViews() {
-		ListView geoList = (ListView) findViewById(R.id.geoList);
-		adapter = new GeoArrayAdapter(this, new Vector<Address>());
-		geoList.setAdapter(adapter);
-		geoList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-		geoList.setOnItemClickListener(new OnItemClickListener() {
+	public void setUpMyLocationButton() {
+		myLocation = (Button) findViewById(R.id.my_location);
+		myLocation.setTypeface(fontawesome);
+		myLocation.setOnClickListener(new OnClickListener() {
 
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				Address address = (Address) parent.getItemAtPosition(position);
-				overlays.remove(markerOverlayHolder.remove(adapter
-						.getSelected().hashCode()));
-				map.invalidate();
-				setAddress(adapter.getProvider(), address);
-				System.out.println("from: " + from.toString());
-				System.out.println("to: " + to.toString());
-			}
-
-		});
-
-		final EditText fromView = (EditText) findViewById(R.id.fromView);
-		fromView.setOnFocusChangeListener(new OnFocusChangeListener() {
-
-			@Override
-			public void onFocusChange(View view, boolean hasFocus) {
-				EditText et = (EditText) view;
-				String from = et.getText().toString();
-				if (!hasFocus && !from.matches("")) {
-					GeoArrayAdapter.reset(adapter);
-					adapter.setProvider(Config.FROM_PLACE);
-					geocode(Config.FROM_PLACE, from);
-				}
-			}
-
-		});
-
-		final EditText toView = (EditText) findViewById(R.id.toView);
-		toView.setOnFocusChangeListener(new OnFocusChangeListener() {
-
-			@Override
-			public void onFocusChange(View view, boolean hasFocus) {
-				EditText et = (EditText) view;
-				String to = et.getText().toString();
-				if (!hasFocus && !to.matches("")) {
-					GeoArrayAdapter.reset(adapter);
-					adapter.setProvider(Config.TO_PLACE);
-					geocode(Config.TO_PLACE, to);
-				}
-			}
-
-		});
-
-		Button plan = (Button) findViewById(R.id.plan);
-		plan.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				Hashtable<String, String> params = new Hashtable<String, String>();
-				params.put(Config.ARRIVE_BY, "false");
-				params.put(Config.DATE, new Date().toString());
-				params.put(Config.FROM_PLACE,
-						from.getLatitude() + "," + from.getLongitude());
-				params.put(Config.TO_PLACE,
-						to.getLatitude() + "," + to.getLongitude());
-				params.put(Config.MAX_WALK_DISTANCE, "840");
-				params.put(Config.OPTIMIZE, "QUICK");
-				params.put(Config.MODE, "TRANSIT,WALK");
-				params.put(Config.TIME, "10:25am");
-				params.put(Config.WALK_SPEED, "1.341");
-				System.out.println("From: " + from);
-				System.out.println("To: " + to);
-				RequestItineraryTask request = new RequestItineraryTask(
-						requestItineraryInterface);
-				// request.execute(TripPlanner.contsructUrl(Config.API_URL,
-				// params));
-				try {
-					request.execute(new URL(Config.SAMPLE_URL));
-				} catch (MalformedURLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				locOverlay.setFollowing(true);
+				optionsListening.myLocationReady(currentLocation);
 			}
+
 		});
 	}
 
@@ -222,72 +151,26 @@ public class PasaheroMapActivity extends MapActivity implements
 		return geocoder;
 	}
 
-	private void setUpMyLocation() {
-		this.locOverlay = new MyLocationOverlay(this, map);
+	protected void setupMyLocation() {
+		locOverlay = new MyLocationOverlay(this, map);
 		locOverlay.enableMyLocation();
 		locOverlay.runOnFirstFix(new Runnable() {
 			@Override
 			public void run() {
-				GeoPoint currentLocation = locOverlay.getMyLocation();
-				map.getController().animateTo(currentLocation);
-				map.getController().setZoom(14);
+				currentLocation = locOverlay.getMyLocation(); 
+				mapCtrl.animateTo(currentLocation);
+				mapCtrl.setZoom(14);
 				map.getOverlays().add(locOverlay);
 				locOverlay.setFollowing(true);
 			}
 		});
 	}
 
-	// add polygon overlay to map
-	private void addPolyOverlay() {
-		// set custom polygon style
-		Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-		paint.setColor(Color.BLUE);
-		paint.setStyle(Paint.Style.FILL);
-		paint.setAlpha(40);
-
-		// list of GeoPoint objects to be used to draw polygon
-		List<GeoPoint> polyData = new ArrayList<GeoPoint>();
-		polyData.add(new GeoPoint(41.000702, -109.049979));
-		polyData.add(new GeoPoint(41.002528, -102.051699));
-		polyData.add(new GeoPoint(36.993105, -102.042215));
-		polyData.add(new GeoPoint(36.999073, -109.045178));
-
-		// apply polygon style & data and add to map
-		PolygonOverlay polyOverlay = new PolygonOverlay(paint);
-		polyOverlay.setData(polyData);
-		map.getOverlays().add(polyOverlay);
-
-	}
-
-	// add line overlay to map
-	private void addLineOverlay() {
-		// set custom line style
-		Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-		paint.setColor(Color.BLACK);
-		paint.setStyle(Paint.Style.STROKE);
-		paint.setStrokeWidth(3);
-
-		// list of GeoPoint objects to be used to draw line
-		List lineData = new ArrayList();
-		lineData.add(new GeoPoint(39.739983, -104.984727));
-		lineData.add(new GeoPoint(37.441903, -122.141895));
-
-		// apply line style & data and add to map
-		LineOverlay lineOverlay = new LineOverlay(paint);
-		lineOverlay.setData(lineData);
-		map.getOverlays().add(lineOverlay);
-	}
-
-	private void displayRoute() {
-		RouteManager routeManager = new RouteManager(this);
-		routeManager.setMapView(map);
-		routeManager.createRoute("San Francisco, CA", "Fremont, CA");
-	}
 
 	@Override
 	protected void onResume() {
-		// locOverlay.enableMyLocation();
-		// locOverlay.enableCompass();
+		locOverlay.enableMyLocation();
+		//locOverlay.enableCompass();
 		super.onResume();
 	}
 
@@ -295,8 +178,8 @@ public class PasaheroMapActivity extends MapActivity implements
 	@Override
 	protected void onPause() {
 		super.onPause();
-		// locOverlay.disableCompass();
-		// locOverlay.disableMyLocation();
+		//locOverlay.disableCompass();
+		locOverlay.disableMyLocation();
 	}
 
 	@Override
@@ -360,7 +243,7 @@ public class PasaheroMapActivity extends MapActivity implements
 
 	private void setAddress(String provider, Address address) {
 		// adapter.setSelected(address);
-		addMarker(address, GeoArrayAdapter.getShortName(address), "");
+		addMarker(address, address.getLocality(), "");
 		map.getController().setCenter(
 				new GeoPoint(address.getLatitude(), address.getLongitude()));
 		if (provider.equals(Config.FROM_PLACE)) {
@@ -369,7 +252,6 @@ public class PasaheroMapActivity extends MapActivity implements
 			to = address;
 		}
 	}
-
 
 	@Override
 	public void geocodeFinish(List<Address> result) {
@@ -409,7 +291,7 @@ public class PasaheroMapActivity extends MapActivity implements
 		fragmentTransaction.hide(optionsFragment);
 		fragmentTransaction.show(itineraryFragment);
 		fragmentTransaction.commit();
-		mapItineraryListener.planReceived(plan);
+		itineraryListening.planReceived(plan);
 
 	}
 
@@ -422,19 +304,28 @@ public class PasaheroMapActivity extends MapActivity implements
 	@Override
 	public void loadItinerary(Response response) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void fareReady(Fare fare, String legMode, View itineraryView) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public void pnrTableRead(Hashtable<String, String> pnrTable, String end,View fareView) {
+	public void pnrTableRead(Hashtable<String, String> pnrTable, String end,
+			View fareView) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void readyToReceivMyLocation() {
 		// TODO Auto-generated method stub
 		
 	}
+
+
 
 }

@@ -6,4 +6,5 @@ public interface OptionsPanelListenerInterface {
 	public void locationSelected(String provider, Address address);
 	public void locationChosen(Address location);
 	public void itineraryReceived(Plan plan);
+	public void readyToReceivMyLocation();
 }

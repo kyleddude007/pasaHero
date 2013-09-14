@@ -3,6 +3,7 @@ package com.pasahero.android;
 import java.util.Date;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Locale;
 import java.util.Vector;
 
 import android.app.Activity;
@@ -22,9 +23,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mapquest.android.Geocoder;
+import com.mapquest.android.maps.GeoPoint;
 
 public class OptionsPanelFragment extends Fragment implements
 		GeocodeTaskInterface, TripPlannerInterface, PasaHeroMapInterface {
@@ -45,6 +48,8 @@ public class OptionsPanelFragment extends Fragment implements
 	private GeocodeTask geocodeTask;
 	private Hashtable<String, Address> targets;
 	private TripPlannerInterface itineraryListener;
+	private boolean myLocationReady;
+	private GeoPoint myLocationPoint;
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -55,6 +60,7 @@ public class OptionsPanelFragment extends Fragment implements
 		geoListener = this;
 		targets = new Hashtable<String, Address>();
 		itineraryListener = this;
+		myLocationReady = false;
 
 	}
 
@@ -86,6 +92,15 @@ public class OptionsPanelFragment extends Fragment implements
 		optionsListener = null;
 	}
 
+	private void setMyLocation(EditText view, GeoPoint myLocationPoint){
+		view.setText(Config.MY_LOCATION_STRING);
+		Address address = new Address(Locale.ENGLISH);
+		address.setLatitude(myLocationPoint.getLatitude());
+		address.setLongitude(myLocationPoint.getLongitude());
+		address.setLocality(Config.MY_LOCATION_STRING);
+		targets.put(Config.FROM_PLACE, address);
+	}
+	
 	private void setUpViews(View mainView, Typeface font) {
 		optionsPanel = (LinearLayout) mainView
 				.findViewById(R.id.mainOptionsPanel);
@@ -93,7 +108,6 @@ public class OptionsPanelFragment extends Fragment implements
 				.findViewById(R.id.geoHintsPanel);
 		geoHintsPanel.setVisibility(LinearLayout.GONE);
 		fromView = (EditText) mainView.findViewById(R.id.fromView);
-
 		fromView.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -246,19 +260,19 @@ public class OptionsPanelFragment extends Fragment implements
 
 	@Override
 	public void loadItinerary(Response response) {
-		System.out.println("Responsee: "+response);
+		System.out.println("Responsee: " + response);
 		if (response.getError() == null) {
 			System.out.println(response);
 			optionsListener.itineraryReceived(response.getPlan());
-		}else{
-			Toast.makeText(activity, response.getError().getMsg(), Toast.LENGTH_SHORT).show();
+		} else {
+			Toast.makeText(activity, response.getError().getMsg(),
+					Toast.LENGTH_SHORT).show();
 		}
 	}
 
 	@Override
 	public void navButtonClicked() {
-		// TODO Auto-generated method stub
-
+		switchToMain();
 	}
 
 	@Override
@@ -278,6 +292,12 @@ public class OptionsPanelFragment extends Fragment implements
 			View fareView) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void myLocationReady(GeoPoint myLocationPoint) {
+		setMyLocation(fromView, myLocationPoint);
+		optionsListener.locationSelected(Config.FROM_PLACE, targets.get(Config.FROM_PLACE));
 	}
 
 }
