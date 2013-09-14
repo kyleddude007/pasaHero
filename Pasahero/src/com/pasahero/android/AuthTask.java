@@ -6,23 +6,37 @@ import java.util.Map;
 
 import android.os.AsyncTask;
 
-public class AuthTask extends AsyncTask<Map<String, String>, Void, User>{
+public class AuthTask extends AsyncTask<Map<String, String>, Void, User> {
 
 	private AuthTaskInterface authListener;
-	
-	public AuthTask(AuthTaskInterface authListener){
-		this.authListener =authListener;
+	public static final int LOG_IN = 0;
+	public static final int SIGN_UP = 1;
+	public static final int LOG_OUT = 2;
+	private int authType;
+
+	public AuthTask(AuthTaskInterface authListener, int authType) {
+		this.authListener = authListener;
+		this.authType = authType;
 	}
-	
+
 	@Override
 	protected User doInBackground(Map<String, String>... maps) {
 		Map<String, String> map = maps[0];
-		User user = null;;
+		User user = null;
+		;
 		try {
-			user = User.login(map.get(Config.EMAIL), map.get(Config.PASSWORD));
+			if (authType == LOG_IN) {
+				user = User.login(map.get(Config.EMAIL),
+						map.get(Config.PASSWORD));
+			}else if(authType == SIGN_UP){
+				user = User.signup(map.get(Config.EMAIL),
+						map.get(Config.PASSWORD));
+			}else if(authType == LOG_OUT){
+				user = User.logout();
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
-		}catch (RuntimeException e){
+		} catch (RuntimeException e) {
 			e.printStackTrace();
 		}
 		return user;
@@ -30,11 +44,15 @@ public class AuthTask extends AsyncTask<Map<String, String>, Void, User>{
 
 	@Override
 	protected void onPostExecute(User user) {
-		System.out.println("user "+user.toString());
-		authListener.userReady(user);
+		if(authType == LOG_OUT){
+			authListener.onLogOut();
+		}else{
+			authListener.userReady(user);
+		}
 	}
-	
-	public interface AuthTaskInterface{
+
+	public interface AuthTaskInterface {
 		public void userReady(User user);
+		public void onLogOut();
 	}
 }

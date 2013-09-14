@@ -106,5 +106,6 @@ public class Config {
     public static final String MY_LOCATION_STRING = "My Location";
     public static final String DEFAULT_MODE = "TRANSIT,WALK";
     public static final String DEFAULT_OPTIMIZE = "QUICK";
-    
+    public static final String IS_LOGGED_OUT = "IsLoggedOut";
+
 }

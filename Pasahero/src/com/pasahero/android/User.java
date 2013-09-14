@@ -1,10 +1,11 @@
 package com.pasahero.android;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
-import java.net.ProtocolException;
 import java.net.URL;
 
 import org.codehaus.jackson.annotate.JsonProperty;
@@ -83,6 +84,27 @@ public class User {
 			throws IOException {
 		URL url = new URL(Config.PH_API_URL + "/signup");
 		return getUser(url, email, password);
+	}
+	
+	public static User logout() throws IOException{
+		URL url = new URL(Config.PH_API_URL+"/logout");
+		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		conn.setRequestMethod("GET");
+		conn.setRequestProperty("Accept", "text/plain");
+
+		int responseCode = conn.getResponseCode();
+		if (responseCode != Config.HTTP_OK) {
+			throw new RuntimeException("Failed : HTTP error code : "
+					+ responseCode);
+		}
+		InputStream stream = conn.getInputStream();
+		BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+		String response = reader.readLine();
+		if(response.equals(Config.IS_LOGGED_OUT)){
+			return null;
+		}
+		conn.disconnect();
+		return null;
 	}
 	
 	private static User getUser(URL url, String email, String password) throws IOException{

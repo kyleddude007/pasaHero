@@ -37,8 +37,8 @@ import com.mapquest.android.maps.PolygonOverlay;
 import com.mapquest.android.maps.RouteManager;
 
 public class PasaheroMapActivity extends MapActivity implements
-		GeocodeTaskInterface, TripPlannerInterface,
-		OptionsPanelListenerInterface, ItineraryFragmentInterface {
+		TripPlannerInterface, OptionsPanelListenerInterface,
+		ItineraryFragmentInterface {
 	private MyLocationOverlay locOverlay;
 	protected MapView map;
 	AnnotationView annotation;
@@ -73,11 +73,6 @@ public class PasaheroMapActivity extends MapActivity implements
 		this.context = context;
 		this.from = null;
 		this.to = null;
-		// setUpMyLocation();
-		// addPolyOverlay();
-		// addLineOverlay();
-		// addPoiOverlay();
-		// displayRoute();
 		this.requestItineraryInterface = this;
 		fragmentManager = getFragmentManager();
 
@@ -89,15 +84,13 @@ public class PasaheroMapActivity extends MapActivity implements
 		itineraryListening = itineraryFragment;
 
 		ActionBar bar = this.getActionBar();
-		bar.hide();
+		// bar.hide();
 		setUpMapView();
 		locOverlay = new MyLocationOverlay(this, map);
-
 		setUpNav();
 		setupMyLocation();
 		setUpMyLocationButton();
 		getGeocoder();
-
 		fragmentTransaction = fragmentManager.beginTransaction();
 		fragmentTransaction.hide(itineraryFragment);
 		fragmentTransaction.commit();
@@ -139,11 +132,6 @@ public class PasaheroMapActivity extends MapActivity implements
 		});
 	}
 
-	public void geocode(String provider, String location) {
-		GeocodeTask geocodeTask = new GeocodeTask(provider, geocoder, this);
-		geocodeTask.execute(location);
-	}
-
 	protected Geocoder getGeocoder() {
 		if (geocoder == null) {
 			geocoder = new Geocoder(this);
@@ -157,7 +145,7 @@ public class PasaheroMapActivity extends MapActivity implements
 		locOverlay.runOnFirstFix(new Runnable() {
 			@Override
 			public void run() {
-				currentLocation = locOverlay.getMyLocation(); 
+				currentLocation = locOverlay.getMyLocation();
 				mapCtrl.animateTo(currentLocation);
 				mapCtrl.setZoom(14);
 				map.getOverlays().add(locOverlay);
@@ -166,11 +154,10 @@ public class PasaheroMapActivity extends MapActivity implements
 		});
 	}
 
-
 	@Override
 	protected void onResume() {
 		locOverlay.enableMyLocation();
-		//locOverlay.enableCompass();
+		// locOverlay.enableCompass();
 		super.onResume();
 	}
 
@@ -178,7 +165,7 @@ public class PasaheroMapActivity extends MapActivity implements
 	@Override
 	protected void onPause() {
 		super.onPause();
-		//locOverlay.disableCompass();
+		// locOverlay.disableCompass();
 		locOverlay.disableMyLocation();
 	}
 
@@ -224,23 +211,6 @@ public class PasaheroMapActivity extends MapActivity implements
 		map.invalidate();
 	}
 
-	@Override
-	public void geocodeFinish(String provider, List<Address> result) {
-		System.out.println("Provider: " + provider);
-		if (result == null || result.size() == 0) {
-			Toast.makeText(this, "No match found!", Toast.LENGTH_SHORT).show();
-		} else {
-			Toast.makeText(this, "Loading results...", Toast.LENGTH_SHORT)
-					.show();
-			for (Address address : result) {
-				System.out.println(address.toString());
-				adapter.add(address);
-			}
-			Address address = result.get(0);
-			setAddress(provider, address);
-		}
-	}
-
 	private void setAddress(String provider, Address address) {
 		// adapter.setSelected(address);
 		addMarker(address, address.getLocality(), "");
@@ -251,11 +221,6 @@ public class PasaheroMapActivity extends MapActivity implements
 		} else if (provider.equals(Config.TO_PLACE)) {
 			to = address;
 		}
-	}
-
-	@Override
-	public void geocodeFinish(List<Address> result) {
-
 	}
 
 	@Override
@@ -323,9 +288,7 @@ public class PasaheroMapActivity extends MapActivity implements
 	@Override
 	public void readyToReceivMyLocation() {
 		// TODO Auto-generated method stub
-		
+
 	}
-
-
 
 }
