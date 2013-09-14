@@ -7,7 +7,9 @@ import java.util.Locale;
 import java.util.Vector;
 
 import android.app.Activity;
+import android.app.DialogFragment;
 import android.app.Fragment;
+import android.app.TimePickerDialog;
 import android.graphics.Typeface;
 import android.location.Address;
 import android.os.Bundle;
@@ -19,18 +21,22 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.mapquest.android.Geocoder;
 import com.mapquest.android.maps.GeoPoint;
 
 public class OptionsPanelFragment extends Fragment implements
-		GeocodeTaskInterface, TripPlannerInterface, PasaHeroMapInterface {
+		GeocodeTaskInterface, TripPlannerInterface, PasaHeroMapInterface, TimePickerDialog.OnTimeSetListener  {
 	private OptionsPanelListenerInterface optionsListener;
 	private GeocodeTaskInterface geoListener;
 
@@ -48,8 +54,14 @@ public class OptionsPanelFragment extends Fragment implements
 	private GeocodeTask geocodeTask;
 	private Hashtable<String, Address> targets;
 	private TripPlannerInterface itineraryListener;
-	private boolean myLocationReady;
-	private GeoPoint myLocationPoint;
+	private View moreOptionsPanel;
+	private Button moreOptionsToggle;
+	private Spinner timeOptions;
+	private TextView timeDisplay;
+	private EditText walkSpeedView;
+	private EditText walkDistanceView;
+	private boolean arriveBy;
+	private TimePickerDialog.OnTimeSetListener timePickerListener;
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -60,7 +72,8 @@ public class OptionsPanelFragment extends Fragment implements
 		geoListener = this;
 		targets = new Hashtable<String, Address>();
 		itineraryListener = this;
-		myLocationReady = false;
+		arriveBy = false;
+		timePickerListener = this;
 
 	}
 
@@ -92,7 +105,7 @@ public class OptionsPanelFragment extends Fragment implements
 		optionsListener = null;
 	}
 
-	private void setMyLocation(EditText view, GeoPoint myLocationPoint){
+	private void setMyLocation(EditText view, GeoPoint myLocationPoint) {
 		view.setText(Config.MY_LOCATION_STRING);
 		Address address = new Address(Locale.ENGLISH);
 		address.setLatitude(myLocationPoint.getLatitude());
@@ -100,7 +113,7 @@ public class OptionsPanelFragment extends Fragment implements
 		address.setLocality(Config.MY_LOCATION_STRING);
 		targets.put(Config.FROM_PLACE, address);
 	}
-	
+
 	private void setUpViews(View mainView, Typeface font) {
 		optionsPanel = (LinearLayout) mainView
 				.findViewById(R.id.mainOptionsPanel);
@@ -213,8 +226,66 @@ public class OptionsPanelFragment extends Fragment implements
 						params));
 				request.execute(Utils.contsructUrl(Config.OTP_API_URL, params));
 			}
-
 		});
+
+		moreOptionsPanel = (View) mainView
+				.findViewById(R.id.more_options_panel);
+		moreOptionsPanel.setVisibility(View.GONE);
+
+		moreOptionsToggle = (Button) mainView
+				.findViewById(R.id.more_options_toggle);
+		moreOptionsToggle.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View view) {
+				if (moreOptionsPanel.isShown()) {
+					moreOptionsPanel.setVisibility(View.GONE);
+					moreOptionsToggle.setText(activity.getString(R.string.more_options));
+				} else {
+					moreOptionsPanel.setVisibility(View.VISIBLE);
+					moreOptionsToggle.setText(activity.getString(R.string.hide_options));
+				}
+			}
+		});
+
+		timeOptions = (Spinner) mainView
+				.findViewById(R.id.spinner_arrive_or_depart);
+		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+				activity, R.array.trip_plan_time_options,
+				android.R.layout.simple_spinner_item);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		timeOptions.setAdapter(adapter);
+		timeOptions.setOnItemSelectedListener(new OnItemSelectedListener() {
+			public void onItemSelected(AdapterView<?> parent, View view,
+					int pos, long id) {
+				if (pos == 0) {
+					arriveBy = true;
+				} else if (pos == 1) {
+					arriveBy = false;
+				}
+			}
+
+			public void onNothingSelected(AdapterView<?> parent) {
+				arriveBy = false;
+			}
+		});
+
+		timeDisplay = (TextView) mainView
+				.findViewById(R.id.time_arrive_or_depart);
+		timeDisplay.setText(Utils.getShortTime(new Date()));
+		
+		timeDisplay.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View view){
+				showTimePickerDialog(view);
+			}
+		});
+
+	}
+
+	public void showTimePickerDialog(View view) {
+		DialogFragment timeFragment = new TimePickerFragment(this);
+		timeFragment.show(getFragmentManager(), "timePicker");
 	}
 
 	public void switchToGeoHints() {
@@ -297,7 +368,13 @@ public class OptionsPanelFragment extends Fragment implements
 	@Override
 	public void myLocationReady(GeoPoint myLocationPoint) {
 		setMyLocation(fromView, myLocationPoint);
-		optionsListener.locationSelected(Config.FROM_PLACE, targets.get(Config.FROM_PLACE));
+		optionsListener.locationSelected(Config.FROM_PLACE,
+				targets.get(Config.FROM_PLACE));
+	}
+
+	@Override
+	public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+		timeDisplay.setText(Utils.getShortTime(hourOfDay, minute));
 	}
 
 }

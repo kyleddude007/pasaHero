@@ -102,4 +102,14 @@ public class Utils {
 		}
 		return null;
 	}
+	
+	public static String getShortTime(int hour, int minute){
+		String m="";
+		if(hour>12){
+			m = "PM";
+		}else if(hour<12 && hour>=0){
+			m = "AM";
+		}
+		return (hour%12)+" : "+minute+" "+m;
+	}
 }

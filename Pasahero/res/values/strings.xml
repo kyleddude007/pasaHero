@@ -32,5 +32,13 @@
     <string name="view_more_itineraries">View more routes</string>
     <string name="icon_location_arrow">&#xf124;</string>
     <string name="title_activity_auth">AuthActivity</string>
+    <string name="more_options">More Options</string>
+    <string name="hide_options">Hide Options</string>
+    <string name="walk_speed">Enter walk speed</string>
+    <string name="walk_distance">Enter maximum walk distance</string>
+    <string-array name="trip_plan_time_options">
+        <item>Arrive by</item>
+        <item>Depart on</item>
+    </string-array>
 
 </resources>

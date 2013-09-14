@@ -17,8 +17,6 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/from_hint" >
-
-            <requestFocus />
         </EditText>
 
         <EditText
@@ -29,34 +27,58 @@
             android:hint="@string/to_hint" />
 
         <Button
+            android:id="@+id/more_options_toggle"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/more_options" />
+
+        <Button
             android:id="@+id/plan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/done" />
 
-        <TimePicker
-            android:id="@+id/arriveBy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TimePicker
-            android:id="@+id/departOn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <EditText
-            android:id="@+id/walkSpeed"
+        <ScrollView
+            android:id="@+id/more_options_panel"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="number" />
+            android:layout_height="wrap_content" >
 
-        <EditText
-            android:id="@+id/walkDistance"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="number" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+
+                <Spinner
+                    android:id="@+id/spinner_arrive_or_depart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                
+                 <TextView
+                    android:id="@+id/time_arrive_or_depart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                     />
+
+              
+                <EditText
+                    android:id="@+id/walkSpeed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:hint="@string/walk_speed" />
+
+                <EditText
+                    android:id="@+id/walkDistance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:hint="@string/walk_distance" />
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 
     <LinearLayout
