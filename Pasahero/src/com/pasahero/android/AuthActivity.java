@@ -21,6 +21,7 @@ public class AuthActivity extends Activity implements AuthTask.AuthTaskInterface
 	private Button signUp;
 	private AuthTask.AuthTaskInterface authListener;
 	private Context context;
+	private SessionManager session;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,7 @@ public class AuthActivity extends Activity implements AuthTask.AuthTaskInterface
 		setContentView(R.layout.activity_auth);
 		authListener = this;
 		context =this;
+		session = new SessionManager(this);
 		setUpViews();
 	}
 
@@ -48,7 +50,18 @@ public class AuthActivity extends Activity implements AuthTask.AuthTaskInterface
 			public void onClick(View view){
 				System.out.println("log in!");
 				Toast.makeText(context, "Loggin in", Toast.LENGTH_SHORT).show();
-				AuthTask authTask = new AuthTask(authListener);
+				AuthTask authTask = new AuthTask(authListener, AuthTask.LOG_IN);
+				Map<String, String> data = new Hashtable<String, String>();
+				data.put(Config.EMAIL, emailView.getEditableText().toString());
+				data.put(Config.PASSWORD, passwordView.getEditableText().toString());
+				authTask.execute(data);
+			}
+		});
+		signUp.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View view){
+				Toast.makeText(context, "Signing up", Toast.LENGTH_SHORT).show();
+				AuthTask authTask = new AuthTask(authListener, AuthTask.SIGN_UP);
 				Map<String, String> data = new Hashtable<String, String>();
 				data.put(Config.EMAIL, emailView.getEditableText().toString());
 				data.put(Config.PASSWORD, passwordView.getEditableText().toString());
@@ -60,7 +73,13 @@ public class AuthActivity extends Activity implements AuthTask.AuthTaskInterface
 	@Override
 	public void userReady(User user) {
 		System.out.println(user);
+		session.createLoginSession(user.getEmail());
 		System.out.println("Successfully logged in!");
+	}
+
+	@Override
+	public void onLogOut() {
+		session.logoutUser();
 	}
 
 }

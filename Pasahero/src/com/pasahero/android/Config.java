@@ -84,4 +84,5 @@ public class Config {
 	public static final String PREF_NAME = "PasaHeroPref";
     public static final String IS_LOGGED_IN = "IsLoggedIn";
     public static final String NAME = "name";
+    public static final String IS_LOGGED_OUT = "IsLoggedOut";
 }

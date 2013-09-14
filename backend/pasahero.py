@@ -93,10 +93,11 @@ def load_token(token):
         return user
     return None
 """
-@app.route('/ps/api/logout/<id>')
-def logout(id):
+
+@app.route('/ps/api/logout')
+def logout():
     session.pop('user_id', None)
-    return 'Logged out'
+    return "Logged out", 200
 
 @app.route('/ps/api/login', methods = ['POST'])
 def login():
@@ -104,6 +105,8 @@ def login():
         user = User.filter_by_email(request.json['email'])
         if user and hash_password(request.json['password'], user.salt) == user.password:
             session['user_id'] = user.id
+            print "login: "
+            print session
             return jsonify(user.json())
 
 @app.route('/ps/api/users/<id>', methods = ['GET'])
