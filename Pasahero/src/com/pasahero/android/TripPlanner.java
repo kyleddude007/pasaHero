@@ -128,7 +128,6 @@ public class TripPlanner {
 		InputStream stream = conn.getInputStream();
 		Response response = mapper.readValue(stream, Response.class);
 		conn.disconnect();
-		System.out.println(response);
 		return response;
 	}
 	

@@ -344,7 +344,6 @@ public class ItineraryFragment extends Fragment implements
 			}
 		}
 		itineraryListener.lineDataReady(lineData, getRouteColor());
-
 	}
 
 	public void getFare(URL url, String legMode, View fareView) {

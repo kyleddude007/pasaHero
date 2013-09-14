@@ -3,10 +3,12 @@ package com.pasahero.android;
 import java.util.Hashtable;
 import java.util.List;
 
+import org.codehaus.jackson.annotate.JsonProperty;
+
 public class Response {
 
 	private Plan plan;
-	private Hashtable<String, String> error;
+	private Error error;
 	private RequestParameters requestParameters;
 	private List<Fare> fares;
 	public List<Fare> getFares() {
@@ -30,12 +32,14 @@ public class Response {
 	
 	@Override
 	public String toString(){
-		return plan.toString();
+		return "[requestParameters: "+requestParameters.toString();
 	}
-	public Hashtable<String, String> getError() {
+	@JsonProperty("error")
+	public Error getError() {
 		return error;
 	}
-	public void setError(Hashtable<String, String> error) {
+	@JsonProperty("error")
+	public void setError(Error error) {
 		this.error = error;
 	}
 }

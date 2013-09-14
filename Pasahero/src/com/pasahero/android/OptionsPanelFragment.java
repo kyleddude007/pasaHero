@@ -122,7 +122,6 @@ public class OptionsPanelFragment extends Fragment implements
 
 		});
 
-		
 		geoInput = (EditText) mainView.findViewById(R.id.geoInput);
 		geoInput.addTextChangedListener(new TextWatcher() {
 
@@ -143,9 +142,9 @@ public class OptionsPanelFragment extends Fragment implements
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
 				if (count > Config.TEXT_CHANGE_COUNT) {
+					geoAdapter.clear();
 					geocodeTask = new GeocodeTask(geoRequestor, geocoder,
 							geoListener);
-					geoAdapter.clear();
 				} else {
 					geocodeTask = null;
 				}
@@ -196,7 +195,8 @@ public class OptionsPanelFragment extends Fragment implements
 				params.put(Config.WALK_SPEED, "1.341");
 				RequestItineraryTask request = new RequestItineraryTask(
 						itineraryListener);
-				System.out.println(Utils.contsructUrl(Config.OTP_API_URL, params));
+				System.out.println(Utils.contsructUrl(Config.OTP_API_URL,
+						params));
 				request.execute(Utils.contsructUrl(Config.OTP_API_URL, params));
 			}
 
@@ -246,33 +246,38 @@ public class OptionsPanelFragment extends Fragment implements
 
 	@Override
 	public void loadItinerary(Response response) {
-		System.out.println(response);
-		optionsListener.itineraryReceived(response.getPlan());
+		System.out.println("Responsee: "+response);
+		if (response.getError() == null) {
+			System.out.println(response);
+			optionsListener.itineraryReceived(response.getPlan());
+		}else{
+			Toast.makeText(activity, response.getError().getMsg(), Toast.LENGTH_SHORT).show();
+		}
 	}
 
 	@Override
 	public void navButtonClicked() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void planReceived(Plan plan) {
 		// TODO Auto-generated method stub
-		
-	}
 
+	}
 
 	@Override
 	public void fareReady(Fare fare, String legMode, View itineraryView) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public void pnrTableRead(Hashtable<String, String> pnrTable,String end, View fareView) {
+	public void pnrTableRead(Hashtable<String, String> pnrTable, String end,
+			View fareView) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
