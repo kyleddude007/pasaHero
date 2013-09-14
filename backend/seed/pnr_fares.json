@@ -1,0 +1,294 @@
+[{
+    "start": "Blumentritt PNR",
+    "Tutuban PNR": "10"
+
+}, {
+    "start": "Dapitan/Laon Laan PNR",
+    "Tutuban PNR": "10",
+    "Blumentritt PNR": "10"
+
+}, {
+    "start": "España PNR",
+    "Tutuban PNR": "10",
+    "Blumentritt PNR": "10",
+    "Dapitan/Laon Laan PNR": "10"
+
+}, {
+    "start": "Santa Mesa PNR",
+    "Tutuban PNR": "10",
+    "Blumentritt PNR": "10",
+    "Dapitan/Laon Laan PNR": "10",
+    "España PNR": "10"
+
+}, {
+    "start": "Pandacan PNR",
+    "Tutuban PNR": "10",
+    "Blumentritt PNR": "10",
+    "Dapitan/Laon Laan PNR": "10",
+    "España PNR": "10",
+    "Santa Mesa PNR": "10"
+
+}, {
+    "start": "Paco PNR",
+    "Tutuban PNR": "10",
+    "Blumentritt PNR": "10",
+    "Dapitan/Laon Laan PNR": "10",
+    "España PNR": "10",
+    "Santa Mesa PNR": "10",
+    "Pandacan PNR": "10"
+
+}, {
+    "start": "San Andres PNR",
+    "Tutuban PNR": "10",
+    "Blumentritt PNR": "10",
+    "Dapitan/Laon Laan PNR": "10",
+    "España PNR": "10",
+    "Santa Mesa PNR": "10",
+    "Pandacan PNR": "10",
+    "Paco PNR": "10"
+
+}, {
+    "start": "Vito Cruz PNR",
+    "Tutuban PNR": "10",
+    "Blumentritt PNR": "10",
+    "Dapitan/Laon Laan PNR": "10",
+    "España PNR": "10",
+    "Santa Mesa PNR": "10",
+    "Pandacan PNR": "10",
+    "Paco PNR": "10",
+    "San Andres PNR": "10"
+
+}, {
+    "start": "Buendia PNR",
+    "Tutuban PNR": "10",
+    "Blumentritt PNR": "10",
+    "Dapitan/Laon Laan PNR": "10",
+    "España PNR": "10",
+    "Santa Mesa PNR": "10",
+    "Pandacan PNR": "10",
+    "Paco PNR": "10",
+    "San Andres PNR": "10",
+    "Vito Cruz PNR": "10"
+
+}, {
+    "start": "Pasay Road PNR",
+    "Tutuban PNR": "10",
+    "Blumentritt PNR": "10",
+    "Dapitan/Laon Laan PNR": "10",
+    "España PNR": "10",
+    "Santa Mesa PNR": "10",
+    "Pandacan PNR": "10",
+    "Paco PNR": "10",
+    "San Andres PNR": "10",
+    "Vito Cruz PNR": "10",
+    "Buendia PNR": "10"
+
+}, {
+    "start": "EDSA PNR",
+    "Tutuban PNR": "10",
+    "Blumentritt PNR": "10",
+    "Dapitan/Laon Laan PNR": "10",
+    "España PNR": "10",
+    "Santa Mesa PNR": "10",
+    "Pandacan PNR": "10",
+    "Paco PNR": "10",
+    "San Andres PNR": "10",
+    "Vito Cruz PNR": "10",
+    "Buendia PNR": "10",
+    "Pasay Road PNR": "10"
+
+}, {
+    "start": "Nichols PNR",
+    "Tutuban PNR": "15",
+    "Blumentritt PNR": "15",
+    "Dapitan/Laon Laan PNR": "10",
+    "España PNR": "10",
+    "Santa Mesa PNR": "10",
+    "Pandacan PNR": "10",
+    "Paco PNR": "10",
+    "San Andres PNR": "10",
+    "Vito Cruz PNR": "10",
+    "Buendia PNR": "10",
+    "Pasay Road PNR": "10",
+    "EDSA PNR": "10"
+
+}, {
+    "start": "FTI Complex PNR",
+    "Tutuban PNR": "15",
+    "Blumentritt PNR": "15",
+    "Dapitan/Laon Laan PNR": "10",
+    "España PNR": "10",
+    "Santa Mesa PNR": "10",
+    "Pandacan PNR": "10",
+    "Paco PNR": "10",
+    "San Andres PNR": "10",
+    "Vito Cruz PNR": "10",
+    "Buendia PNR": "10",
+    "Pasay Road PNR": "10",
+    "EDSA PNR": "10",
+    "Nichols PNR": "10"
+
+}, {
+    "start": "Bicutan PNR",
+    "Tutuban PNR": "15",
+    "Blumentritt PNR": "15",
+    "Dapitan/Laon Laan PNR": "15",
+    "España PNR": "15",
+    "Santa Mesa PNR": "10",
+    "Pandacan PNR": "10",
+    "Paco PNR": "10",
+    "San Andres PNR": "10",
+    "Vito Cruz PNR": "10",
+    "Buendia PNR": "10",
+    "Pasay Road PNR": "10",
+    "EDSA PNR": "10",
+    "Nichols PNR": "10",
+    "FTI Complex PNR": "10"
+
+}, {
+    "start": "Sucat PNR",
+    "Tutuban PNR": "20",
+    "Blumentritt PNR": "20",
+    "Dapitan/Laon Laan PNR": "15",
+    "España PNR": "15",
+    "Santa Mesa PNR": "15",
+    "Pandacan PNR": "15",
+    "Paco PNR": "15",
+    "San Andres PNR": "10",
+    "Vito Cruz PNR": "10",
+    "Buendia PNR": "10",
+    "Pasay Road PNR": "10",
+    "EDSA PNR": "10",
+    "Nichols PNR": "10",
+    "FTI Complex PNR": "10",
+    "Bicutan PNR": "10"
+
+}, {
+    "start": "Alabang PNR",
+    "Tutuban PNR": "20",
+    "Blumentritt PNR": "20",
+    "Dapitan/Laon Laan PNR": "20",
+    "España PNR": "20",
+    "Santa Mesa PNR": "15",
+    "Pandacan PNR": "15",
+    "Paco PNR": "15",
+    "San Andres PNR": "15",
+    "Vito Cruz PNR": "15",
+    "Buendia PNR": "15",
+    "Pasay Road PNR": "10",
+    "EDSA PNR": "10",
+    "Nichols PNR": "10",
+    "FTI Complex PNR": "10",
+    "Bicutan PNR": "10",
+    "Sucat PNR": "10"
+
+}, {
+    "start": "Muntinlupa PNR",
+    "Tutuban PNR": "25",
+    "Blumentritt PNR": "25",
+    "Dapitan/Laon Laan PNR": "20",
+    "España PNR": "20",
+    "Santa Mesa PNR": "20",
+    "Pandacan PNR": "20",
+    "Paco PNR": "15",
+    "San Andres PNR": "15",
+    "Vito Cruz PNR": "15",
+    "Buendia PNR": "15",
+    "Pasay Road PNR": "15",
+    "EDSA PNR": "15",
+    "Nichols PNR": "10",
+    "FTI Complex PNR": "10",
+    "Bicutan PNR": "10",
+    "Sucat PNR": "10",
+    "Alabang PNR": "10"
+
+}, {
+    "start": "San Pedro PNR",
+    "Tutuban PNR": "25",
+    "Blumentritt PNR": "25",
+    "Dapitan/Laon Laan PNR": "25",
+    "España PNR": "25",
+    "Santa Mesa PNR": "20",
+    "Pandacan PNR": "20",
+    "Paco PNR": "20",
+    "San Andres PNR": "20",
+    "Vito Cruz PNR": "20",
+    "Buendia PNR": "20",
+    "Pasay Road PNR": "20",
+    "EDSA PNR": "15",
+    "Nichols PNR": "15",
+    "FTI Complex PNR": "15",
+    "Bicutan PNR": "10",
+    "Sucat PNR": "10",
+    "Alabang PNR": "10",
+    "Muntinlupa PNR": "10"
+
+}, {
+    "start": "Pacita Complex PNR",
+    "Tutuban PNR": "30",
+    "Blumentritt PNR": "25",
+    "Dapitan/Laon Laan PNR": "25",
+    "España PNR": "25",
+    "Santa Mesa PNR": "25",
+    "Pandacan PNR": "25",
+    "Paco PNR": "20",
+    "San Andres PNR": "20",
+    "Vito Cruz PNR": "20",
+    "Buendia PNR": "20",
+    "Pasay Road PNR": "20",
+    "EDSA PNR": "20",
+    "Nichols PNR": "15",
+    "FTI Complex PNR": "15",
+    "Bicutan PNR": "15",
+    "Sucat PNR": "10",
+    "Alabang PNR": "10",
+    "Muntinlupa PNR": "10",
+    "San Pedro PNR": "10"
+
+}, {
+    "start": "Golden City 1 PNR",
+    "Tutuban PNR": "30",
+    "Blumentritt PNR": "25",
+    "Dapitan/Laon Laan PNR": "25",
+    "España PNR": "25",
+    "Santa Mesa PNR": "25",
+    "Pandacan PNR": "25",
+    "Paco PNR": "20",
+    "San Andres PNR": "20",
+    "Vito Cruz PNR": "20",
+    "Buendia PNR": "20",
+    "Pasay Road PNR": "20",
+    "EDSA PNR": "20",
+    "Nichols PNR": "15",
+    "FTI Complex PNR": "15",
+    "Bicutan PNR": "15",
+    "Sucat PNR": "10",
+    "Alabang PNR": "10",
+    "Muntinlupa PNR": "10",
+    "San Pedro PNR": "10",
+    "Pacita Complex PNR": "10"
+
+}, {
+    "start": "Biñan PNR",
+    "Tutuban PNR": "30",
+    "Blumentritt PNR": "30",
+    "Dapitan/Laon Laan PNR": "25",
+    "España PNR": "25",
+    "Santa Mesa PNR": "25",
+    "Pandacan PNR": "25",
+    "Paco PNR": "25",
+    "San Andres PNR": "25",
+    "Vito Cruz PNR": "20",
+    "Buendia PNR": "20",
+    "Pasay Road PNR": "20",
+    "EDSA PNR": "20",
+    "Nichols PNR": "20",
+    "FTI Complex PNR": "15",
+    "Bicutan PNR": "15",
+    "Sucat PNR": "10",
+    "Alabang PNR": "10",
+    "Muntinlupa PNR": "10",
+    "San Pedro PNR": "10",
+    "Pacita Complex PNR": "10",
+    "Golden City 1 PNR": "10"
+}]

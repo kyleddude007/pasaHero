@@ -40,6 +40,8 @@ def dbseed(options):
     for dump in table_dumps:
         if dump.endswith('.json'):
             table = dump[:-5]
+            print "Seeding "
+            print table
             seed_table(conn, table, dirname)
 
 @task
