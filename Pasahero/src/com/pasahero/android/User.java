@@ -1,11 +1,10 @@
 package com.pasahero.android;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.net.ProtocolException;
 import java.net.URL;
 
 import org.codehaus.jackson.annotate.JsonProperty;
@@ -74,9 +73,19 @@ public class User {
 		return "[ Email: " + email + " , " + "Password: " + password + " ]";
 	}
 
-	public static User getUser(String email, String password)
+	public static User login(String email, String password)
 			throws IOException {
 		URL url = new URL(Config.PH_API_URL + "/login");
+		return getUser(url, email, password);
+	}
+	
+	public static User signup(String email, String password)
+			throws IOException {
+		URL url = new URL(Config.PH_API_URL + "/signup");
+		return getUser(url, email, password);
+	}
+	
+	private static User getUser(URL url, String email, String password) throws IOException{
 		String jsonString = "{\"" + Config.EMAIL + "\":\"" + email + "\", \""
 				+ Config.PASSWORD + "\":\"" + password + "\"}";
 		byte[] jsonBytes = jsonString.getBytes();

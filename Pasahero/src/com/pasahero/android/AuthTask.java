@@ -19,7 +19,7 @@ public class AuthTask extends AsyncTask<Map<String, String>, Void, User>{
 		Map<String, String> map = maps[0];
 		User user = null;;
 		try {
-			user = User.getUser(map.get(Config.EMAIL), map.get(Config.PASSWORD));
+			user = User.login(map.get(Config.EMAIL), map.get(Config.PASSWORD));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}catch (RuntimeException e){

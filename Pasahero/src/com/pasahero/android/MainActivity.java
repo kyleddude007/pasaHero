@@ -7,14 +7,17 @@ import android.view.Menu;
 
 public class MainActivity extends Activity {
 
+	SessionManager session;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
 		//startActivity(new Intent(getApplicationContext(),PasaheroMapActivity.class));
-		startActivity(new Intent(getApplicationContext(),AuthActivity.class));
-
+		//startActivity(new Intent(getApplicationContext(),AuthActivity.class));
+		
+		session.checkLogin(AuthActivity.class);
+		
 		/*try {
 			URL[] urls = { new URL(Config.SAMPLE_URL) };
 			new RequestItineraryTask(this).execute(urls);
