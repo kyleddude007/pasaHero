@@ -13,10 +13,10 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		//startActivity(new Intent(getApplicationContext(),PasaheroMapActivity.class));
+		startActivity(new Intent(getApplicationContext(),PasaheroMapActivity.class));
 		//startActivity(new Intent(getApplicationContext(),AuthActivity.class));
-		
-		session.checkLogin(AuthActivity.class);
+		//session = new SessionManager(this);
+		//session.checkLogin();
 		
 		/*try {
 			URL[] urls = { new URL(Config.SAMPLE_URL) };

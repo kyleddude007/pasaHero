@@ -36,10 +36,10 @@ public class SessionManager {
     	return pref.getBoolean(Config.IS_LOGGED_IN, false);
     }
     
-    public void checkLogin(Class authActivity){
+    public void checkLogin(){
         // Check login status
         if(!this.isLoggedIn()){
-            Intent i = new Intent(context, authActivity);
+            Intent i = new Intent(context, AuthActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);    
             context.startActivity(i);
@@ -47,11 +47,11 @@ public class SessionManager {
          
     }
     
-    public void logoutUser(Class authActivity){
+    public void logoutUser(){
         // Clearing all data from Shared Preferences
         editor.clear();
         editor.commit();         
-        Intent i = new Intent(context, authActivity);
+        Intent i = new Intent(context, AuthActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(i);

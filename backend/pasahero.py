@@ -30,8 +30,8 @@ class User():
         self.id = data['id']
         self.password = data['password']
         self.salt = data['salt']
-        self.created_on = data['createdOn']
-        self.updated_on = data['updatedOn']
+        self.created_on = data['created_on']
+        self.updated_on = data['updated_on']
 
     def get_auth_token(self):
         data=[str(self.email), self.password]
@@ -64,15 +64,15 @@ class Fare():
     def __init__(self, data):
         self.discounted = data['discounted']
         self.distance = data['distance']
-        self.distanceUnit = data['distanceUnit']
+        self.distance_unit = data['distance_unit']
         self.id = data['id']
         self.regular = data['regular']
-        self.singleJourney = data['singleJourney']
-        self.storedValue = data['storedValue']
+        self.single_journey = data['single_journey']
+        self.stored_value = data['stored_value']
         self.type = data['type']
 
     def json(self):
-        return dict(discounted=self.discounted, distance=self.distance, id=self.id, distanceUnit=self.distanceUnit, regular = self.regular, singleJourney=self.singleJourney, storedValue=self.storedValue, type=self.type)
+        return dict(discounted=self.discounted, distance=self.distance, id=self.id, distance_unit=self.distance_unit, regular = self.regular, single_journey=self.single_journey, stored_value=self.stored_value, type=self.type)
     
 def get_salt():
     return uuid.uuid4().hex
@@ -121,7 +121,7 @@ def signup():
     password = hash_password(request.json['password'], salt)
     created_on = str(datetime.now(timezone(app.config['TIMEZONE'])))
     updated_on = created_on
-    insert = r.table('users').insert({'email':email, 'password': password, 'salt':salt, 'createdOn':created_on, 'updatedOn':updated_on}, return_vals=True).run(conn)
+    insert = r.table('users').insert({'email':email, 'password': password, 'salt':salt, 'created_on':created_on, 'updated_on':updated_on}, return_vals=True).run(conn)
     user = User(insert['new_val'])
     conn.close()
     if user is None:
