@@ -1,4 +1,5 @@
 package com.pasahero.android;
+import android.app.ProgressDialog;
 import android.location.Address;
 public interface OptionsPanelListenerInterface {
 	public void locationEntered(String location);

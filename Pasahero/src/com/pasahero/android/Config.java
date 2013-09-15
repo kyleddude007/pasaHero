@@ -108,5 +108,7 @@ public class Config {
     public static final String DEFAULT_OPTIMIZE = "QUICK";
     public static final String IS_LOGGED_OUT = "IsLoggedOut";
     public static final String HTTP_CONNECT_FAILED = "Could not connect to the server.  Try to reset your connection";
+    public static final String LOADING = "Loading";
+    public static final String ITINERARY_FETCHING_MSG = "Please wait while we fetch your plan.";
 
 }

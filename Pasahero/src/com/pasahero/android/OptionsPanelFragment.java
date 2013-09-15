@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.graphics.Typeface;
@@ -66,7 +67,8 @@ public class OptionsPanelFragment extends Fragment implements
 	private boolean arriveBy;
 	private TimePickerDialog.OnTimeSetListener timePickerListener;
 	private AlertDialog errorDialog;
-
+	private RequestInterruptInterface geocodeTaskListening;
+	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
@@ -80,6 +82,7 @@ public class OptionsPanelFragment extends Fragment implements
 		timePickerListener = this;
 		loadDefaultOptions();
 	}
+	
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -138,7 +141,29 @@ public class OptionsPanelFragment extends Fragment implements
 			}
 
 		});
+		fromView.addTextChangedListener(new FireGeocode(Config.FROM_PLACE));
+		fromView.addTextChangedListener(new TextWatcher(){
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				
+			}
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+				
+			}
+			
+		});
 		toView = (EditText) mainView.findViewById(R.id.toView);
+		toView.addTextChangedListener(new FireGeocode(Config.TO_PLACE));
 		toView.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -150,7 +175,6 @@ public class OptionsPanelFragment extends Fragment implements
 				geoInput.setHint(getString(R.string.to_hint));
 				geoInput.requestFocus();
 			}
-
 		});
 
 		geoInput = (EditText) mainView.findViewById(R.id.geoInput);
@@ -174,6 +198,9 @@ public class OptionsPanelFragment extends Fragment implements
 					int count) {
 				if (count > Config.TEXT_CHANGE_COUNT) {
 					geoAdapter.clear();
+					if(geocodeTask!=null){
+						geocodeTask.cancel(true);
+					}
 					geocodeTask = new GeocodeTask(geoRequestor, geocoder,
 							geoListener);
 				} else {
@@ -201,6 +228,7 @@ public class OptionsPanelFragment extends Fragment implements
 				}
 				switchToMain();
 				optionsListener.locationSelected(geoRequestor, address);
+				geocodeTask.cancel(true);
 			}
 
 		});
@@ -226,8 +254,7 @@ public class OptionsPanelFragment extends Fragment implements
 				params.put(Config.TIME, timeDisplay.getText().toString());
 				params.put(Config.WALK_SPEED, walkSpeedView.getText()
 						.toString());
-				RequestItineraryTask request = new RequestItineraryTask(
-						itineraryListener);
+				RequestItineraryTask request = new RequestItineraryTask(activity, itineraryListener);
 				System.out.println(Utils.contsructUrl(Config.OTP_API_URL,
 						params));
 				request.execute(Utils.contsructUrl(Config.OTP_API_URL, params));
@@ -331,7 +358,7 @@ public class OptionsPanelFragment extends Fragment implements
 			Toast.makeText(activity, "Loading results...", Toast.LENGTH_SHORT)
 					.show();
 			for (Address address : result) {
-				geoAdapter.insert(address, 0);
+				geoAdapter.insertToTop(address);
 			}
 			Address address = result.get(0);
 		}
@@ -426,6 +453,38 @@ public class OptionsPanelFragment extends Fragment implements
 	@Override
 	public void failedToRetrieveItinerary() {
 		// TODO Auto-generated method stub
+		
+	}
+	
+	public class FireGeocode implements TextWatcher{
+		private String caller;
+		public FireGeocode(String caller){
+			this.caller = caller;
+		}
+		
+		@Override
+		public void afterTextChanged(Editable s) {
+			if (!geoRequestor.equals(caller)) {
+				resetGeoHints();
+			}
+			switchToGeoHints();
+			geoRequestor = caller;
+			geoInput.setText(s);
+			geoInput.setHint(getString(R.string.to_hint));
+			geoInput.requestFocus();
+		}
+
+		@Override
+		public void beforeTextChanged(CharSequence s, int start, int count,
+				int after) {
+			
+		}
+
+		@Override
+		public void onTextChanged(CharSequence s, int start, int before,
+				int count) {
+			
+		}
 		
 	}
 

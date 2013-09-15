@@ -13,6 +13,7 @@ import org.opentripplanner.util.PolylineEncoder;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -56,7 +57,7 @@ public class ItineraryFragment extends Fragment implements
 	private int routeColorIndex;
 	private int routeColorLength;
 	private AlertDialog errorDialog;
-
+	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
@@ -87,10 +88,10 @@ public class ItineraryFragment extends Fragment implements
 		}
 	}
 
+	
 	@Override
 	public void onDetach() {
 		super.onDetach();
-
 	}
 
 	@Override
@@ -143,7 +144,7 @@ public class ItineraryFragment extends Fragment implements
 				stepsAdapter = new StepsAdapter(activity, steps);
 				stepsView.setAdapter(stepsAdapter);
 				stepsView.setVisibility(View.GONE);
-				Button showToggle = (Button) walkView
+				final Button showToggle = (Button) walkView
 						.findViewById(R.id.show_toggle);
 				showToggle.setOnClickListener(new OnClickListener() {
 
@@ -151,8 +152,10 @@ public class ItineraryFragment extends Fragment implements
 					public void onClick(View view) {
 						if (stepsView.isShown()) {
 							stepsView.setVisibility(View.GONE);
+							showToggle.setText(resources.getString(R.string.hide_details));
 						} else {
 							stepsView.setVisibility(View.VISIBLE);
+							showToggle.setText(resources.getString(R.string.show_details));
 						}
 					}
 

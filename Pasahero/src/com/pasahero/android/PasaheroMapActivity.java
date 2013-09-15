@@ -106,7 +106,7 @@ public class PasaheroMapActivity extends MapActivity implements
 			@Override
 			public void onClick(View v) {
 				optionsListening.navButtonClicked();
-				switchFragments(itineraryFragment, optionsFragment);
+				switchFragments(optionsFragment, itineraryFragment);
 			}
 		});
 	}

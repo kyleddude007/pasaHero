@@ -2,20 +2,24 @@ package com.pasahero.android;
 
 import java.net.URL;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
 public class RequestItineraryTask extends AsyncTask<URL, Void, Response> {
 
-	private Context callingContext;
+	private Context context;
 	TripPlannerInterface requestItineraryInterface;
+	private ProgressDialog planProgress;
 
-	public void setCallingContext(Context callingContext) {
-		this.callingContext = callingContext;
+	public RequestItineraryTask(Context context,
+			TripPlannerInterface requestItineraryInterface) {
+		this.requestItineraryInterface = requestItineraryInterface;
+		this.context = context;
 	}
 
-	public RequestItineraryTask(TripPlannerInterface requestItineraryInterface) {
-		this.requestItineraryInterface = requestItineraryInterface;
+	protected void onPreExecute() {
+		planProgress = ProgressDialog.show(context, Config.LOADING, Config.ITINERARY_FETCHING_MSG);
 	}
 
 	@Override
@@ -29,6 +33,9 @@ public class RequestItineraryTask extends AsyncTask<URL, Void, Response> {
 	@Override
 	protected void onPostExecute(Response response) {
 		System.out.println("Response: " + response);
+		if (planProgress.isShowing()) {
+			planProgress.dismiss();
+		}
 		if (response != null) {
 			requestItineraryInterface.loadItinerary(response);
 		} else {

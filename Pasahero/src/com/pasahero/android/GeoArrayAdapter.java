@@ -18,7 +18,7 @@ public class GeoArrayAdapter extends ArrayAdapter<Address> {
 	private Address selected;
 	private String provider;
 
-	public void addResult(Address address) {
+	public void insertToTop(Address address) {
 		addresses.add(address);
 		this.notifyDataSetChanged();
 	}
