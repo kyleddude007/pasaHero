@@ -423,4 +423,10 @@ public class OptionsPanelFragment extends Fragment implements
 		
 	}
 
+	@Override
+	public void failedToRetrieveItinerary() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

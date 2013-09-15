@@ -28,10 +28,12 @@ public class RequestItineraryTask extends AsyncTask<URL, Void, Response> {
 
 	@Override
 	protected void onPostExecute(Response response) {
-		System.out.println("Response: "+response);
-		requestItineraryInterface.loadItinerary(response);
+		System.out.println("Response: " + response);
+		if (response != null) {
+			requestItineraryInterface.loadItinerary(response);
+		} else {
+			requestItineraryInterface.failedToRetrieveItinerary();
+		}
 	}
-	
-	
 
 }

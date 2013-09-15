@@ -11,7 +11,9 @@ import java.util.Vector;
 import org.opentripplanner.util.PolylineEncoder;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
@@ -53,6 +55,7 @@ public class ItineraryFragment extends Fragment implements
 	private TypedArray routeColors;
 	private int routeColorIndex;
 	private int routeColorLength;
+	private AlertDialog errorDialog;
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -160,7 +163,7 @@ public class ItineraryFragment extends Fragment implements
 						R.layout.itinerary_transit, parent, false);
 				ImageView busIcon = (ImageView) busView
 						.findViewById(R.id.transit_icon);
-				busIcon.setImageDrawable(resources.getDrawable(R.drawable.bus));
+				busIcon.setImageDrawable(resources.getDrawable(R.drawable.bus_blue));
 				TextView busTitle = (TextView) busView
 						.findViewById(R.id.transit_title);
 				busTitle.setText(Utils.insertToTemplate(
@@ -220,7 +223,7 @@ public class ItineraryFragment extends Fragment implements
 				ImageView railIcon = (ImageView) railView
 						.findViewById(R.id.transit_icon);
 				railIcon.setImageDrawable(resources
-						.getDrawable(R.drawable.rail));
+						.getDrawable(R.drawable.rail_blue));
 				TextView railTitle = (TextView) railView
 						.findViewById(R.id.transit_title);
 				railTitle.setText(Utils.insertToTemplate(
@@ -269,7 +272,7 @@ public class ItineraryFragment extends Fragment implements
 				ImageView jeepIcon = (ImageView) jeepView
 						.findViewById(R.id.transit_icon);
 				jeepIcon.setImageDrawable(resources
-						.getDrawable(R.drawable.jeep));
+						.getDrawable(R.drawable.jeep_blue));
 				TextView jeepTitle = (TextView) jeepView
 						.findViewById(R.id.transit_title);
 				jeepTitle.setText(Utils.insertToTemplate(
@@ -317,7 +320,7 @@ public class ItineraryFragment extends Fragment implements
 						R.layout.itinerary_transit, parent, false);
 				ImageView pnrIcon = (ImageView) pnrView
 						.findViewById(R.id.transit_icon);
-				pnrIcon.setImageDrawable(resources.getDrawable(R.drawable.pnr));
+				pnrIcon.setImageDrawable(resources.getDrawable(R.drawable.train_blue));
 				TextView pnrTitle = (TextView) pnrView
 						.findViewById(R.id.transit_title);
 				pnrTitle.setText(Utils.insertToTemplate(
@@ -497,6 +500,23 @@ public class ItineraryFragment extends Fragment implements
 	@Override
 	public void fareUnavailable() {
 		System.out.println("Fare unvailable");
+	}
+
+	@Override
+	public void failedToRetrieveItinerary() {
+		try{
+			errorDialog.show();
+		}catch(NullPointerException e){
+			AlertDialog.Builder errorBuilder = new AlertDialog.Builder(activity);
+			errorBuilder.setMessage(Config.HTTP_CONNECT_FAILED);
+			errorBuilder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+		           public void onClick(DialogInterface dialog, int id) {
+		        	   errorDialog.dismiss();
+		           }
+		       });
+			errorDialog = errorBuilder.create();
+			errorDialog.show();
+		}
 	}
 
 }

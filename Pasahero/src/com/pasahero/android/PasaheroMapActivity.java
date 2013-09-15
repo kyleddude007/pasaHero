@@ -4,6 +4,7 @@ import java.util.Hashtable;
 import java.util.List;
 
 import android.app.ActionBar;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
@@ -40,7 +41,7 @@ public class PasaheroMapActivity extends MapActivity implements
 	private Hashtable<String, Overlay> markerOverlayHolder;
 	private MapController mapCtrl;
 	private TripPlannerInterface tripPlannerListening;
-	private Context context; 
+	private Context context;
 	private Button nav;
 	private PasaHeroMapInterface optionsListening;
 	private PasaHeroMapInterface itineraryListening;
@@ -59,7 +60,7 @@ public class PasaheroMapActivity extends MapActivity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_pasahero_map);
 		session = new SessionManager(this);
-		//session.logoutUser();
+		// session.logoutUser();
 		fontawesome = Typefaces.get(this, Config.FONTAWESOME_URL);
 
 		// setUpViews();
@@ -78,9 +79,8 @@ public class PasaheroMapActivity extends MapActivity implements
 		setUpMapView();
 		setupMyLocation();
 		setUpViews();
-		fragmentTransaction = fragmentManager.beginTransaction();
-		fragmentTransaction.hide(itineraryFragment);
-		fragmentTransaction.commit();
+		hideItineraryFragment();
+
 	}
 
 	public void setUpMapView() {
@@ -93,6 +93,12 @@ public class PasaheroMapActivity extends MapActivity implements
 		annotation = new AnnotationView(map);
 	}
 
+	public void hideItineraryFragment() {
+		fragmentTransaction = fragmentManager.beginTransaction();
+		fragmentTransaction.hide(itineraryFragment);
+		fragmentTransaction.commit();
+	}
+
 	public void setUpNav() {
 		nav = (Button) findViewById(R.id.options_nav);
 		nav.setTypeface(fontawesome);
@@ -100,26 +106,27 @@ public class PasaheroMapActivity extends MapActivity implements
 			@Override
 			public void onClick(View v) {
 				optionsListening.navButtonClicked();
+				switchFragments(itineraryFragment, optionsFragment);
 			}
 		});
 	}
-	
-	public void setUpViews(){
+
+	public void setUpViews() {
 		setUpAuthButton();
 		setUpNav();
 		setUpMyLocationButton();
 	}
-	
-	public void setUpAuthButton(){
+
+	public void setUpAuthButton() {
 		authButton = (Button) findViewById(R.id.button_auth);
 		authButton.setTypeface(fontawesome);
-		authButton.setOnClickListener(new OnClickListener(){
+		authButton.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				session.checkLogin();
 			}
-			
+
 		});
 	}
 
@@ -172,7 +179,8 @@ public class PasaheroMapActivity extends MapActivity implements
 		return false;
 	}
 
-	public void addMarker(String provider, Address address, String label, String blurb) {
+	public void addMarker(String provider, Address address, String label,
+			String blurb) {
 		Drawable icon = this.getResources().getDrawable(
 				R.drawable.location_marker);
 		final DefaultItemizedOverlay overlay = new DefaultItemizedOverlay(icon);
@@ -199,12 +207,13 @@ public class PasaheroMapActivity extends MapActivity implements
 	private void setAddressMarker(String provider, Address address) {
 		removeMarker(provider);
 		addMarker(provider, address, address.getLocality(), "");
-		mapCtrl.setCenter(
-				new GeoPoint(address.getLatitude(), address.getLongitude()));
+		mapCtrl.setCenter(new GeoPoint(address.getLatitude(), address
+				.getLongitude()));
 	}
 
 	/**
 	 * Remove marker at the address specified if it exists
+	 * 
 	 * @param address
 	 */
 	private void removeMarker(String provider) {
@@ -234,7 +243,7 @@ public class PasaheroMapActivity extends MapActivity implements
 	}
 
 	@Override
-	public void locationSelected(String provider, Address address) {	
+	public void locationSelected(String provider, Address address) {
 		setAddressMarker(provider, address);
 	}
 
@@ -245,11 +254,15 @@ public class PasaheroMapActivity extends MapActivity implements
 
 	@Override
 	public void itineraryReceived(Plan plan) {
-		fragmentTransaction = fragmentManager.beginTransaction();
-		fragmentTransaction.hide(optionsFragment);
-		fragmentTransaction.show(itineraryFragment);
-		fragmentTransaction.commit();
+		switchFragments(optionsFragment, itineraryFragment);
 		itineraryListening.planReceived(plan);
+	}
+	
+	public void switchFragments(Fragment hide, Fragment show){
+		fragmentTransaction = fragmentManager.beginTransaction();
+		fragmentTransaction.hide(hide);
+		fragmentTransaction.show(show);
+		fragmentTransaction.commit();
 	}
 
 	@Override
@@ -292,6 +305,12 @@ public class PasaheroMapActivity extends MapActivity implements
 
 	@Override
 	public void fareUnavailable() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void failedToRetrieveItinerary() {
 		// TODO Auto-generated method stub
 		
 	}
