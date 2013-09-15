@@ -7,4 +7,5 @@ public interface OptionsPanelListenerInterface {
 	public void locationChosen(Address location);
 	public void itineraryReceived(Plan plan);
 	public void readyToReceivMyLocation();
+	public void itineraryNotPossible();
 }

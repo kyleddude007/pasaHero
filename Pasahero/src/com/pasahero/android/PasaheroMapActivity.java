@@ -1,6 +1,5 @@
 package com.pasahero.android;
 
-import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -8,8 +7,6 @@ import android.app.ActionBar;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.location.Address;
@@ -19,22 +16,18 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.mapquest.android.Geocoder;
 import com.mapquest.android.maps.AnnotationView;
 import com.mapquest.android.maps.DefaultItemizedOverlay;
 import com.mapquest.android.maps.GeoPoint;
 import com.mapquest.android.maps.ItemizedOverlay;
-import com.mapquest.android.maps.LineOverlay;
 import com.mapquest.android.maps.MapActivity;
 import com.mapquest.android.maps.MapController;
 import com.mapquest.android.maps.MapView;
 import com.mapquest.android.maps.MyLocationOverlay;
 import com.mapquest.android.maps.Overlay;
 import com.mapquest.android.maps.OverlayItem;
-import com.mapquest.android.maps.PolygonOverlay;
-import com.mapquest.android.maps.RouteManager;
 
 public class PasaheroMapActivity extends MapActivity implements
 		TripPlannerInterface, OptionsPanelListenerInterface,
@@ -45,10 +38,10 @@ public class PasaheroMapActivity extends MapActivity implements
 	private Geocoder geocoder;
 	private GeoArrayAdapter adapter;
 	private List<Overlay> overlays;
-	private Hashtable<Integer, Overlay> markerOverlayHolder;
+	private Hashtable<String, Overlay> markerOverlayHolder;
 	private MapController mapCtrl;
 	private TripPlannerInterface requestItineraryInterface;
-	private Context context;
+	private Context context; 
 	private Address from;
 	private Address to;
 	private Button nav;
@@ -69,7 +62,7 @@ public class PasaheroMapActivity extends MapActivity implements
 		fontawesome = Typefaces.get(this, Config.FONTAWESOME_URL);
 
 		// setUpViews();
-		this.markerOverlayHolder = new Hashtable<Integer, Overlay>();
+		this.markerOverlayHolder = new Hashtable<String, Overlay>();
 		this.context = context;
 		this.from = null;
 		this.to = null;
@@ -84,9 +77,8 @@ public class PasaheroMapActivity extends MapActivity implements
 		itineraryListening = itineraryFragment;
 
 		ActionBar bar = this.getActionBar();
-		// bar.hide();
+		bar.hide();
 		setUpMapView();
-		locOverlay = new MyLocationOverlay(this, map);
 		setUpNav();
 		setupMyLocation();
 		setUpMyLocationButton();
@@ -147,7 +139,7 @@ public class PasaheroMapActivity extends MapActivity implements
 			public void run() {
 				currentLocation = locOverlay.getMyLocation();
 				mapCtrl.animateTo(currentLocation);
-				mapCtrl.setZoom(14);
+				mapCtrl.setZoom(Config.MAP_ZOOM);
 				map.getOverlays().add(locOverlay);
 				locOverlay.setFollowing(true);
 			}
@@ -174,7 +166,7 @@ public class PasaheroMapActivity extends MapActivity implements
 		return false;
 	}
 
-	public void addMarker(Address address, String label, String blurb) {
+	public void addMarker(String provider, Address address, String label, String blurb) {
 		Drawable icon = this.getResources().getDrawable(
 				R.drawable.location_marker);
 		final DefaultItemizedOverlay overlay = new DefaultItemizedOverlay(icon);
@@ -193,17 +185,9 @@ public class PasaheroMapActivity extends MapActivity implements
 				}
 			}
 		});
-
 		overlays.add(overlay);
-		markerOverlayHolder.put(address.hashCode(), overlay);
-		// map.getOverlays().add(overlay);
+		markerOverlayHolder.put(provider, overlay);
 		map.invalidate();
-	}
-
-	public void replaceMarker(DefaultItemizedOverlay oldMarker,
-			DefaultItemizedOverlay newMarker) {
-		overlays.remove(oldMarker);
-		overlays.add(newMarker);
 	}
 
 	public void setMarker(DefaultItemizedOverlay overlay) {
@@ -212,14 +196,22 @@ public class PasaheroMapActivity extends MapActivity implements
 	}
 
 	private void setAddress(String provider, Address address) {
-		// adapter.setSelected(address);
-		addMarker(address, address.getLocality(), "");
-		map.getController().setCenter(
+		removeMarker(provider);
+		addMarker(provider, address, address.getLocality(), "");
+		mapCtrl.setCenter(
 				new GeoPoint(address.getLatitude(), address.getLongitude()));
-		if (provider.equals(Config.FROM_PLACE)) {
-			from = address;
-		} else if (provider.equals(Config.TO_PLACE)) {
-			to = address;
+	}
+
+	/**
+	 * Remove marker at the address specified if it exists
+	 * @param address
+	 */
+	private void removeMarker(String provider) {
+		if (markerOverlayHolder.containsKey(provider)) {
+			Overlay oldMarker = markerOverlayHolder.get(provider);
+			overlays.remove(oldMarker);
+			markerOverlayHolder.remove(oldMarker);
+			map.invalidate();
 		}
 	}
 
@@ -242,6 +234,7 @@ public class PasaheroMapActivity extends MapActivity implements
 
 	@Override
 	public void locationSelected(String provider, Address address) {
+		
 		setAddress(provider, address);
 	}
 
@@ -257,7 +250,6 @@ public class PasaheroMapActivity extends MapActivity implements
 		fragmentTransaction.show(itineraryFragment);
 		fragmentTransaction.commit();
 		itineraryListening.planReceived(plan);
-
 	}
 
 	@Override
@@ -289,6 +281,13 @@ public class PasaheroMapActivity extends MapActivity implements
 	public void readyToReceivMyLocation() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void itineraryNotPossible() {
+		overlays.remove(markerOverlayHolder.get(Config.FROM_PLACE));
+		overlays.remove(markerOverlayHolder.get(Config.TO_PLACE));
+		map.invalidate();
 	}
 
 }

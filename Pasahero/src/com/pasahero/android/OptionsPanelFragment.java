@@ -7,9 +7,11 @@ import java.util.Locale;
 import java.util.Vector;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.location.Address;
 import android.os.Bundle;
@@ -36,7 +38,8 @@ import com.mapquest.android.Geocoder;
 import com.mapquest.android.maps.GeoPoint;
 
 public class OptionsPanelFragment extends Fragment implements
-		GeocodeTaskInterface, TripPlannerInterface, PasaHeroMapInterface, TimePickerDialog.OnTimeSetListener  {
+		GeocodeTaskInterface, TripPlannerInterface, PasaHeroMapInterface,
+		TimePickerDialog.OnTimeSetListener {
 	private OptionsPanelListenerInterface optionsListener;
 	private GeocodeTaskInterface geoListener;
 
@@ -62,6 +65,7 @@ public class OptionsPanelFragment extends Fragment implements
 	private EditText walkDistanceView;
 	private boolean arriveBy;
 	private TimePickerDialog.OnTimeSetListener timePickerListener;
+	private AlertDialog errorDialog;
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -215,11 +219,13 @@ public class OptionsPanelFragment extends Fragment implements
 						from.getLatitude() + "," + from.getLongitude());
 				params.put(Config.TO_PLACE,
 						to.getLatitude() + "," + to.getLongitude());
-				params.put(Config.MAX_WALK_DISTANCE, walkDistanceView.getText().toString());
+				params.put(Config.MAX_WALK_DISTANCE, walkDistanceView.getText()
+						.toString());
 				params.put(Config.OPTIMIZE, Config.DEFAULT_OPTIMIZE);
 				params.put(Config.MODE, Config.DEFAULT_MODE);
 				params.put(Config.TIME, timeDisplay.getText().toString());
-				params.put(Config.WALK_SPEED, walkSpeedView.getText().toString());
+				params.put(Config.WALK_SPEED, walkSpeedView.getText()
+						.toString());
 				RequestItineraryTask request = new RequestItineraryTask(
 						itineraryListener);
 				System.out.println(Utils.contsructUrl(Config.OTP_API_URL,
@@ -240,10 +246,12 @@ public class OptionsPanelFragment extends Fragment implements
 			public void onClick(View view) {
 				if (moreOptionsPanel.isShown()) {
 					moreOptionsPanel.setVisibility(View.GONE);
-					moreOptionsToggle.setText(activity.getString(R.string.more_options));
+					moreOptionsToggle.setText(activity
+							.getString(R.string.more_options));
 				} else {
 					moreOptionsPanel.setVisibility(View.VISIBLE);
-					moreOptionsToggle.setText(activity.getString(R.string.hide_options));
+					moreOptionsToggle.setText(activity
+							.getString(R.string.hide_options));
 					loadDefaultOptions();
 				}
 			}
@@ -274,14 +282,14 @@ public class OptionsPanelFragment extends Fragment implements
 		timeDisplay = (TextView) mainView
 				.findViewById(R.id.time_arrive_or_depart);
 		timeDisplay.setText(Utils.getShortTime(new Date()));
-		
-		timeDisplay.setOnClickListener(new OnClickListener(){
+
+		timeDisplay.setOnClickListener(new OnClickListener() {
 			@Override
-			public void onClick(View view){
+			public void onClick(View view) {
 				showTimePickerDialog(view);
 			}
 		});
-		
+
 		walkSpeedView = (EditText) mainView.findViewById(R.id.walkSpeed);
 		walkDistanceView = (EditText) mainView.findViewById(R.id.walkDistance);
 
@@ -336,15 +344,30 @@ public class OptionsPanelFragment extends Fragment implements
 	@Override
 	public void loadItinerary(Response response) {
 		System.out.println("Responsee: " + response);
-		if (response.getError() == null) {
+		Error error = response.getError();
+		if (error == null) {
 			System.out.println(response);
 			optionsListener.itineraryReceived(response.getPlan());
 		} else {
-			Toast.makeText(activity, response.getError().getMsg(),
-					Toast.LENGTH_SHORT).show();
+			try{
+				errorDialog.show();
+			}catch(NullPointerException e){
+				AlertDialog.Builder errorBuilder = new AlertDialog.Builder(activity);
+				errorBuilder.setMessage(error.getMsg());
+				errorBuilder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+			           public void onClick(DialogInterface dialog, int id) {
+			        	   clearForm();
+			        	   errorDialog.dismiss();
+			           }
+			       });
+				errorDialog = errorBuilder.create();
+				errorDialog.show();
+			}
+			optionsListener.itineraryNotPossible();
 		}
 	}
 
+	
 	@Override
 	public void navButtonClicked() {
 		switchToMain();
@@ -380,12 +403,18 @@ public class OptionsPanelFragment extends Fragment implements
 	public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 		timeDisplay.setText(Utils.getShortTime(hourOfDay, minute));
 	}
-	
-	public void loadDefaultOptions(){
+
+	public void loadDefaultOptions() {
 		arriveBy = false;
 		timeDisplay.setText(Utils.getShortTime(new Date()));
-		walkSpeedView.setText(Config.DEFAULT_WALK_SPEED+"");
-		walkDistanceView.setText(Config.DEFAULT_MAX_WALK_DISTANCE+"");
+		walkSpeedView.setText(Config.DEFAULT_WALK_SPEED + "");
+		walkDistanceView.setText(Config.DEFAULT_MAX_WALK_DISTANCE + "");
+	}
+	
+	public void clearForm(){
+		fromView.setText("");
+		toView.setText("");
+		loadDefaultOptions();
 	}
 
 }
