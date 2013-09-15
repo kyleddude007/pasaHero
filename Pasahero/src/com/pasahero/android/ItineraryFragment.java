@@ -494,4 +494,9 @@ public class ItineraryFragment extends Fragment implements
 
 	}
 
+	@Override
+	public void fareUnavailable() {
+		System.out.println("Fare unvailable");
+	}
+
 }

@@ -273,4 +273,10 @@ public class PasaheroMapActivity extends MapActivity implements
 		map.invalidate();
 	}
 
+	@Override
+	public void fareUnavailable() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

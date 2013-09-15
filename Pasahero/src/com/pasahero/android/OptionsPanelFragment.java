@@ -417,4 +417,10 @@ public class OptionsPanelFragment extends Fragment implements
 		loadDefaultOptions();
 	}
 
+	@Override
+	public void fareUnavailable() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
