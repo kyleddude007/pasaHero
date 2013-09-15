@@ -37,6 +37,8 @@
     <string name="walk_speed">Enter walk speed</string>
     <string name="walk_distance">Enter maximum walk distance</string>
     <string name="ok">Okay</string>
+    <string name="icon_list">&#xf03a;</string>
+    <string name="icon_angle_left">&#xf104;</string>
     <string-array name="trip_plan_time_options">
         <item>Arrive by</item>
         <item>Depart on</item>

@@ -16,6 +16,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.mapquest.android.Geocoder;
 import com.mapquest.android.maps.AnnotationView;
@@ -36,14 +37,11 @@ public class PasaheroMapActivity extends MapActivity implements
 	protected MapView map;
 	AnnotationView annotation;
 	private Geocoder geocoder;
-	private GeoArrayAdapter adapter;
 	private List<Overlay> overlays;
 	private Hashtable<String, Overlay> markerOverlayHolder;
 	private MapController mapCtrl;
-	private TripPlannerInterface requestItineraryInterface;
+	private TripPlannerInterface tripPlannerListening;
 	private Context context; 
-	private Address from;
-	private Address to;
 	private Button nav;
 	private PasaHeroMapInterface optionsListening;
 	private PasaHeroMapInterface itineraryListening;
@@ -54,19 +52,19 @@ public class PasaheroMapActivity extends MapActivity implements
 	private Typeface fontawesome;
 	private Button myLocation;
 	private GeoPoint currentLocation;
+	private SessionManager session;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_pasahero_map);
+		session = new SessionManager(this);
+		//session.logoutUser();
+		//session.checkLogin();
 		fontawesome = Typefaces.get(this, Config.FONTAWESOME_URL);
 
 		// setUpViews();
 		this.markerOverlayHolder = new Hashtable<String, Overlay>();
-		this.context = context;
-		this.from = null;
-		this.to = null;
-		this.requestItineraryInterface = this;
 		fragmentManager = getFragmentManager();
 
 		optionsFragment = (OptionsPanelFragment) fragmentManager
@@ -82,7 +80,6 @@ public class PasaheroMapActivity extends MapActivity implements
 		setUpNav();
 		setupMyLocation();
 		setUpMyLocationButton();
-		getGeocoder();
 		fragmentTransaction = fragmentManager.beginTransaction();
 		fragmentTransaction.hide(itineraryFragment);
 		fragmentTransaction.commit();
@@ -92,7 +89,6 @@ public class PasaheroMapActivity extends MapActivity implements
 		map = (MapView) findViewById(R.id.mapView);
 		mapCtrl = map.getController();
 		overlays = map.getOverlays();
-
 		mapCtrl.setZoom(Config.MAP_ZOOM);
 		mapCtrl.setCenter(new GeoPoint(Config.NCR_LAT, Config.NCR_LON));
 		map.setBuiltInZoomControls(true);
@@ -122,13 +118,6 @@ public class PasaheroMapActivity extends MapActivity implements
 			}
 
 		});
-	}
-
-	protected Geocoder getGeocoder() {
-		if (geocoder == null) {
-			geocoder = new Geocoder(this);
-		}
-		return geocoder;
 	}
 
 	protected void setupMyLocation() {
@@ -190,12 +179,7 @@ public class PasaheroMapActivity extends MapActivity implements
 		map.invalidate();
 	}
 
-	public void setMarker(DefaultItemizedOverlay overlay) {
-		overlays.add(overlay);
-		map.invalidate();
-	}
-
-	private void setAddress(String provider, Address address) {
+	private void setAddressMarker(String provider, Address address) {
 		removeMarker(provider);
 		addMarker(provider, address, address.getLocality(), "");
 		mapCtrl.setCenter(
@@ -233,9 +217,8 @@ public class PasaheroMapActivity extends MapActivity implements
 	}
 
 	@Override
-	public void locationSelected(String provider, Address address) {
-		
-		setAddress(provider, address);
+	public void locationSelected(String provider, Address address) {	
+		setAddressMarker(provider, address);
 	}
 
 	@Override

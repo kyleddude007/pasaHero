@@ -19,15 +19,16 @@
             android:id="@+id/options_nav"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/icon_home"
-             android:layout_alignParentLeft="true" />
+            android:layout_alignParentLeft="true"
+            android:background="@android:color/transparent"
+            android:drawableRight="@drawable/ph_logo_small" />
 
         <fragment
             android:id="@+id/options_panel_fragment"
             android:name="com.pasahero.android.OptionsPanelFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/options_nav">
+            android:layout_toRightOf="@id/options_nav" >
         </fragment>
 
         <fragment
@@ -35,17 +36,16 @@
             android:name="com.pasahero.android.ItineraryFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/options_nav"
- >
+            android:layout_toRightOf="@id/options_nav" >
         </fragment>
 
         <Button
             android:id="@+id/my_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/icon_location_arrow"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true" />
+            android:layout_alignParentRight="true"
+            android:text="@string/icon_location_arrow" />
     </RelativeLayout>
 
 </FrameLayout>

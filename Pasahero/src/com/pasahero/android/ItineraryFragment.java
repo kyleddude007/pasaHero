@@ -23,6 +23,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -51,6 +52,7 @@ public class ItineraryFragment extends Fragment implements
 	private Button moreItinerariesToggle;
 	private TypedArray routeColors;
 	private int routeColorIndex;
+	private int routeColorLength;
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -121,6 +123,7 @@ public class ItineraryFragment extends Fragment implements
 		parent.removeAllViews();
 		Vector<Leg> legs = itinerary.getLegs();
 		Vector<GeoPoint> lineData = new Vector<GeoPoint>();
+		itinerary.setRouteColor(getRouteColor());
 		for (Leg leg : legs) {
 			String transitType = leg.getTransitType();
 			System.out.println("Transit type: " + transitType);
@@ -155,6 +158,9 @@ public class ItineraryFragment extends Fragment implements
 			} else if (transitType.equals(Config.PUB_IDENTIFIER)) {
 				View busView = activity.getLayoutInflater().inflate(
 						R.layout.itinerary_transit, parent, false);
+				ImageView busIcon = (ImageView) busView
+						.findViewById(R.id.transit_icon);
+				busIcon.setImageDrawable(resources.getDrawable(R.drawable.bus));
 				TextView busTitle = (TextView) busView
 						.findViewById(R.id.transit_title);
 				busTitle.setText(Utils.insertToTemplate(
@@ -211,6 +217,10 @@ public class ItineraryFragment extends Fragment implements
 					|| transitType.equals(Config.MRT3)) {
 				View railView = activity.getLayoutInflater().inflate(
 						R.layout.itinerary_transit, parent, false);
+				ImageView railIcon = (ImageView) railView
+						.findViewById(R.id.transit_icon);
+				railIcon.setImageDrawable(resources
+						.getDrawable(R.drawable.rail));
 				TextView railTitle = (TextView) railView
 						.findViewById(R.id.transit_title);
 				railTitle.setText(Utils.insertToTemplate(
@@ -256,86 +266,94 @@ public class ItineraryFragment extends Fragment implements
 			} else if (transitType.equals(Config.PUJ_IDENTIFIER)) {
 				View jeepView = activity.getLayoutInflater().inflate(
 						R.layout.itinerary_transit, parent, false);
-				TextView railTitle = (TextView) jeepView
+				ImageView jeepIcon = (ImageView) jeepView
+						.findViewById(R.id.transit_icon);
+				jeepIcon.setImageDrawable(resources
+						.getDrawable(R.drawable.jeep));
+				TextView jeepTitle = (TextView) jeepView
 						.findViewById(R.id.transit_title);
-				railTitle.setText(Utils.insertToTemplate(
+				jeepTitle.setText(Utils.insertToTemplate(
 						Config.TEMPLATE_JEEP_TITLE, Config.LOC_NAME_PATTERN,
 						leg.getRouteLongName()));
-				TextView railDepart = (TextView) jeepView
+				TextView jeepDepart = (TextView) jeepView
 						.findViewById(R.id.transit_depart);
 				Hashtable<String, String> departPairs = new Hashtable<String, String>();
 				departPairs.put(Config.TIME_PATTERN,
 						Utils.getShortTime(leg.getStartTime()));
 				departPairs.put(Config.LOC_NAME_PATTERN, leg.getFrom()
 						.getName());
-				railDepart.setText(Utils.insertToTemplate(
+				jeepDepart.setText(Utils.insertToTemplate(
 						Config.TEMPLATE_DEPART, departPairs));
-				TextView railArrive = (TextView) jeepView
+				TextView jeepArrive = (TextView) jeepView
 						.findViewById(R.id.transit_arrive);
 				Hashtable<String, String> arrivePairs = new Hashtable<String, String>();
 				arrivePairs.put(Config.TIME_PATTERN,
 						Utils.getShortTime(leg.getEndTime()));
 				arrivePairs.put(Config.LOC_NAME_PATTERN, leg.getTo().getName());
-				railArrive.setText(Utils.insertToTemplate(
+				jeepArrive.setText(Utils.insertToTemplate(
 						Config.TEMPLATE_ARRIVE, arrivePairs));
-				TextView railDuration = (TextView) jeepView
+				TextView jeepDuration = (TextView) jeepView
 						.findViewById(R.id.transit_duration);
-				railDuration
+				jeepDuration
 						.setText(Utils.toDurationReadable(leg.getDuration()));
-				TextView railService = (TextView) jeepView
+				TextView jeepService = (TextView) jeepView
 						.findViewById(R.id.transit_service);
-				railService.setText(Utils.insertToTemplate(
+				jeepService.setText(Utils.insertToTemplate(
 						Config.TEMPLATE_SERVICE_RUN_BY, Config.SERVICE_PATTERN,
 						leg.getAgencyName()));
 				parent.addView(jeepView);
-				TextView railFare = (TextView) jeepView
+				TextView jeepFare = (TextView) jeepView
 						.findViewById(R.id.transit_fare);
 				try {
 					getFare(new URL(Config.PH_API_URL + "/"
 							+ Config.PH_API_FARE + "/" + Config.PUJ + "/"
 							+ Utils.toKm(leg.getDistance())), transitType,
-							railFare);
+							jeepFare);
 				} catch (MalformedURLException e) {
 					e.printStackTrace();
 				}
-			} else if(transitType.equals(Config.PNR_IDENTIFIER)){
+			} else if (transitType.equals(Config.PNR_IDENTIFIER)) {
 				View pnrView = activity.getLayoutInflater().inflate(
 						R.layout.itinerary_transit, parent, false);
-				TextView railTitle = (TextView) pnrView
+				ImageView pnrIcon = (ImageView) pnrView
+						.findViewById(R.id.transit_icon);
+				pnrIcon.setImageDrawable(resources.getDrawable(R.drawable.pnr));
+				TextView pnrTitle = (TextView) pnrView
 						.findViewById(R.id.transit_title);
-				railTitle.setText(Utils.insertToTemplate(
+				pnrTitle.setText(Utils.insertToTemplate(
 						Config.TEMPLATE_JEEP_TITLE, Config.LOC_NAME_PATTERN,
 						leg.getRouteLongName()));
-				TextView railDepart = (TextView) pnrView
+				TextView pnrDepart = (TextView) pnrView
 						.findViewById(R.id.transit_depart);
 				Hashtable<String, String> departPairs = new Hashtable<String, String>();
 				departPairs.put(Config.TIME_PATTERN,
 						Utils.getShortTime(leg.getStartTime()));
 				departPairs.put(Config.LOC_NAME_PATTERN, leg.getFrom()
 						.getName());
-				railDepart.setText(Utils.insertToTemplate(
+				pnrDepart.setText(Utils.insertToTemplate(
 						Config.TEMPLATE_DEPART, departPairs));
-				TextView railArrive = (TextView) pnrView
+				TextView pnrArrive = (TextView) pnrView
 						.findViewById(R.id.transit_arrive);
 				Hashtable<String, String> arrivePairs = new Hashtable<String, String>();
 				arrivePairs.put(Config.TIME_PATTERN,
 						Utils.getShortTime(leg.getEndTime()));
 				arrivePairs.put(Config.LOC_NAME_PATTERN, leg.getTo().getName());
-				railArrive.setText(Utils.insertToTemplate(
+				pnrArrive.setText(Utils.insertToTemplate(
 						Config.TEMPLATE_ARRIVE, arrivePairs));
-				TextView railDuration = (TextView) pnrView
+				TextView pnrDuration = (TextView) pnrView
 						.findViewById(R.id.transit_duration);
-				railDuration
+				pnrDuration
 						.setText(Utils.toDurationReadable(leg.getDuration()));
-				TextView railService = (TextView) pnrView
+				TextView pnrService = (TextView) pnrView
 						.findViewById(R.id.transit_service);
-				railService.setText(Utils.insertToTemplate(
+				pnrService.setText(Utils.insertToTemplate(
 						Config.TEMPLATE_SERVICE_RUN_BY, Config.SERVICE_PATTERN,
 						leg.getAgencyName()));
 				parent.addView(pnrView);
-				TextView railFare = (TextView) pnrView
+				TextView pnrFare = (TextView) pnrView
 						.findViewById(R.id.transit_fare);
-				getPNRTable(leg.getFrom().getName(), leg.getTo().getName(), railFare);
+				getPNRTable(leg.getFrom().getName(), leg.getTo().getName(),
+						pnrFare); 
 			}
 			List<com.vividsolutions.jts.geom.Coordinate> polyLines = PolylineEncoder
 					.decode(leg.getLegGeometry());
@@ -351,22 +369,24 @@ public class ItineraryFragment extends Fragment implements
 		RequestFareTask fareTask = new RequestFareTask(this, legMode, fareView);
 		fareTask.execute(url);
 	}
-	
-	public void getPNRTable(String start, String end, View fareView){
+
+	public void getPNRTable(String start, String end, View fareView) {
 		try {
-			URL url = new URL(Config.PH_API_URL+"/"+Config.PH_API_PNR_FARE+"/"+start);
+			URL url = new URL(Config.PH_API_URL + "/" + Config.PH_API_PNR_FARE
+					+ "/" + start);
 			URI uri = new URI(url.getProtocol(), url.getUserInfo(),
 					url.getHost(), url.getPort(), url.getPath(),
-					url.getQuery(), url.getRef());	
+					url.getQuery(), url.getRef());
 			url = uri.toURL();
-			RequestPNRTableTask pnrTask = new RequestPNRTableTask(this, end, fareView);
+			RequestPNRTableTask pnrTask = new RequestPNRTableTask(this, end,
+					fareView);
 			pnrTask.execute(url);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	public void setUpItineraryListView() {
@@ -461,15 +481,17 @@ public class ItineraryFragment extends Fragment implements
 	}
 
 	@Override
-	public void pnrTableRead(Hashtable<String, String> pnrTable, String end, View fareView) {
-		System.out.println("pnr start val: "+pnrTable.get(Config.PNR_TABLE_START_KEY));
+	public void pnrTableRead(Hashtable<String, String> pnrTable, String end,
+			View fareView) {
+		System.out.println("pnr start val: "
+				+ pnrTable.get(Config.PNR_TABLE_START_KEY));
 		System.out.println("pnr end key: " + end);
 		System.out.println("pnr end val: " + pnrTable.get(end));
 	}
 
 	@Override
 	public void myLocationReady(GeoPoint myLocationPoint) {
-		
+
 	}
 
 }

@@ -2,18 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/white" >
+    android:background="@color/white"
+    android:orientation="vertical" >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
-        <TextView
+        <ImageView
             android:id="@+id/transit_icon"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/icon_road" />
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/transit_title"
@@ -34,14 +33,12 @@
     <TextView
         android:id="@+id/transit_arrive"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
-    
+        android:layout_height="wrap_content" />
+
     <TextView
         android:id="@+id/transit_fare"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/transit_service"

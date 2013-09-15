@@ -1,9 +1,10 @@
 package com.pasahero.android;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Vector;
 
-import android.graphics.Color;
+import com.mapquest.android.maps.GeoPoint;
 
 public class Itinerary {
 
@@ -21,6 +22,7 @@ public class Itinerary {
 	private Vector<Leg> legs;
 	private boolean tooSloped;
 	private int routeColor;
+	private List<GeoPoint> lineDataDecode;
 	
 	public double getFare() {
 		return fare;
@@ -99,6 +101,18 @@ public class Itinerary {
 	}
 	public void setTooSloped(boolean tooSloped) {
 		this.tooSloped = tooSloped;
+	}
+	public int getRouteColor() {
+		return routeColor;
+	}
+	public void setRouteColor(int routeColor) {
+		this.routeColor = routeColor;
+	}
+	public List<GeoPoint> getLineDataDecode() {
+		return lineDataDecode;
+	}
+	public void setLineDataDecode(List<GeoPoint> lineDataDecode) {
+		this.lineDataDecode = lineDataDecode;
 	}
 
 

@@ -11,11 +11,11 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
 
-        <TextView
+        <ImageView
             android:id="@+id/walk_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/icon_male" />
+            android:text="@drawable/walk" />
 
         <TextView
             android:id="@+id/walk_title"
