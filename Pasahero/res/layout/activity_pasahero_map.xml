@@ -23,6 +23,14 @@
             android:background="@android:color/transparent"
             android:drawableRight="@drawable/ph_logo_small" />
 
+        <Button
+            android:id="@+id/button_auth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/options_nav"
+            android:text="@string/icon_male" />
+
         <fragment
             android:id="@+id/options_panel_fragment"
             android:name="com.pasahero.android.OptionsPanelFragment"

@@ -16,7 +16,6 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.ImageButton;
 
 import com.mapquest.android.Geocoder;
 import com.mapquest.android.maps.AnnotationView;
@@ -53,6 +52,7 @@ public class PasaheroMapActivity extends MapActivity implements
 	private Button myLocation;
 	private GeoPoint currentLocation;
 	private SessionManager session;
+	private Button authButton;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +60,6 @@ public class PasaheroMapActivity extends MapActivity implements
 		setContentView(R.layout.activity_pasahero_map);
 		session = new SessionManager(this);
 		//session.logoutUser();
-		//session.checkLogin();
 		fontawesome = Typefaces.get(this, Config.FONTAWESOME_URL);
 
 		// setUpViews();
@@ -77,9 +76,8 @@ public class PasaheroMapActivity extends MapActivity implements
 		ActionBar bar = this.getActionBar();
 		bar.hide();
 		setUpMapView();
-		setUpNav();
 		setupMyLocation();
-		setUpMyLocationButton();
+		setUpViews();
 		fragmentTransaction = fragmentManager.beginTransaction();
 		fragmentTransaction.hide(itineraryFragment);
 		fragmentTransaction.commit();
@@ -103,6 +101,25 @@ public class PasaheroMapActivity extends MapActivity implements
 			public void onClick(View v) {
 				optionsListening.navButtonClicked();
 			}
+		});
+	}
+	
+	public void setUpViews(){
+		setUpAuthButton();
+		setUpNav();
+		setUpMyLocationButton();
+	}
+	
+	public void setUpAuthButton(){
+		authButton = (Button) findViewById(R.id.button_auth);
+		authButton.setTypeface(fontawesome);
+		authButton.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				session.checkLogin();
+			}
+			
 		});
 	}
 
